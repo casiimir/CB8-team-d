@@ -7,4 +7,4 @@ const dailySchema = new mongoose.Schema({
   lastCompleted: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Daily", dailySchema);
+module.exports = mongoose.models.Daily || mongoose.model("Daily", dailySchema);
