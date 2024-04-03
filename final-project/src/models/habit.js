@@ -7,4 +7,4 @@ const habitSchema = new mongoose.Schema({
   lastCompleted: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Habit", habitSchema);
+module.exports = mongoose.models.Habit || mongoose.model("Habit", habitSchema);

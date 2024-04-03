@@ -7,4 +7,4 @@ const todoSchema = new mongoose.Schema({
   deadline: { type: Date },
 });
 
-module.exports = mongoose.model("Todo", todoSchema);
+module.exports = mongoose.models.Todo || mongoose.model("Todo", todoSchema);
