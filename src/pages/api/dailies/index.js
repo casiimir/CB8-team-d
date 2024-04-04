@@ -1,8 +1,6 @@
 import dbConnect from "@/utils/dbConnect";
 import Daily from "@/models/daily";
 
-//Tutti da testare
-
 export default async function handler(req, res) {
   const { method } = req;
 
