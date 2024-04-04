@@ -1,0 +1,75 @@
+$color-2: #5a8433;
+$color-3: #85e27c;
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,500;1,500&display=swap"); /*font*/
+
+.login_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-family: "Nunito", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.highlight {
+  color: $color-3;
+}
+
+.text {
+  font-family: "Nunito", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 5px;
+  text-align: left;
+  color: $color-2;
+}
+
+.input {
+  border-radius: 20px;
+  outline-style: solid;
+  outline-color: $color-3;
+  height: 25px;
+  width: 250px;
+  margin: 15px;
+  font-family: "Nunito", sans-serif;
+  border: none;
+}
+.input:focus {
+  outline: solid $color-3;
+}
+
+.button_login {
+  font-family: "Nunito", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: $color-2;
+  border: none;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 5px;
+  height: 25px;
+  width: 250px;
+  color: white;
+}
+
+.button_signup {
+  font-family: "Nunito", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: white;
+  border: solid $color-2;
+  border-radius: 20px;
+  margin-top: 70px;
+  height: 25px;
+  width: 250px;
+  color: $color-2;
+}
+
+/* per i dispositivi desktop */
+@media only screen and (min-width: 769px) {
+}

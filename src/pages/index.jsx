@@ -1,9 +1,12 @@
 import styles from "../styles/page.module.css";
+import Login from "../components/login/index";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <h1>Ciao ciao!</h1>
-    </main>
+    <>
+      <main className={styles.main}>
+        <Login></Login>
+      </main>
+    </>
   );
 }
