@@ -2,9 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/habits": "pages/habits.js",
-  "/api/dailies": "pages/api/dailies.js",
-  "/dailies": "pages/dailies.js",
   "/": "pages/index.js",
-  "/todos": "pages/todos.js"
+  "/todos": "pages/todos.js",
+  "/dailies": "pages/dailies.js"
 }
