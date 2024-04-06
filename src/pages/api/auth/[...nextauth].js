@@ -8,7 +8,7 @@ export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
-
+      secret: process.env.NEXTAUTH_SECRET,
       credentials: {
         email: {
           label: "email",
