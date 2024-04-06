@@ -9,7 +9,9 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const habits = await Habit.find({});
+        //pass user Id as query parameter
+        const { userId } = req.query;
+        const habits = await Habit.find({ userId });
 
         res.status(200).json({ success: true, data: habits });
       } catch (error) {
