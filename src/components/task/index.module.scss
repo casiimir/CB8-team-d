@@ -1,0 +1,32 @@
+.Task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border: 2px solid black;
+  border-radius: 50px;
+  width: 500px;
+
+  .streak {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+    background-color: grey;
+  }
+
+  .streak.active {
+    background-color: #ffa500;
+  }
+  .button {
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    transform: all, 0.35s;
+  }
+  .button.completed {
+    background-color: #8aad34;
+  }
+}

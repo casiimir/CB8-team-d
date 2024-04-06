@@ -9,7 +9,8 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const dailies = await Daily.find({});
+        const { userId } = req.query;
+        const dailies = await Daily.find({ userId });
 
         res.status(200).json({ success: true, data: dailies });
       } catch (error) {

@@ -9,7 +9,8 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const todos = await Todo.find({});
+        const { userId } = req.query;
+        const todos = await Todo.find({ userId });
 
         res.status(200).json({ success: true, data: todos });
       } catch (error) {

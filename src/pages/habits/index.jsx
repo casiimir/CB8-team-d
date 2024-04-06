@@ -2,6 +2,7 @@ import React from "react";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import TaskList from "../../components/taskList";
 
 const createNewHabit = async (userId, setHabits) => {
   const response = await fetch("/api/habits", {
@@ -36,8 +37,8 @@ const HabitsPage = ({ session }) => {
         const userId = session.user._id;
         const response = await fetch(`/api/habits?userId=${userId}`);
         if (response.ok) {
-          const data = await response.json();
-          setHabits(data.data);
+          const habits = await response.json();
+          setHabits(habits.data);
         } else {
           console.error("Failed to load habits");
         }
@@ -56,12 +57,7 @@ const HabitsPage = ({ session }) => {
       <button onClick={() => createNewHabit(session.user._id, setHabits)}>
         Create new habit
       </button>
-      {habits &&
-        habits.map((habit) => (
-          <div key={habit._id}>
-            <h2>{habit.title}</h2>
-          </div>
-        ))}
+      <TaskList tasks={habits} backgroundChange={false} />
     </div>
   );
 };
