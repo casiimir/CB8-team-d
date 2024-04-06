@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,500;1,500&display=swap"); /*font*/
+
+.text {
+  font-family: "Nunito", sans-serif;
+}
+
+.name {
+  font-family: "Nunito", sans-serif;
+  margin: 10px;
+}
+
+.image {
+  background-image: url("https://static.vecteezy.com/system/resources/previews/019/633/059/original/8-bit-pixel-human-portrait-cartoon-young-girl-for-game-assets-in-illustration-vector.jpg");
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%; /* Imposta il border-radius al 50% per fare un cerchio */
+}
+
+.header_wrapper {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  width: 100%;
+  height: 100px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Ombra */
+}
+
+.resources_wrapper {
+  display: flex;
+}

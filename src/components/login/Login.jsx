@@ -3,7 +3,7 @@ import styles from "./index.module.scss";
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-// import { MdOutlineEmail } from "react-icons/md";
+import { MdOutlineEmail } from "react-icons/md";
 
 const handleSubmit = async (event, router) => {
   event.preventDefault();
@@ -41,7 +41,7 @@ export default function Login() {
       />
       <div className={styles.title}>
         <h1>
-          Let&apos;s start <span className={styles.highlight}>growing</span>
+          Let&apos;s start <span className={styles.highlight}>growing</span>{" "}
           together!
         </h1>
       </div>
