@@ -3,29 +3,30 @@ import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import TaskList from "../../components/taskList";
+import TaskModal from "@/components/taskModal";
 
-const createNewHabit = async (userId, setHabits) => {
-  const response = await fetch("/api/habits", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    //questo e' il body per la creazione dell'habit
-    body: JSON.stringify({
-      title: "Lallalero", //il titolo dell'habit lo sceglie l'utente inserendolo nel form, allo stato attuale e' fisso
-      userId, //lo userId dipende sempre dalla session, se nopn c'e' session non si puo' creare un habit e vieni reindirizzato alla pagina di login
-    }),
-  });
+// const createNewHabit = async (userId, setHabits) => {
+//   const response = await fetch("/api/habits", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     //questo e' il body per la creazione dell'habit
+//     body: JSON.stringify({
+//       title: "Lallalero", //il titolo dell'habit lo sceglie l'utente inserendolo nel form, allo stato attuale e' fisso
+//       userId, //lo userId dipende sempre dalla session, se nopn c'e' session non si puo' creare un habit e vieni reindirizzato alla pagina di login
+//     }),
+//   });
 
-  if (response.ok) {
-    const newHabit = await response.json();
-    console.log(newHabit.data);
-    setHabits((prevHabits) => [...prevHabits, newHabit.data]);
-  } else {
-    const error = await response.json();
-    console.error(error);
-  }
-};
+//   if (response.ok) {
+//     const newHabit = await response.json();
+//     console.log(newHabit.data);
+//     setHabits((prevHabits) => [...prevHabits, newHabit.data]);
+//   } else {
+//     const error = await response.json();
+//     console.error(error);
+//   }
+// };
 
 const HabitsPage = ({ session }) => {
   const router = useRouter();
@@ -54,9 +55,14 @@ const HabitsPage = ({ session }) => {
   return (
     <div>
       <h1>Welcome to the Habits Page</h1>
-      <button onClick={() => createNewHabit(session.user._id, setHabits)}>
+      {/* <button onClick={() => createNewHabit(session.user._id, setHabits)}>
         Create new habit
-      </button>
+      </button> */}
+      <TaskModal
+        setHabits={setHabits}
+        dataModal={("New Habit", false)}
+        session={session}
+      />
       <TaskList tasks={habits} backgroundChange={false} />
     </div>
   );

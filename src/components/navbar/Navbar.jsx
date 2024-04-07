@@ -69,7 +69,9 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <FaPlus className={styles.addBtn} />
+        <button className={styles.addBtn}>
+          <FaPlus className={styles.btnIcon} />
+        </button>
       </nav>
     </>
   );
