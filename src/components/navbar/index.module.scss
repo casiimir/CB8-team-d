@@ -18,11 +18,9 @@
     width: 85%;
     display: flex;
     justify-content: center;
-    gap: 1.6rem;
     align-items: center;
+    gap: 3rem;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
 
     li {
       display: flex;
@@ -30,8 +28,16 @@
       align-items: center;
     }
 
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .active {
       color: $secondary-color;
+      width: 1.8rem;
+      height: 1.8rem;
     }
 
     .icon {
@@ -53,8 +59,12 @@
     border: solid 5px white;
     background-color: $secondary-color;
     color: white;
-    width: 2rem;
-    height: 2rem;
+    width: 80px;
+    height: 80px;
     bottom: 20px;
+  }
+
+  .btnIcon {
+    font-size: 40px;
   }
 }
