@@ -3,29 +3,30 @@ import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import TaskList from "../../components/taskList";
+import TaskModal from "@/components/taskModal";
 
-const createNewDaily = async (userId, setDailies) => {
-  const response = await fetch("/api/dailies", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    //questo e' il body per la creazione dell'habit
-    body: JSON.stringify({
-      title: "nuova daily", //il titolo dell'habit lo sceglie l'utente inserendolo nel form, allo stato attuale e' fisso
-      userId, //lo userId dipende sempre dalla session, se nopn c'e' session non si puo' creare un habit e vieni reindirizzato alla pagina di login
-    }),
-  });
+// const createNewDaily = async (userId, setDailies) => {
+//   const response = await fetch("/api/dailies", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     //questo e' il body per la creazione dell'habit
+//     body: JSON.stringify({
+//       title: "nuova daily", //il titolo dell'habit lo sceglie l'utente inserendolo nel form, allo stato attuale e' fisso
+//       userId, //lo userId dipende sempre dalla session, se nopn c'e' session non si puo' creare un habit e vieni reindirizzato alla pagina di login
+//     }),
+//   });
 
-  if (response.ok) {
-    const newDaily = await response.json();
-    console.log(newDaily.data);
-    setDailies((prevDailies) => [...prevDailies, newDaily.data]);
-  } else {
-    const error = await response.json();
-    console.error(error);
-  }
-};
+//   if (response.ok) {
+//     const newDaily = await response.json();
+//     console.log(newDaily.data);
+//     setDailies((prevDailies) => [...prevDailies, newDaily.data]);
+//   } else {
+//     const error = await response.json();
+//     console.error(error);
+//   }
+// };
 
 const DailiesPage = ({ session }) => {
   const router = useRouter();
@@ -54,9 +55,14 @@ const DailiesPage = ({ session }) => {
   return (
     <div>
       <h1>Welcome to the Dailies Page</h1>
-      <button onClick={() => createNewDaily(session.user._id, setDailies)}>
+      {/* <button onClick={() => createNewDaily(session.user._id, setDailies)}>
         Create new daily
-      </button>
+      </button> */}
+      <TaskModal
+        setTasks={setDailies}
+        dataModal={("New Daily", false)}
+        session={session}
+      />
       <TaskList tasks={dailies} backgroundChange={true} />
     </div>
   );

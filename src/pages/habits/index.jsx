@@ -59,7 +59,7 @@ const HabitsPage = ({ session }) => {
         Create new habit
       </button> */}
       <TaskModal
-        setHabits={setHabits}
+        setTasks={setHabits}
         dataModal={("New Habit", false)}
         session={session}
       />

@@ -1,15 +1,12 @@
 import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import Navbar from "@/components/navbar";
 import Header from "@/components/header";
 import styles from "../styles/globals.css";
-import { useState, useEffect } from "react";
-import TaskModal from "@/components/taskModal";
+import { useState } from "react";
 
 function MyApp({ Component, pageProps }) {
   const pathName = usePathname();
   // const [dataModal, setDataModal] = useState({});
-  // const [isModalOpen, setOpenModal] = useState(false);
 
   // const openModal = () => {
   //   setOpenModal(true);
@@ -58,7 +55,6 @@ function MyApp({ Component, pageProps }) {
             <TaskModal isModalOpen={isModalOpen} closeModal={closeModal} />
           )} */}
           <Component {...pageProps} />
-          <Navbar />
         </>
       )}
       {pathName === "/login" || pathName === "/" || pathName === "/signup" ? (

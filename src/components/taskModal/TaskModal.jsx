@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./index.module.scss";
 import { FaArrowUp } from "react-icons/fa";
 import DatePicker from "react-datepicker";
@@ -6,12 +6,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format, parseISO } from "date-fns";
 import { getSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 
-const TaskModal = ({ dataModal, setHabits, session }) => {
+const TaskModal = ({ dataModal, setTasks, session }) => {
   const [title, setTitle] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
-  //   const [isModalOpen, setOpenModal] = useState(false);
   const pathName = usePathname();
+
+  const router = useRouter();
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -33,23 +35,23 @@ const TaskModal = ({ dataModal, setHabits, session }) => {
   //     setOpenModal(false); // Chiudi la modale quando il componente viene montato o quando la pagina cambia
   //   }, [pathName]);
 
-  const createNewHabit = async (userId, setHabits) => {
-    const response = await fetch("/api/habits", {
+  const createNewTask = async (userId, setTasks) => {
+    const endpoint = `/api${router.asPath}`; // gets the current URL path and prepend it with '/api'
+
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      //questo e' il body per la creazione dell'habit
       body: JSON.stringify({
-        title: "Lallalero", //il titolo dell'habit lo sceglie l'utente inserendolo nel form, allo stato attuale e' fisso
-        userId, //lo userId dipende sempre dalla session, se nopn c'e' session non si puo' creare un habit e vieni reindirizzato alla pagina di login
+        title: "Lallalero",
+        userId,
       }),
     });
 
     if (response.ok) {
-      const newHabit = await response.json();
-      console.log(newHabit.data);
-      setHabits((prevHabits) => [...prevHabits, newHabit.data]);
+      const newTask = await response.json();
+      setTasks((prevTasks) => [...prevTasks, newTask.data]);
     } else {
       const error = await response.json();
       console.error(error);
@@ -86,7 +88,7 @@ const TaskModal = ({ dataModal, setHabits, session }) => {
           </div>
           <button
             className={styles.addTaskBtn}
-            onClick={() => createNewHabit(session.user._id, setHabits)}
+            onClick={() => createNewTask(session.user._id, setTasks)}
           >
             <FaArrowUp className={styles.btnIcon} />
           </button>
