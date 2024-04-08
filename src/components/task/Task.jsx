@@ -1,14 +1,32 @@
-import { format, parseISO, differenceInHours } from "date-fns";
+import { format, differenceInHours } from "date-fns";
 import styles from "./index.module.scss";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-const Task = ({ title, streakCount, id, lastCompleted, deadline }) => {
+const Task = ({
+  title,
+  streakCount,
+  id,
+  lastCompleted,
+  deadline,
+  deleteFunction,
+}) => {
   const [completed, setCompleted] = useState(false);
   const [currentStreakCount, setCurrentStreakCount] = useState(streakCount);
   const [newLastCompleted, setNewLastCompleted] = useState(null);
 
   const router = useRouter();
+
+  // const handleDeleteClick = async () => {
+  //   const endpoint = `/api${router.asPath}/${id}`;
+  //   const response = await fetch(endpoint, {
+  //     method: "DELETE",
+  //   });
+
+  //   if (!response.ok) {
+  //     console.error("Failed to delete task");
+  //   }
+  // };
 
   useEffect(() => {
     setCurrentStreakCount(streakCount);
@@ -67,7 +85,7 @@ const Task = ({ title, streakCount, id, lastCompleted, deadline }) => {
         setCurrentStreakCount(0);
       }
     }
-  }, [latestCompletedDate]);
+  }, [latestCompletedDate, formattedLatestCompleted]);
 
   let additionalClassName = "";
   switch (router.pathname) {
@@ -87,7 +105,12 @@ const Task = ({ title, streakCount, id, lastCompleted, deadline }) => {
   return (
     <div className={`${styles.Task} ${styles[additionalClassName]}`}>
       <div className={styles.deleteBtnWrapper}>
-        <button className={styles.deleteBtn}>X</button>
+        <button
+          className={styles.deleteBtn}
+          onClick={async () => await deleteFunction(id)}
+        >
+          X
+        </button>
       </div>
       <div className={styles.title_streak}>
         <p>{title}</p>

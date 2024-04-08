@@ -54,6 +54,19 @@ const TodosPage = ({ session }) => {
     loadTodos();
   }, [router, session]);
 
+  const handleDeleteClick = async (id) => {
+    const endpoint = `/api/todos/${id}`;
+    const response = await fetch(endpoint, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      console.error("Failed to delete task");
+    } else {
+      setTodos(todos.filter((todo) => todo._id !== id));
+    }
+  };
+
   return (
     <div>
       <h1>Welcome to the Todos Page</h1>
@@ -69,7 +82,7 @@ const TodosPage = ({ session }) => {
           setIsOpen={setIsModalOpen}
         />
       )}
-      <TaskList tasks={todos} />
+      <TaskList tasks={todos} deleteFunction={handleDeleteClick} />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );
