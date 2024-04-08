@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
+import Navbar from "@/components/navbar";
 
 // const createNewDaily = async (userId, setDailies) => {
 //   const response = await fetch("/api/dailies", {
@@ -31,6 +32,7 @@ import TaskModal from "@/components/taskModal";
 const DailiesPage = ({ session }) => {
   const router = useRouter();
   const [dailies, setDailies] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const loadDailies = async () => {
@@ -58,12 +60,17 @@ const DailiesPage = ({ session }) => {
       {/* <button onClick={() => createNewDaily(session.user._id, setDailies)}>
         Create new daily
       </button> */}
-      <TaskModal
-        setTasks={setDailies}
-        dataModal={("New Daily", false)}
-        session={session}
-      />
+      {isModalOpen && (
+        <TaskModal
+          setTasks={setDailies}
+          dataModal={("New Daily", false)}
+          session={session}
+          isOpen={isModalOpen}
+          setIsOpen={setIsModalOpen}
+        />
+      )}
       <TaskList tasks={dailies} backgroundChange={true} />
+      <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
+import Navbar from "@/components/navbar";
 
 // const createNewTodo = async (userId, setTodos) => {
 //   const response = await fetch("/api/todos", {
@@ -31,6 +32,7 @@ import TaskModal from "@/components/taskModal";
 const TodosPage = ({ session }) => {
   const router = useRouter();
   const [todos, setTodos] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const loadTodos = async () => {
@@ -58,12 +60,17 @@ const TodosPage = ({ session }) => {
       {/* <button onClick={() => createNewTodo(session.user._id, setTodos)}>
         Create new todo
       </button> */}
-      <TaskModal
-        setTasks={setTodos}
-        dataModal={{ pageTitle: "New To-do", showDateInput: true }}
-        session={session}
-      />
+      {isModalOpen && (
+        <TaskModal
+          setTasks={setTodos}
+          dataModal={{ pageTitle: "New To-do", showDateInput: true }}
+          session={session}
+          isOpen={isModalOpen}
+          setIsOpen={setIsModalOpen}
+        />
+      )}
       <TaskList tasks={todos} backgroundChange={true} />
+      <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );
 };

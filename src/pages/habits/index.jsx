@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
+import Navbar from "@/components/navbar";
 
 // const createNewHabit = async (userId, setHabits) => {
 //   const response = await fetch("/api/habits", {
@@ -31,6 +32,7 @@ import TaskModal from "@/components/taskModal";
 const HabitsPage = ({ session }) => {
   const router = useRouter();
   const [habits, setHabits] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const loadHabits = async () => {
@@ -58,12 +60,17 @@ const HabitsPage = ({ session }) => {
       {/* <button onClick={() => createNewHabit(session.user._id, setHabits)}>
         Create new habit
       </button> */}
-      <TaskModal
-        setTasks={setHabits}
-        dataModal={("New Habit", false)}
-        session={session}
-      />
+      {isModalOpen && (
+        <TaskModal
+          setTasks={setHabits}
+          dataModal={("New Habit", false)}
+          session={session}
+          isOpen={isModalOpen}
+          setIsOpen={setIsModalOpen}
+        />
+      )}
       <TaskList tasks={habits} backgroundChange={false} />
+      <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );
 };

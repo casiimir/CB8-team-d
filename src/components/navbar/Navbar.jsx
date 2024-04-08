@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 
-const Navbar = () => {
+const Navbar = ({ isModalOpen, setIsModalOpen }) => {
   const pathName = usePathname();
 
   return (
@@ -69,7 +69,10 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <button className={styles.addBtn}>
+        <button
+          className={styles.addBtn}
+          onClick={() => setIsModalOpen(!isModalOpen)}
+        >
           <FaPlus className={styles.btnIcon} />
         </button>
       </nav>
