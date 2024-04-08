@@ -44,7 +44,7 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: "Lallalero",
+        title: "Prova DELETE",
         userId,
       }),
     });

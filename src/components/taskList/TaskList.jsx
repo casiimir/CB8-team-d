@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 import Task from "../task";
 
-const TaskList = ({ tasks, updateLastCompleted }) => {
+const TaskList = ({ tasks }) => {
   return (
     <div className={styles.TaskList}>
       {tasks.length > 0 &&

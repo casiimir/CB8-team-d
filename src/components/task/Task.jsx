@@ -10,6 +10,19 @@ const Task = ({ title, streakCount, id, lastCompleted, deadline }) => {
 
   const router = useRouter();
 
+  const handleDeleteClick = async () => {
+    const endpoint = `/api${router.asPath}/${id}`;
+    const response = await fetch(endpoint, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      console.error("Failed to delete task");
+    }
+
+    // Optionally, you can refresh the page or remove the task from the state here
+  };
+
   useEffect(() => {
     setCurrentStreakCount(streakCount);
   }, [streakCount]);
@@ -67,7 +80,7 @@ const Task = ({ title, streakCount, id, lastCompleted, deadline }) => {
         setCurrentStreakCount(0);
       }
     }
-  }, [latestCompletedDate]);
+  }, [latestCompletedDate, formattedLatestCompleted]);
 
   let additionalClassName = "";
   switch (router.pathname) {
@@ -87,7 +100,9 @@ const Task = ({ title, streakCount, id, lastCompleted, deadline }) => {
   return (
     <div className={`${styles.Task} ${styles[additionalClassName]}`}>
       <div className={styles.deleteBtnWrapper}>
-        <button className={styles.deleteBtn}>X</button>
+        <button className={styles.deleteBtn} onClick={handleDeleteClick}>
+          X
+        </button>
       </div>
       <div className={styles.title_streak}>
         <p>{title}</p>
