@@ -19,9 +19,9 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
     setTitle(e.target.value);
   };
 
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
-  };
+  // const handleDateChange = (e) => {
+  //   setSelectedDate(date);
+  // };
 
   //   const openModal = () => {
   //     setOpenModal(true); // Imposta lo stato per aprire la modale
@@ -44,8 +44,9 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: "Prova DELETE",
-        userId,
+        title: title,
+        userId: userId,
+        deadline: selectedDate,
       }),
     });
 

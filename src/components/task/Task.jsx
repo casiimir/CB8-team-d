@@ -51,7 +51,7 @@ const Task = ({
     setNewLastCompleted(currentDate);
   };
   const formattedDeadline = deadline
-    ? format(new Date(deadline), "dd/MM/yyyy HH:mm")
+    ? format(new Date(deadline), "dd/MM/yyyy")
     : "";
 
   const lastCompletedDate = lastCompleted ? new Date(lastCompleted) : null;
