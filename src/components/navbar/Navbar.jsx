@@ -69,12 +69,27 @@ const Navbar = ({ isModalOpen, setIsModalOpen }) => {
             </Link>
           </li>
         </ul>
-        <button
-          className={styles.addBtn}
-          onClick={() => setIsModalOpen(!isModalOpen)}
-        >
-          <FaPlus className={styles.btnIcon} />
-        </button>
+        {pathName !== "/garden" ? (
+          <button
+            className={styles.addBtn}
+            onClick={() => setIsModalOpen(!isModalOpen)}
+          >
+            <FaPlus className={styles.btnIcon} />
+          </button>
+        ) : (
+          <button
+            className={styles.addBtn}
+            onClick={() => setIsModalOpen(!isModalOpen)}
+          >
+            <img
+              src="https://img.icons8.com/ios-filled/50/FFFFFF/potted-plant.png"
+              alt="potted-plant"
+              width="50"
+              height="50"
+              className={styles.btnIcon}
+            />
+          </button>
+        )}
       </nav>
     </>
   );

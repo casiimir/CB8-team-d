@@ -1,7 +1,35 @@
+.garden {
+  padding: 20px;
+}
+
 .plotsContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(5, 100px);
+  grid-template-rows: repeat(7, 100px);
   gap: 10px;
-  background: linear-gradient(to bottom right, lightgreen, lightblue);
-  padding: 20px;
+}
+
+.plot {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.empty-plot {
+  font-size: 18px;
+  color: #ccc;
+}
+
+.occupied-plot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plant-icon {
+  font-size: 24px; /* Imposta la dimensione dell'icona della pianta */
 }
