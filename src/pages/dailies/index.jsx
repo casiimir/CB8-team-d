@@ -69,7 +69,7 @@ const DailiesPage = ({ session }) => {
           setIsOpen={setIsModalOpen}
         />
       )}
-      <TaskList tasks={dailies} backgroundChange={true} />
+      <TaskList tasks={dailies} />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );

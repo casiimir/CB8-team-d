@@ -33,6 +33,7 @@ const HabitsPage = ({ session }) => {
   const router = useRouter();
   const [habits, setHabits] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [lastCompleted, setLastCompleted] = useState(null);
 
   useEffect(() => {
     const loadHabits = async () => {
@@ -69,7 +70,7 @@ const HabitsPage = ({ session }) => {
           setIsOpen={setIsModalOpen}
         />
       )}
-      <TaskList tasks={habits} backgroundChange={false} />
+      <TaskList tasks={habits} />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );

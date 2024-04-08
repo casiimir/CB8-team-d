@@ -1,12 +1,23 @@
+@import "../../assets/variables.scss";
+
 .Task {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  border: 2px solid black;
   border-radius: 50px;
-  width: 500px;
+  width: 350px;
+  border: none;
 
+  .deleteBtnWrapper {
+    width: 15px;
+    height: 15px;
+    padding-left: 15px;
+  }
+
+  .title_streak {
+    padding: 15px;
+  }
   .streak {
     width: 15px;
     height: 15px;
@@ -18,15 +29,31 @@
   }
 
   .streak.active {
-    background-color: #ffa500;
+    background-color: $secondary-color;
+  }
+  .completeBtn {
+    padding: 15px;
   }
   .button {
     border-radius: 100%;
-    width: 35px;
-    height: 35px;
+    border: none;
+    width: 25px;
+    height: 25px;
     transform: all, 0.35s;
   }
-  .button.completed {
-    background-color: #8aad34;
-  }
+}
+.button.completed {
+  background-color: $secondary-color;
+}
+
+.habits {
+  background-color: $habits-color;
+}
+
+.dailies {
+  background-color: $dailies-color;
+}
+
+.todos {
+  background-color: $todos-color;
 }
