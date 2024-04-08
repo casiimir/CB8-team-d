@@ -69,7 +69,7 @@ const TodosPage = ({ session }) => {
           setIsOpen={setIsModalOpen}
         />
       )}
-      <TaskList tasks={todos} backgroundChange={true} />
+      <TaskList tasks={todos} />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );

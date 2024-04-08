@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 import Task from "../task";
 
-const TaskList = ({ tasks, backgroundChange }) => {
+const TaskList = ({ tasks, updateLastCompleted }) => {
   return (
     <div className={styles.TaskList}>
       {tasks.length > 0 &&
@@ -11,7 +11,6 @@ const TaskList = ({ tasks, backgroundChange }) => {
               title={task.title}
               streakCount={task.streak}
               id={task._id}
-              backgroundChange={backgroundChange}
               lastCompleted={task.lastCompleted}
               deadline={task.deadline}
             />
