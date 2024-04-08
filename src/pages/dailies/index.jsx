@@ -54,6 +54,19 @@ const DailiesPage = ({ session }) => {
     loadDailies();
   }, [router, session]);
 
+  const handleDeleteClick = async (id) => {
+    const endpoint = `/api/dailies/${id}`;
+    const response = await fetch(endpoint, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      console.error("Failed to delete task");
+    } else {
+      setDailies(dailies.filter((daily) => daily._id !== id));
+    }
+  };
+
   return (
     <div>
       <h1>Welcome to the Dailies Page</h1>
@@ -69,7 +82,7 @@ const DailiesPage = ({ session }) => {
           setIsOpen={setIsModalOpen}
         />
       )}
-      <TaskList tasks={dailies} />
+      <TaskList tasks={dailies} deleteFunction={handleDeleteClick} />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );

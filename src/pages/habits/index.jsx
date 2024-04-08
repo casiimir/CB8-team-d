@@ -55,6 +55,19 @@ const HabitsPage = ({ session }) => {
     loadHabits();
   }, [router, session]);
 
+  const handleDeleteClick = async (id) => {
+    const endpoint = `/api/habits/${id}`;
+    const response = await fetch(endpoint, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      console.error("Failed to delete task");
+    } else {
+      setHabits(habits.filter((habit) => habit._id !== id));
+    }
+  };
+
   return (
     <div>
       <h1>Welcome to the Habits Page</h1>
@@ -70,7 +83,7 @@ const HabitsPage = ({ session }) => {
           setIsOpen={setIsModalOpen}
         />
       )}
-      <TaskList tasks={habits} />
+      <TaskList tasks={habits} deleteFunction={handleDeleteClick} />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );

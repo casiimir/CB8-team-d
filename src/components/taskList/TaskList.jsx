@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 import Task from "../task";
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, deleteFunction }) => {
   return (
     <div className={styles.TaskList}>
       {tasks.length > 0 &&
@@ -13,6 +13,7 @@ const TaskList = ({ tasks }) => {
               id={task._id}
               lastCompleted={task.lastCompleted}
               deadline={task.deadline}
+              deleteFunction={deleteFunction}
             />
           </div>
         ))}
