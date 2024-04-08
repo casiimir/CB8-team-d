@@ -1,0 +1,7 @@
+.plotsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  background: linear-gradient(to bottom right, lightgreen, lightblue);
+  padding: 20px;
+}

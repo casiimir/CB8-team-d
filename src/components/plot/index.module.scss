@@ -1,0 +1,17 @@
+.plot {
+  width: calc(100% / 5);
+  height: calc(100% / 7);
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.empty {
+  background-color: #c0c0c0;
+}
+
+.occupied {
+  background-color: #a0d4a0;
+}
