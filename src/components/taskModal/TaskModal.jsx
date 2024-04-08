@@ -8,7 +8,7 @@ import { getSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
 
-const TaskModal = ({ dataModal, setTasks, session }) => {
+const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
   const [title, setTitle] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
   const pathName = usePathname();
@@ -58,6 +58,10 @@ const TaskModal = ({ dataModal, setTasks, session }) => {
     }
   };
 
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <div className={styles.modal}>
@@ -88,7 +92,10 @@ const TaskModal = ({ dataModal, setTasks, session }) => {
           </div>
           <button
             className={styles.addTaskBtn}
-            onClick={() => createNewTask(session.user._id, setTasks)}
+            onClick={() => {
+              createNewTask(session.user._id, setTasks);
+              closeModal();
+            }}
           >
             <FaArrowUp className={styles.btnIcon} />
           </button>
