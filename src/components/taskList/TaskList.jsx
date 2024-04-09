@@ -19,6 +19,7 @@ const TaskList = ({
               id={task._id}
               lastCompleted={task.lastCompleted}
               deadline={task.deadline}
+              complete={task.complete}
               deleteFunction={deleteFunction}
               updateHabitFunction={updateHabitFunction}
               updateDailyFunction={updateDailyFunction}
