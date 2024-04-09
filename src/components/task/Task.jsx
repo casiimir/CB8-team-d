@@ -9,46 +9,50 @@ const Task = ({
   id,
   lastCompleted,
   deadline,
+  complete,
   deleteFunction,
+  updateHabitFunction,
+  updateDailyFunction,
+  updateTodoFunction,
 }) => {
   const [completed, setCompleted] = useState(false);
   const [currentStreakCount, setCurrentStreakCount] = useState(streakCount);
-  const [newLastCompleted, setNewLastCompleted] = useState(null);
+  const [newLastCompleted, setNewLastCompleted] = useState(lastCompleted);
 
   const router = useRouter();
-
-  // const handleDeleteClick = async () => {
-  //   const endpoint = `/api${router.asPath}/${id}`;
-  //   const response = await fetch(endpoint, {
-  //     method: "DELETE",
-  //   });
-
-  //   if (!response.ok) {
-  //     console.error("Failed to delete task");
-  //   }
-  // };
 
   useEffect(() => {
     setCurrentStreakCount(streakCount);
   }, [streakCount]);
 
-  const handleCompleteClick = () => {
-    setCompleted(!completed);
-    if (streakCount !== undefined) {
-      const newStreakCount = Math.min(currentStreakCount + 1, 7);
-      setCurrentStreakCount(newStreakCount);
-    }
-    setTimeout(() => {
-      if (router.pathname === "/habits") {
-        setCompleted(false);
-      }
-    }, 1000);
+  const handleCompleteClick = async (e) => {
+    e.preventDefault();
+    const newCompletedValue = !completed;
+    setCompleted(newCompletedValue);
 
-    //da rivedere quando che si dovrà aggiornare il database.
+    let newStreakCount = streakCount;
+
+    if (streakCount !== undefined) {
+      newStreakCount = Math.min(currentStreakCount + 1, 7);
+      setCurrentStreakCount(newStreakCount);
+      if (newStreakCount === 7) {
+        setCurrentStreakCount(0);
+      }
+    }
 
     const currentDate = new Date();
 
     setNewLastCompleted(currentDate);
+
+    if (router.pathname === "/habits") {
+      await updateHabitFunction(id, title, newStreakCount, currentDate);
+    }
+    if (router.pathname === "/dailies") {
+      await updateDailyFunction(id, title, newCompletedValue, currentDate);
+    }
+    if (router.pathname === "/todos") {
+      await updateTodoFunction(id, title, newCompletedValue, deadline);
+    }
   };
   const formattedDeadline = deadline
     ? format(new Date(deadline), "dd/MM/yyyy")
@@ -131,7 +135,7 @@ const Task = ({
       </div>
       <div className={styles.completeBtn}>
         <button
-          className={`${styles.button} ${completed ? styles.completed : ""}`}
+          className={`${styles.button} ${complete ? styles.complete : ""}`}
           onClick={handleCompleteClick}
         ></button>
       </div>

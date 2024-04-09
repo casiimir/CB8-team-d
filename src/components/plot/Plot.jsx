@@ -6,15 +6,14 @@ const Plot = ({ x, y, isEmpty, plantIcon, onClick }) => {
       onClick(x, y);
     }
   };
+
   return (
-    <>
-      <div
-        className={`${styles.plot} ${isEmpty ? styles.empty : styles.occupied}`}
-        onClick={handleClick}
-      >
-        {!isEmpty && <img src={plantIcon} alt="Plant Icon" />}
-      </div>
-    </>
+    <div
+      className={`${styles.plot} ${isEmpty ? styles.empty : styles.occupied}`}
+      onClick={handleClick}
+    >
+      {!isEmpty && <img src={plantIcon} alt="Plant" />}{" "}
+    </div>
   );
 };
 

@@ -6,29 +6,6 @@ import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
 import Navbar from "@/components/navbar";
 
-// const createNewHabit = async (userId, setHabits) => {
-//   const response = await fetch("/api/habits", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     //questo e' il body per la creazione dell'habit
-//     body: JSON.stringify({
-//       title: "Lallalero", //il titolo dell'habit lo sceglie l'utente inserendolo nel form, allo stato attuale e' fisso
-//       userId, //lo userId dipende sempre dalla session, se nopn c'e' session non si puo' creare un habit e vieni reindirizzato alla pagina di login
-//     }),
-//   });
-
-//   if (response.ok) {
-//     const newHabit = await response.json();
-//     console.log(newHabit.data);
-//     setHabits((prevHabits) => [...prevHabits, newHabit.data]);
-//   } else {
-//     const error = await response.json();
-//     console.error(error);
-//   }
-// };
-
 const HabitsPage = ({ session }) => {
   const router = useRouter();
   const [habits, setHabits] = useState([]);
@@ -68,12 +45,41 @@ const HabitsPage = ({ session }) => {
     }
   };
 
+  const handleHabitChangeClick = async (id, title, streak, lastCompleted) => {
+    try {
+      const endpoint = `/api/habits/${id}`;
+      const newBody = {
+        title: title,
+        streak: streak,
+        lastCompleted: lastCompleted,
+      };
+
+      const response = await fetch(endpoint, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newBody),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update habit");
+      } else {
+        const updatedHabit = await response.json();
+        // setHabits((prevHabits) =>
+        //   prevHabits.map((habit) =>
+        //     habit.id === id ? { ...habit, ...updatedHabit } : habit
+        //   )
+        //   );
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <div>
-      <h1>Welcome to the Habits Page</h1>
-      {/* <button onClick={() => createNewHabit(session.user._id, setHabits)}>
-        Create new habit
-      </button> */}
+      <h1>Your Habits</h1>
       {isModalOpen && (
         <TaskModal
           setTasks={setHabits}
@@ -83,7 +89,11 @@ const HabitsPage = ({ session }) => {
           setIsOpen={setIsModalOpen}
         />
       )}
-      <TaskList tasks={habits} deleteFunction={handleDeleteClick} />
+      <TaskList
+        tasks={habits}
+        deleteFunction={handleDeleteClick}
+        updateHabitFunction={handleHabitChangeClick}
+      />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );

@@ -1,7 +1,26 @@
-.plotsContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 10px;
-  background: linear-gradient(to bottom right, lightgreen, lightblue);
+.garden {
   padding: 20px;
+}
+
+.plotsContainer {
+  background: linear-gradient(#75c231, #375c17);
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  grid-template-rows: repeat(7, 100px);
+  gap: 10px;
+}
+
+.plot {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.occupied-plot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

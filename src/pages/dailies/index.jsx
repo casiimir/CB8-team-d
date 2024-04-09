@@ -6,29 +6,6 @@ import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
 import Navbar from "@/components/navbar";
 
-// const createNewDaily = async (userId, setDailies) => {
-//   const response = await fetch("/api/dailies", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     //questo e' il body per la creazione dell'habit
-//     body: JSON.stringify({
-//       title: "nuova daily", //il titolo dell'habit lo sceglie l'utente inserendolo nel form, allo stato attuale e' fisso
-//       userId, //lo userId dipende sempre dalla session, se nopn c'e' session non si puo' creare un habit e vieni reindirizzato alla pagina di login
-//     }),
-//   });
-
-//   if (response.ok) {
-//     const newDaily = await response.json();
-//     console.log(newDaily.data);
-//     setDailies((prevDailies) => [...prevDailies, newDaily.data]);
-//   } else {
-//     const error = await response.json();
-//     console.error(error);
-//   }
-// };
-
 const DailiesPage = ({ session }) => {
   const router = useRouter();
   const [dailies, setDailies] = useState([]);
@@ -67,6 +44,38 @@ const DailiesPage = ({ session }) => {
     }
   };
 
+  const handleDailyChangeClick = async (id, title, complete, lastCompleted) => {
+    try {
+      const endpoint = `/api/dailies/${id}`;
+      const newBody = {
+        title: title,
+        complete: complete,
+        lastCompleted: lastCompleted,
+      };
+
+      const response = await fetch(endpoint, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newBody),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update daily");
+      } else {
+        const updatedDaily = await response.json();
+        setDailies((prevDailies) =>
+          prevDailies.map((daily) =>
+            daily.id === id ? { ...daily, ...updatedDaily } : daily
+          )
+        );
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <div>
       <h1>Welcome to the Dailies Page</h1>
@@ -82,7 +91,11 @@ const DailiesPage = ({ session }) => {
           setIsOpen={setIsModalOpen}
         />
       )}
-      <TaskList tasks={dailies} deleteFunction={handleDeleteClick} />
+      <TaskList
+        tasks={dailies}
+        deleteFunction={handleDeleteClick}
+        updateDailyFunction={handleDailyChangeClick}
+      />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );

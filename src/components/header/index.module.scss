@@ -1,44 +1,43 @@
 @import "../../assets/variables.module.scss";
 @import "../../assets/mixins.module.scss";
 
-.name {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.image {
-  background-image: url("https://static.vecteezy.com/system/resources/previews/019/633/059/original/8-bit-pixel-human-portrait-cartoon-young-girl-for-game-assets-in-illustration-vector.jpg");
-  background-size: cover;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%; /* Imposta il border-radius al 50% per fare un cerchio */
-}
-
 .header_wrapper {
+  @include flex-container(row, center, center, 2rem);
   position: fixed;
   top: 0;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  align-items: center;
-  background-color: #ffffff;
+  background-color: $bg-color;
   border-bottom-left-radius: 60px;
   border-bottom-right-radius: 60px;
   width: 100%;
   height: auto;
   max-height: 120px;
-  padding: 0 10px 10px;
+  padding: 10px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Ombra */
-}
 
-.resources_wrapper {
-  display: flex;
-}
+  
+  
+    .image {
+      background-image: url("https://static.vecteezy.com/system/resources/previews/019/633/059/original/8-bit-pixel-human-portrait-cartoon-young-girl-for-game-assets-in-illustration-vector.jpg");
+      background-size: cover;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%; /* Imposta il border-radius al 50% per fare un cerchio */
+    }
 
-.text {
-  margin: 10px;
+    .name {
+     margin-top: 10px;
+  margin-bottom: 10px;
+    }
+    
+    .resources_wrapper {
+      @include flex-container(row, center, center, 1rem);
+    }
 }
 
 /* per i dispositivi desktop */
-@media only screen and (min-width: 769px) {
+@media screen and (min-width: 1200px) {
+  .header_wrapper {
+    max-width: 1200px;
+    left: calc(50% - 600px)
+  }
 }

@@ -67,6 +67,38 @@ const TodosPage = ({ session }) => {
     }
   };
 
+  const handleTodoChangeClick = async (id, title, complete, deadline) => {
+    try {
+      const endpoint = `/api/todos/${id}`;
+      const newBody = {
+        title: title,
+        complete: complete,
+        deadline: deadline,
+      };
+
+      const response = await fetch(endpoint, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newBody),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update todo");
+      } else {
+        //   const updatedTodo = await response.json();
+        //   setTodos((prevTodos) =>
+        //     prevTodos.map((todo) =>
+        //       todo.id === id ? { ...todo, ...updatedTodo } : todo
+        //     )
+        //   );
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <div>
       <h1>Welcome to the Todos Page</h1>
@@ -82,7 +114,11 @@ const TodosPage = ({ session }) => {
           setIsOpen={setIsModalOpen}
         />
       )}
-      <TaskList tasks={todos} deleteFunction={handleDeleteClick} />
+      <TaskList
+        tasks={todos}
+        deleteFunction={handleDeleteClick}
+        updateTodoFunction={handleTodoChangeClick}
+      />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );

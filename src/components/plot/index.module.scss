@@ -1,17 +1,17 @@
 .plot {
-  width: calc(100% / 5);
-  height: calc(100% / 7);
-  border: 1px solid #000;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: relative;
 }
 
-.empty {
-  background-color: #c0c0c0;
-}
-
-.occupied {
-  background-color: #a0d4a0;
+.plant-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
