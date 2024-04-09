@@ -6,29 +6,6 @@ import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
 import Navbar from "@/components/navbar";
 
-// const createNewDaily = async (userId, setDailies) => {
-//   const response = await fetch("/api/dailies", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     //questo e' il body per la creazione dell'habit
-//     body: JSON.stringify({
-//       title: "nuova daily", //il titolo dell'habit lo sceglie l'utente inserendolo nel form, allo stato attuale e' fisso
-//       userId, //lo userId dipende sempre dalla session, se nopn c'e' session non si puo' creare un habit e vieni reindirizzato alla pagina di login
-//     }),
-//   });
-
-//   if (response.ok) {
-//     const newDaily = await response.json();
-//     console.log(newDaily.data);
-//     setDailies((prevDailies) => [...prevDailies, newDaily.data]);
-//   } else {
-//     const error = await response.json();
-//     console.error(error);
-//   }
-// };
-
 const DailiesPage = ({ session }) => {
   const router = useRouter();
   const [dailies, setDailies] = useState([]);

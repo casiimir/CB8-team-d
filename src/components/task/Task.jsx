@@ -26,9 +26,13 @@ const Task = ({
 
   const handleCompleteClick = async (e) => {
     e.preventDefault();
-    setCompleted(!completed);
+    const newCompletedValue = !completed;
+    setCompleted(newCompletedValue);
+
+    let newStreakCount = streakCount;
+
     if (streakCount !== undefined) {
-      const newStreakCount = Math.min(currentStreakCount + 1, 7);
+      newStreakCount = Math.min(currentStreakCount + 1, 7);
       setCurrentStreakCount(newStreakCount);
       if (newStreakCount === 7) {
         setCurrentStreakCount(0);
@@ -45,18 +49,13 @@ const Task = ({
     setNewLastCompleted(currentDate);
 
     if (router.pathname === "/habits") {
-      await updateHabitFunction(
-        id,
-        title,
-        currentStreakCount,
-        newLastCompleted
-      );
+      await updateHabitFunction(id, title, newStreakCount, currentDate);
     }
     if (router.pathname === "/dailies") {
-      await updateDailyFunction(id, title, !completed, newLastCompleted);
+      await updateDailyFunction(id, title, newCompletedValue, currentDate);
     }
     if (router.pathname === "/todos") {
-      await updateTodoFunction(id, title, !completed, deadline);
+      await updateTodoFunction(id, title, newCompletedValue, deadline);
     }
   };
   const formattedDeadline = deadline

@@ -64,7 +64,7 @@ export default async function handler(req, res) {
 
     case "DELETE":
       try {
-        const deletedHabit = await Habit.deleteOne({ id });
+        const deletedHabit = await Habit.deleteOne({ _id: id });
 
         if (!deletedHabit) {
           return res.status(404).json({ success: false });
