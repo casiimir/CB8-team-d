@@ -1,5 +1,4 @@
 import styles from "./index.module.scss";
-import { PiPlant } from "react-icons/pi";
 
 const Plot = ({ x, y, isEmpty, plantIcon, onClick }) => {
   const handleClick = () => {
@@ -13,7 +12,7 @@ const Plot = ({ x, y, isEmpty, plantIcon, onClick }) => {
       className={`${styles.plot} ${isEmpty ? styles.empty : styles.occupied}`}
       onClick={handleClick}
     >
-      {!isEmpty && <PiPlant className={styles["plant-icon"]} />}
+      {!isEmpty && <img src={plantIcon} alt="Plant" />}{" "}
     </div>
   );
 };
