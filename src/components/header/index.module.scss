@@ -1,5 +1,6 @@
 .name {
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .image {
@@ -29,6 +30,10 @@
 
 .resources_wrapper {
   display: flex;
+}
+
+.text {
+  margin: 10px;
 }
 
 /* per i dispositivi desktop */

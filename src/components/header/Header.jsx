@@ -1,9 +1,6 @@
 import styles from "@/components/header/index.module.scss";
 import playersData from "./playersData.js";
-
-import { IoWaterOutline } from "react-icons/io5";
-import { RiSeedlingLine } from "react-icons/ri";
-import { LiaSeedlingSolid } from "react-icons/lia";
+import Image from "next/image";
 
 export default function Header() {
   // Trova il giocatore con id 1
@@ -16,20 +13,35 @@ export default function Header() {
       </div>
 
       <div className={styles.user_wrapper}>
-        <h2 className={styles.name}> {player.name}</h2>
+        <h5 className={styles.name}> {player.name}</h5>
 
         <div className={styles.resources_wrapper}>
-          <p className={styles.text}>
-            <IoWaterOutline /> Water {player.water}
-          </p>
-          <p className={styles.text}>
-            <RiSeedlingLine />
-            Seeds {player.seeds}
-          </p>
-          <p className={styles.text}>
-            <LiaSeedlingSolid />
-            Soil {player.soil}
-          </p>
+          <Image
+            className={styles.water}
+            src="/water.png"
+            alt="Water"
+            width={35}
+            height={35}
+          />
+          <p className={styles.text}>{player.water}</p>
+
+          <Image
+            className={styles.water}
+            src="/seeds.png"
+            alt="Seeds"
+            width={35}
+            height={35}
+          />
+          <p className={styles.text}> {player.seeds}</p>
+
+          <Image
+            className={styles.water}
+            src="/soil.png"
+            alt="Soil"
+            width={35}
+            height={35}
+          />
+          <p className={styles.text}>{player.soil}</p>
         </div>
       </div>
     </div>
