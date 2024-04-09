@@ -43,7 +43,11 @@
   }
 }
 .button.complete {
-  background-color: $secondary-color;
+  display: none;
+}
+
+.button.habitsButton:active {
+  transform: scale(1.3);
 }
 
 .habits {
@@ -56,4 +60,8 @@
 
 .todos {
   background-color: $todos-color;
+}
+
+.completedTask {
+  opacity: 0.5;
 }

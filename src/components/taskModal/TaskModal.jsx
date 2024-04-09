@@ -46,6 +46,7 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
       body: JSON.stringify({
         title: title,
         userId: userId,
+        lastCompleted: null,
         deadline: selectedDate,
       }),
     });

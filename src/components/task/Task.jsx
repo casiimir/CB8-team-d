@@ -21,27 +21,28 @@ const Task = ({
 
   const router = useRouter();
 
-  useEffect(() => {
-    setCurrentStreakCount(streakCount);
-  }, [streakCount]);
+  // useEffect(() => {
+  //   setCurrentStreakCount(streakCount);
+  // }, [streakCount]);
 
   const handleCompleteClick = async (e) => {
     e.preventDefault();
+
     const newCompletedValue = !completed;
     setCompleted(newCompletedValue);
 
     let newStreakCount = streakCount;
-
     if (streakCount !== undefined) {
-      newStreakCount = Math.min(currentStreakCount + 1, 7);
-      setCurrentStreakCount(newStreakCount);
-      if (newStreakCount === 7) {
-        setCurrentStreakCount(0);
+      if (streakCount !== undefined) {
+        newStreakCount = currentStreakCount + 1;
+        if (newStreakCount === 8) {
+          newStreakCount = 1;
+        }
+        setCurrentStreakCount(newStreakCount);
       }
     }
 
     const currentDate = new Date();
-
     setNewLastCompleted(currentDate);
 
     if (router.pathname === "/habits") {
@@ -54,42 +55,44 @@ const Task = ({
       await updateTodoFunction(id, title, newCompletedValue, deadline);
     }
   };
+
   const formattedDeadline = deadline
     ? format(new Date(deadline), "dd/MM/yyyy")
     : "";
-
-  const lastCompletedDate = lastCompleted ? new Date(lastCompleted) : null;
-  const newLastCompletedDate = newLastCompleted
-    ? new Date(newLastCompleted)
-    : null;
-  const latestCompletedDate =
-    newLastCompletedDate > lastCompletedDate
-      ? newLastCompleted
-      : lastCompletedDate;
-  const formattedLatestCompleted = latestCompletedDate
-    ? format(latestCompletedDate, "dd/MM/yyyy HH:mm")
+  const formattedNewLastCompleted = newLastCompleted
+    ? format(newLastCompleted, "dd/MM/yyyy HH:mm")
     : "";
 
   useEffect(() => {
-    if (lastCompletedDate) {
+    if (newLastCompleted) {
       const currentDate = new Date();
 
       const hoursDifference = differenceInHours(
         currentDate,
-        formattedLatestCompleted
+        formattedNewLastCompleted
       );
-
-      // Qui controlla se sono passate più di 24 ore dall'ultimo completamento (latestCompletedDate) o dal dato presente nel database
-      // (lastCompletedDate). Se sono passate più di 24 ore azzera lo StreakCount.
-      // Forse dovremmo mettere più di 24 ore? (posso svolgere un habit alle 8 del lunedì
-      // e poi alle 20 del martedì). Non trovo in date-fns qualcosa che aiuti in tal senso.
-      // inoltre al momento non posso controllare che funzioni davvero.
 
       if (hoursDifference >= 24) {
         setCurrentStreakCount(0);
+        if (completed && hoursDifference >= 24) {
+          setCompleted(false);
+
+          if (router.pathname === "/dailies") {
+            if (completed) {
+              updateDailyFunction(id, title, false, null);
+            }
+          }
+          if (router.pathname === "/habits") {
+            updateHabitFunction(id, title, 0, null);
+          }
+        }
       }
     }
-  }, [latestCompletedDate, formattedLatestCompleted]);
+  }, [formattedNewLastCompleted]);
+
+  // useEffect(() => {
+  //   setNewLastCompleted(newLastCompleted);
+  // }, [newLastCompleted]);
 
   let additionalClassName = "";
   switch (router.pathname) {
@@ -107,7 +110,13 @@ const Task = ({
   }
 
   return (
-    <div className={`${styles.Task} ${styles[additionalClassName]}`}>
+    <div
+      className={`${styles.Task} ${styles[additionalClassName]} ${
+        additionalClassName !== "habits" && (complete || completed)
+          ? styles.completedTask
+          : ""
+      }`}
+    >
       <div className={styles.deleteBtnWrapper}>
         <button
           className={styles.deleteBtn}
@@ -118,7 +127,7 @@ const Task = ({
       </div>
       <div className={styles.title_streak}>
         <p>{title}</p>
-        {lastCompleted && <p>Last Completed: {formattedLatestCompleted}</p>}
+        {lastCompleted && <p>Last Completed: {formattedNewLastCompleted}</p>}
         {deadline && <p>Deadline: {formattedDeadline}</p>}
         {(streakCount !== undefined || streakCount === 0) && (
           <div className={styles.streakContainer}>
@@ -135,7 +144,14 @@ const Task = ({
       </div>
       <div className={styles.completeBtn}>
         <button
-          className={`${styles.button} ${complete ? styles.complete : ""}`}
+          className={`${styles.button} ${
+            router.pathname === "/habits" ? styles.habitsButton : ""
+          } ${
+            (router.pathname === "/dailies" || router.pathname === "/todos") &&
+            (complete || completed)
+              ? styles.complete
+              : ""
+          }`}
           onClick={handleCompleteClick}
         ></button>
       </div>
