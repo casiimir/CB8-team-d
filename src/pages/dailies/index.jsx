@@ -67,6 +67,38 @@ const DailiesPage = ({ session }) => {
     }
   };
 
+  const handleDailyChangeClick = async (id, title, complete, lastCompleted) => {
+    try {
+      const endpoint = `/api/dailies/${id}`;
+      const newBody = {
+        title: title,
+        complete: complete,
+        lastCompleted: lastCompleted,
+      };
+
+      const response = await fetch(endpoint, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newBody),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update daily");
+      } else {
+        const updatedDaily = await response.json();
+        setDailies((prevDailies) =>
+          prevDailies.map((daily) =>
+            daily.id === id ? { ...daily, ...updatedDaily } : daily
+          )
+        );
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <div>
       <h1>Welcome to the Dailies Page</h1>
@@ -82,7 +114,11 @@ const DailiesPage = ({ session }) => {
           setIsOpen={setIsModalOpen}
         />
       )}
-      <TaskList tasks={dailies} deleteFunction={handleDeleteClick} />
+      <TaskList
+        tasks={dailies}
+        deleteFunction={handleDeleteClick}
+        updateDailyFunction={handleDailyChangeClick}
+      />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );

@@ -10,45 +10,54 @@ const Task = ({
   lastCompleted,
   deadline,
   deleteFunction,
+  updateHabitFunction,
+  updateDailyFunction,
+  updateTodoFunction,
 }) => {
   const [completed, setCompleted] = useState(false);
   const [currentStreakCount, setCurrentStreakCount] = useState(streakCount);
-  const [newLastCompleted, setNewLastCompleted] = useState(null);
+  const [newLastCompleted, setNewLastCompleted] = useState(lastCompleted);
 
   const router = useRouter();
-
-  // const handleDeleteClick = async () => {
-  //   const endpoint = `/api${router.asPath}/${id}`;
-  //   const response = await fetch(endpoint, {
-  //     method: "DELETE",
-  //   });
-
-  //   if (!response.ok) {
-  //     console.error("Failed to delete task");
-  //   }
-  // };
 
   useEffect(() => {
     setCurrentStreakCount(streakCount);
   }, [streakCount]);
 
-  const handleCompleteClick = () => {
+  const handleCompleteClick = async (e) => {
+    e.preventDefault();
     setCompleted(!completed);
     if (streakCount !== undefined) {
       const newStreakCount = Math.min(currentStreakCount + 1, 7);
       setCurrentStreakCount(newStreakCount);
-    }
-    setTimeout(() => {
-      if (router.pathname === "/habits") {
-        setCompleted(false);
+      if (newStreakCount === 7) {
+        setCurrentStreakCount(0);
       }
-    }, 1000);
-
-    //da rivedere quando che si dovrà aggiornare il database.
+    }
+    // setTimeout(() => {
+    //   if (router.pathname === "/habits") {
+    //     setCompleted(false);
+    //   }
+    // }, 1000);
 
     const currentDate = new Date();
 
     setNewLastCompleted(currentDate);
+
+    if (router.pathname === "/habits") {
+      await updateHabitFunction(
+        id,
+        title,
+        currentStreakCount,
+        newLastCompleted
+      );
+    }
+    if (router.pathname === "/dailies") {
+      await updateDailyFunction(id, title, !completed, newLastCompleted);
+    }
+    if (router.pathname === "/todos") {
+      await updateTodoFunction(id, title, !completed, deadline);
+    }
   };
   const formattedDeadline = deadline
     ? format(new Date(deadline), "dd/MM/yyyy")
