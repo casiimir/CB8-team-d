@@ -1,7 +1,13 @@
 import styles from "./index.module.scss";
 import Task from "../task";
 
-const TaskList = ({ tasks, deleteFunction }) => {
+const TaskList = ({
+  tasks,
+  deleteFunction,
+  updateHabitFunction,
+  updateDailyFunction,
+  updateTodoFunction,
+}) => {
   return (
     <div className={styles.TaskList}>
       {tasks.length > 0 &&
@@ -14,6 +20,9 @@ const TaskList = ({ tasks, deleteFunction }) => {
               lastCompleted={task.lastCompleted}
               deadline={task.deadline}
               deleteFunction={deleteFunction}
+              updateHabitFunction={updateHabitFunction}
+              updateDailyFunction={updateDailyFunction}
+              updateTodoFunction={updateTodoFunction}
             />
           </div>
         ))}

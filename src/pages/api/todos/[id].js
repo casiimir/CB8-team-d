@@ -2,9 +2,10 @@ import dbConnect from "@/utils/dbConnect";
 import Todo from "@/models/todo";
 
 export default async function handler(req, res) {
-  const { method, query } = req;
-
-  console.log(query.id);
+  const {
+    method,
+    query: { id },
+  } = req;
 
   await dbConnect();
 
@@ -26,13 +27,13 @@ export default async function handler(req, res) {
     case "PUT":
       try {
         const { body } = req;
-        const todo = await Daily.findByIdAndUpdate(query.id, body);
+        const todo = await Todo.findByIdAndUpdate(id, body);
 
         if (!todo) {
           return res.status(404).json({ success: false });
         }
 
-        res.status(200).json({ success: true, data: daily });
+        res.status(200).json({ success: true, data: todo });
       } catch (error) {
         return res.status(400).json({ success: false });
       }

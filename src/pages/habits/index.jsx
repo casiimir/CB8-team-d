@@ -68,6 +68,38 @@ const HabitsPage = ({ session }) => {
     }
   };
 
+  const handleHabitChangeClick = async (id, title, streak, lastCompleted) => {
+    try {
+      const endpoint = `/api/habits/${id}`;
+      const newBody = {
+        title: title,
+        streak: streak,
+        lastCompleted: lastCompleted,
+      };
+
+      const response = await fetch(endpoint, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newBody),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update habit");
+      } else {
+        const updatedHabit = await response.json();
+        // setHabits((prevHabits) =>
+        //   prevHabits.map((habit) =>
+        //     habit.id === id ? { ...habit, ...updatedHabit } : habit
+        //   )
+        //   );
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <div>
       <h1>Welcome to the Habits Page</h1>
@@ -83,7 +115,11 @@ const HabitsPage = ({ session }) => {
           setIsOpen={setIsModalOpen}
         />
       )}
-      <TaskList tasks={habits} deleteFunction={handleDeleteClick} />
+      <TaskList
+        tasks={habits}
+        deleteFunction={handleDeleteClick}
+        updateHabitFunction={handleHabitChangeClick}
+      />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );

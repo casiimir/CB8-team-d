@@ -2,9 +2,10 @@ import dbConnect from "@/utils/dbConnect";
 import Daily from "@/models/daily";
 
 export default async function handler(req, res) {
-  const { method, query } = req;
-
-  console.log(query.id);
+  const {
+    method,
+    query: { id },
+  } = req;
 
   await dbConnect();
 
@@ -26,7 +27,7 @@ export default async function handler(req, res) {
     case "PUT":
       try {
         const { body } = req;
-        const daily = await Daily.findByIdAndUpdate(query.id, body);
+        const daily = await Daily.findByIdAndUpdate(id, body);
 
         if (!daily) {
           return res.status(404).json({ success: false });
