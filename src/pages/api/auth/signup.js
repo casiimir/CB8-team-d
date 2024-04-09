@@ -1,5 +1,6 @@
 import dbConnect from "@/utils/dbConnect";
 import User from "@/models/user";
+import Garden from "@/models/garden";
 import bcrypt from "bcryptjs";
 
 export default async function handler(req, res) {
@@ -26,7 +27,20 @@ export default async function handler(req, res) {
 
       await user.save();
 
-      return res.status(201).json({ message: "User created successfully" });
+      const garden = new Garden({
+        userId: user._id, //
+        plots: [
+          { x: 0, y: 0, plant: null },
+          { x: 0, y: 1, plant: null },
+          // Add more plots as needed
+        ],
+      });
+
+      await garden.save();
+
+      return res
+        .status(201)
+        .json({ message: "User and garden created successfully" });
     } catch (error) {
       return res
         .status(500)
