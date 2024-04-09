@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const daily = await Daily.findById(query.id);
+        const daily = await Daily.findById(id);
 
         if (!daily) {
           return res.status(400).json({ success: false });
@@ -41,7 +41,7 @@ export default async function handler(req, res) {
 
     case "DELETE":
       try {
-        const deletedDaily = await Daily.deleteOne({ _id: query.id });
+        const deletedDaily = await Daily.deleteOne({ _id: id });
 
         if (!deletedDaily) {
           return res.status(404).json({ success: false });

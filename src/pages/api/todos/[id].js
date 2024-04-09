@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const todo = await Todo.findById(query.id);
+        const todo = await Todo.findById(id);
 
         if (!daily) {
           return res.status(400).json({ success: false });
@@ -41,7 +41,7 @@ export default async function handler(req, res) {
 
     case "DELETE":
       try {
-        const deletedTodo = await Todo.deleteOne({ _id: query.id });
+        const deletedTodo = await Todo.deleteOne({ _id: id });
 
         if (!deletedTodo) {
           return res.status(404).json({ success: false });
