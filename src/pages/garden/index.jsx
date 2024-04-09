@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/Garden.module.scss";
-import Plot from "@/components/Plot";
-import { PiPlant } from "react-icons/pi";
+import Plot from "@/components/plot";
 import Navbar from "@/components/navbar";
+import GardenModal from "@/components/gardenModal";
 
 const gardenMock = {
   userId: "grw45h4j5h56h3jh",
@@ -32,29 +32,29 @@ const gardenMock = {
 
 const GardenPage = () => {
   const [plots, setPlots] = useState([]);
+  const [isGardenModalOpen, setIsGardenModalOpen] = useState(false);
+  const [selectedPlot, setSelectedPlot] = useState(null);
 
   useEffect(() => {
-    // Funzione per generare i plot in base ai dati del mock
     const generatePlots = () => {
       const rows = 7;
       const cols = 5;
       const generatedPlots = [];
 
-      // Ciclo attraverso ogni cella della griglia
       for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {
-          // Trova il plot corrispondente nel mock dei dati
           const matchingPlot = gardenMock.plots.find(
             (plot) => plot.x === x && plot.y === y
           );
-          // Determina se il plot è vuoto o occupato da una pianta
           const isEmpty = !matchingPlot || !matchingPlot.plant;
-          // Aggiungi il plot alla lista dei plot generati
           generatedPlots.push({
             x,
             y,
             isEmpty,
-            plantIcon: !isEmpty && <PiPlant />, // Se il plot non è vuoto, mostra l'icona della pianta
+            plantIcon:
+              matchingPlot && matchingPlot.plant
+                ? "https://img.icons8.com/bubbles/50/potted-plant.png"
+                : null,
           });
         }
       }
@@ -62,26 +62,38 @@ const GardenPage = () => {
       return generatedPlots;
     };
 
-    // Genera i plot in base ai dati del mock
     setPlots(generatePlots());
   }, []);
 
   const handlePlotClick = (x, y) => {
-    // Aggiorna il plot solo se è vuoto
     const clickedPlot = plots.find((plot) => plot.x === x && plot.y === y);
     if (clickedPlot.isEmpty) {
+      setSelectedPlot({ x, y });
+      setIsGardenModalOpen(true);
+    }
+  };
+
+  const handleCloseGardenModal = () => {
+    setIsGardenModalOpen(false);
+    setSelectedPlot(null);
+  };
+
+  const handlePlantSelect = (plantIconUrl) => {
+    setIsGardenModalOpen(false);
+    if (selectedPlot) {
       const updatedPlots = plots.map((plot) => {
-        if (plot.x === x && plot.y === y) {
+        if (plot.x === selectedPlot.x && plot.y === selectedPlot.y) {
           return {
             ...plot,
+            plantIcon: plantIconUrl,
             isEmpty: false,
-            plantIcon: <PiPlant />,
           };
         }
         return plot;
       });
       setPlots(updatedPlots);
     }
+    setSelectedPlot(null);
   };
 
   return (
@@ -99,6 +111,12 @@ const GardenPage = () => {
         ))}
       </div>
       <Navbar />
+      {isGardenModalOpen && (
+        <GardenModal
+          onClose={handleCloseGardenModal}
+          onPlantSelect={handlePlantSelect}
+        />
+      )}
     </div>
   );
 };

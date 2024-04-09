@@ -6,12 +6,12 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  position: relative; /* Per posizionare l'icona all'interno del plot */
+  position: relative;
 }
 
 .plant-icon {
-  position: absolute; /* Posiziona l'icona all'interno del plot */
-  top: 50%; /* Posiziona verticalmente al centro */
-  left: 50%; /* Posiziona orizzontalmente al centro */
-  transform: translate(-50%, -50%); /* Centra l'icona */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
