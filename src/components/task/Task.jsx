@@ -9,6 +9,7 @@ const Task = ({
   id,
   lastCompleted,
   deadline,
+  complete,
   deleteFunction,
   updateHabitFunction,
   updateDailyFunction,
@@ -38,11 +39,6 @@ const Task = ({
         setCurrentStreakCount(0);
       }
     }
-    // setTimeout(() => {
-    //   if (router.pathname === "/habits") {
-    //     setCompleted(false);
-    //   }
-    // }, 1000);
 
     const currentDate = new Date();
 
@@ -139,7 +135,7 @@ const Task = ({
       </div>
       <div className={styles.completeBtn}>
         <button
-          className={`${styles.button} ${completed ? styles.completed : ""}`}
+          className={`${styles.button} ${complete ? styles.complete : ""}`}
           onClick={handleCompleteClick}
         ></button>
       </div>
