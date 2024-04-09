@@ -1,11 +1,10 @@
-@import "../../assets/variables.scss";
+@import "../../assets/variables.module.scss";
+@import "../../assets/mixins.module.scss";
 
 .modal {
+  @include flex-container(column, center, center, 1rem);
   width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
