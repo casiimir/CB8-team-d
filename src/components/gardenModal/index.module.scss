@@ -34,6 +34,28 @@
       padding: 20px;
       position: relative;
 
+      .closeBtn {
+        position: absolute;
+        border-radius: 100%;
+        border: 2px solid red;
+        background-color: white;
+        width: 1.5rem;
+        height: 1.5rem;
+        right: 5%;
+        top: 5%;
+
+        .closeIcon {
+          margin: 3px 1px 0 1px;
+          font-size: 16px;
+          color: red;
+          transition: transform 0.3s;
+
+          &:hover {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
       .modalTitle {
         margin: 10px;
         color: white;
@@ -44,17 +66,54 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
+        gap: 20px;
         align-items: center;
-        margin-top: 20px;
+        margin: 10px;
 
         .plant {
           display: flex;
           flex-direction: column;
-          align-items: center;
+          align-items: flex-start;
           margin-bottom: 20px;
-          width: 100px;
-          border: 2px solid white;
+          width: auto;
+          padding: 10px;
+          border: 3px solid white;
+          background-color: $primary-color;
           border-radius: 16px;
+
+          .name {
+            margin: 0;
+          }
+
+          .plantInfo {
+            display: flex;
+          }
+
+          .resources {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .addBtn {
+            position: absolute;
+            border-radius: 100%;
+            border: 2px solid $primary-color;
+            background-color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            bottom: 8%;
+            transition: transform 0.3s;
+
+            .addIcon {
+              margin: 3px 1px 0 1px;
+              font-size: 16px;
+              color: $primary-color;
+            }
+
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
         }
 
         .plant img {

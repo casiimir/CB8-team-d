@@ -19,27 +19,31 @@ const Navbar = ({ isModalOpen, setIsModalOpen }) => {
           <li>
             <Link
               href="/habits"
-              className={pathName === "/habits" ? styles.active : ""}
+              className={`${styles.link} ${
+                pathName === "/habits" ? styles.active : ""
+              }`}
             >
-              {" "}
               {pathName === "/habits" ? (
                 <FaCircleNotch className={styles.active} />
               ) : (
                 <FaCircleNotch className={styles.icon} />
               )}
+              Habits
             </Link>
           </li>
           <li>
             <Link
               href="/dailies"
-              className={pathName === "/dailies" ? styles.active : ""}
+              className={`${styles.link} ${
+                pathName === "/dailies" ? styles.active : ""
+              }`}
             >
-              {" "}
               {pathName === "/dailies" ? (
                 <FaCalendarCheck className={styles.active} />
               ) : (
                 <FaCalendarCheck className={styles.icon} />
               )}
+              Dailies
             </Link>
           </li>
         </ul>
@@ -47,25 +51,31 @@ const Navbar = ({ isModalOpen, setIsModalOpen }) => {
           <li>
             <Link
               href="/todos"
-              className={pathName === "/todos" ? styles.active : ""}
+              className={`${styles.link} ${
+                pathName === "/todos" ? styles.active : ""
+              }`}
             >
               {pathName === "/todos" ? (
                 <FaCheckCircle className={styles.active} />
               ) : (
                 <FaCheckCircle className={styles.icon} />
               )}
+              To-dos
             </Link>
           </li>
           <li>
             <Link
               href="/garden"
-              className={pathName === "/garden" ? styles.active : ""}
+              className={`${styles.link} ${
+                pathName === "/garden" ? styles.active : ""
+              }`}
             >
               {pathName === "/garden" ? (
                 <FaTree className={styles.active} />
               ) : (
                 <FaTree className={styles.icon} />
               )}
+              Garden
             </Link>
           </li>
         </ul>
@@ -80,6 +90,7 @@ const Navbar = ({ isModalOpen, setIsModalOpen }) => {
           <button
             className={styles.addBtn}
             onClick={() => setIsModalOpen(!isModalOpen)}
+            disabled={pathName === "/garden"}
           >
             <img
               src="https://img.icons8.com/ios-filled/50/FFFFFF/potted-plant.png"

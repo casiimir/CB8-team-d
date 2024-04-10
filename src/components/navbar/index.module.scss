@@ -18,7 +18,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
+    gap: 1.5rem;
     list-style-type: none;
 
     li {
@@ -27,22 +27,31 @@
       align-items: center;
     }
 
-    a {
+    .link {
+      text-decoration: none;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      color: white;
+
+      &:hover {
+        color: $secondary-color;
+        transition: color 0.35s;
+      }
+    }
+
+    .link svg {
+      height: 1.3rem;
+      width: 1.3rem;
     }
 
     .active {
       color: $secondary-color;
-      width: 1.8rem;
-      height: 1.8rem;
     }
 
     .icon {
       color: white;
-      width: 1.8rem;
-      height: 1.8rem;
 
       &:hover {
         color: $secondary-color;
@@ -68,11 +77,9 @@
   }
 }
 
-
 @media screen and (min-width: 1200px) {
   .navbar {
     max-width: 1200px;
-    left: calc(50% - 600px)
+    left: calc(50% - 600px);
   }
 }
-
