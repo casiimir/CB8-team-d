@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./index.module.scss";
+import { IoClose } from "react-icons/io5";
 import { FaArrowUp } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -19,22 +20,6 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
     setTitle(e.target.value);
   };
 
-  // const handleDateChange = (e) => {
-  //   setSelectedDate(date);
-  // };
-
-  //   const openModal = () => {
-  //     setOpenModal(true); // Imposta lo stato per aprire la modale
-  //   };
-
-  //   const closeModal = () => {
-  //     setOpenModal(false); // Imposta lo stato per chiudere la modale
-  //   };
-
-  //   useEffect(() => {
-  //     setOpenModal(false); // Chiudi la modale quando il componente viene montato o quando la pagina cambia
-  //   }, [pathName]);
-
   const createNewTask = async (userId, setTasks) => {
     const endpoint = `/api${router.asPath}`; // gets the current URL path and prepend it with '/api'
 
@@ -46,6 +31,7 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
       body: JSON.stringify({
         title: title,
         userId: userId,
+        lastCompleted: null,
         deadline: selectedDate,
       }),
     });
@@ -59,6 +45,12 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
     }
   };
 
+  const onHandleSubmit = async (e) => {
+    e.preventDefault();
+    createNewTask(session.user._id, setTasks);
+    closeModal();
+  };
+
   const closeModal = () => {
     setIsOpen(false);
   };
@@ -68,8 +60,11 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
       <div className={styles.modal}>
         <div className={styles.modalBg}>
           <div className={styles.modalContent}>
+            <button onClick={closeModal} className={styles.closeBtn}>
+              <IoClose className={styles.closeIcon} />
+            </button>
             <h3 className={styles.modalTitle}>{dataModal.pageTitle}</h3>
-            <form action="" className={styles.form}>
+            <form action="" onSubmit={onHandleSubmit} className={styles.form}>
               <input
                 type="text"
                 id="title"
@@ -90,16 +85,17 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
                 />
               )}
             </form>
+            <button
+              type="submit"
+              className={styles.addTaskBtn}
+              onClick={() => {
+                createNewTask(session.user._id, setTasks);
+                closeModal();
+              }}
+            >
+              <FaArrowUp className={styles.btnIcon} />
+            </button>
           </div>
-          <button
-            className={styles.addTaskBtn}
-            onClick={() => {
-              createNewTask(session.user._id, setTasks);
-              closeModal();
-            }}
-          >
-            <FaArrowUp className={styles.btnIcon} />
-          </button>
         </div>
       </div>
     </>

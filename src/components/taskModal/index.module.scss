@@ -33,8 +33,30 @@
       padding: 20px;
       position: relative;
 
+      .closeBtn {
+        position: absolute;
+        border-radius: 100%;
+        border: 2px solid red;
+        background-color: white;
+        width: 1.5rem;
+        height: 1.5rem;
+        right: 8%;
+        top: 5%;
+
+        .closeIcon {
+          margin: 3px 1px 0 1px;
+          font-size: 16px;
+          color: red;
+          transition: transform 0.3s;
+
+          &:hover {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
       .modalTitle {
-        margin: 10px;
+        margin: 15px;
         color: white;
         font-weight: 700;
       }
@@ -85,8 +107,8 @@
       color: white;
       width: 2.3rem;
       height: 2.3rem;
-      bottom: 44%;
-      right: 13%;
+      bottom: 40%;
+      right: 8%;
 
       .btnIcon {
         margin: 3px 1px 0 1px;
