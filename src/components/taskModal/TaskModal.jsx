@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./index.module.scss";
 import { IoClose } from "react-icons/io5";
 import { FaArrowUp } from "react-icons/fa";
@@ -13,8 +13,8 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
   const [title, setTitle] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
   const pathName = usePathname();
-
   const router = useRouter();
+  const titleInputRef = useRef(null);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -55,6 +55,12 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    if (isOpen && titleInputRef.current) {
+      titleInputRef.current.focus();
+    }
+  }, [isOpen]);
+
   return (
     <>
       <div className={styles.modal}>
@@ -66,6 +72,7 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
             <h3 className={styles.modalTitle}>{dataModal.pageTitle}</h3>
             <form action="" onSubmit={onHandleSubmit} className={styles.form}>
               <input
+                ref={titleInputRef}
                 type="text"
                 id="title"
                 value={title}

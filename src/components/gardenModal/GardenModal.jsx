@@ -4,17 +4,6 @@ import styles from "./index.module.scss";
 import { IoWaterOutline, IoClose } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
 
-// const plantsData = [
-//   {
-//     name: "Pianta 1",
-//     imageUrl: "https://img.icons8.com/bubbles/50/potted-plant.png",
-//   },
-//   {
-//     name: "Pianta 2",
-//     imageUrl: "https://img.icons8.com/clouds/100/potted-plant.png",
-//   },
-// ];
-
 const GardenModal = ({ onClose, onPlantSelect }) => {
   const [trees, setTrees] = useState([]);
 
