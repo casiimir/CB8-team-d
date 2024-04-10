@@ -31,4 +31,4 @@ const gardenSchema = new mongoose.Schema({
 });
 
 module.exports =
-  mongoose.model.Garden || mongoose.model("Garden", gardenSchema);
+  mongoose.models.Garden || mongoose.model("Garden", gardenSchema);
