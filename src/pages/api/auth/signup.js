@@ -1,5 +1,7 @@
 import dbConnect from "@/utils/dbConnect";
 import User from "@/models/user";
+import UserResources from "@/models/userResources";
+import Garden from "@/models/garden";
 import bcrypt from "bcryptjs";
 
 export default async function handler(req, res) {
@@ -25,6 +27,37 @@ export default async function handler(req, res) {
       });
 
       await user.save();
+
+      // Crea l'array plot
+      const plots = [];
+      for (let x = 0; x <= 5; x++) {
+        for (let y = 0; y <= 6; y++) {
+          if (plots.length < 35) {
+            plots.push({
+              x,
+              y,
+              plant: "weed",
+              empty: true,
+            });
+          }
+        }
+      }
+
+      const garden = new Garden({
+        userId: user._id,
+        plots,
+      });
+
+      await garden.save();
+
+      const userResources = new UserResources({
+        userId: user._id,
+        water: 6,
+        seeds: 3,
+        soil: 3,
+      });
+
+      await userResources.save();
 
       return res.status(201).json({ message: "User created successfully" });
     } catch (error) {
