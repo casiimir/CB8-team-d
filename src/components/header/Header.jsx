@@ -1,64 +1,53 @@
 import styles from "@/components/header/index.module.scss";
-import playersData from "./playersData.js";
+
+import { getSession, useSession } from "next-auth/react";
+import { IoWaterOutline } from "react-icons/io5";
+import { RiSeedlingLine } from "react-icons/ri";
+import { LiaSeedlingSolid } from "react-icons/lia";
 import Image from "next/image";
 
-export default function Header() {
-  // Trova il giocatore con id 1
-  const player = playersData.find((player) => player.id === 1);
+const Header = () => {
+  const { data: session, status: sessionStatus } = useSession();
+  const loading = sessionStatus === "loading";
+
+  if (loading) return null;
+
+  const user = session.user.username;
+  const userResources = session.user.resources;
 
   return (
     <div className={styles.header_wrapper}>
       <div className={styles.img_wrapper}>
-        <img className={styles.image} />
+        <Image className={styles.image} alt="user-icon" />
       </div>
 
       <div className={styles.user_wrapper}>
-        <h5 className={styles.name}> {player.name}</h5>
+        <h2 className={styles.name}> {user}</h2>
 
         <div className={styles.resources_wrapper}>
-          <Image
-            className={styles.water}
-            src="/water.png"
-            alt="Water"
-            width={35}
-            height={35}
-          />
-          <p className={styles.text}>{player.water}</p>
-
-          <Image
-            className={styles.water}
-            src="/seeds.png"
-            alt="Seeds"
-            width={35}
-            height={35}
-          />
-          <p className={styles.text}> {player.seeds}</p>
-
-          <Image
-            className={styles.water}
-            src="/soil.png"
-            alt="Soil"
-            width={35}
-            height={35}
-          />
-          <p className={styles.text}>{player.soil}</p>
+          <p className={styles.text}>
+            <IoWaterOutline /> Water {userResources.water}
+          </p>
+          <p className={styles.text}>
+            <RiSeedlingLine />
+            Seeds {userResources.seeds}
+          </p>
+          <p className={styles.text}>
+            <LiaSeedlingSolid />
+            Soil {userResources.soil}
+          </p>
         </div>
       </div>
     </div>
   );
+};
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      session: await getSession(context),
+    },
+  };
 }
 
-//alternativa utile???
-// const loggedPlayerId = 1;
-// const loggedPlayer = playersData.find((player) => player.id === loggedPlayerId);
-
-// export default function Header() {
-//   return (
-//     <div className={styles.header_wrapper}>
-//       <h2 className={styles.text}>{loggedPlayer.name}</h2>
-//       <p>Acqua: {loggedPlayer.water}</p>
-//       <p>Semi: {loggedPlayer.seeds}</p>
-//       <p>Terra: {loggedPlayer.soil}</p>
-//     </div>
-//   );
-// }
+export default Header;
