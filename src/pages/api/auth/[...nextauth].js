@@ -31,7 +31,12 @@ export const authOptions = {
               user.password
             );
             if (isMatch) {
-              return user;
+              return {
+                _id: user._id,
+                email: user.email,
+                username: user.username,
+                resources: user.resources,
+              };
             } else {
               throw new Error("Email or password is incorrect");
             }
@@ -46,21 +51,20 @@ export const authOptions = {
   ],
 
   callbacks: {
-    // We can pass in additional information from the user document MongoDB returns
     async jwt({ token, user }) {
       if (user) {
         token.user = {
           _id: user._id,
           email: user.email,
           username: user.username,
+          resources: user.resources,
         };
       }
       return token;
     },
-    // If we want to access our extra user info from sessions we have to pass it the token here to get them in sync:
-    session: async ({ session, token }) => {
-      if (token) {
-        session.user = token.user;
+    async session({ session, token }) {
+      if (token && token.user) {
+        session.user = { ...token.user };
       }
       return session;
     },
