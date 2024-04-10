@@ -13,7 +13,7 @@ const Header = () => {
   if (loading) return null;
 
   const user = session.user.username;
-  const userResources = session.user.resources;
+  // const userResources = session.user.resources;
 
   return (
     <div className={styles.header_wrapper}>
@@ -32,15 +32,18 @@ const Header = () => {
 
         <div className={styles.resources_wrapper}>
           <p className={styles.text}>
-            <IoWaterOutline /> Water {userResources.water}
+            <IoWaterOutline /> Water
+            {/* {userResources.water} */}
           </p>
           <p className={styles.text}>
             <RiSeedlingLine />
-            Seeds {userResources.seeds}
+            Seeds
+            {/* {userResources.seeds} */}
           </p>
           <p className={styles.text}>
             <LiaSeedlingSolid />
-            Soil {userResources.soil}
+            Soil
+            {/* {userResources.soil} */}
           </p>
         </div>
       </div>
