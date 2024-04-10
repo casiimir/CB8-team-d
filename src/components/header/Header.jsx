@@ -18,7 +18,13 @@ const Header = () => {
   return (
     <div className={styles.header_wrapper}>
       <div className={styles.img_wrapper}>
-        <Image className={styles.image} alt="user-icon" />
+        <Image
+          height="80"
+          width="80"
+          className={styles.image}
+          alt="user-icon"
+          src="https://static.vecteezy.com/system/resources/previews/019/633/059/original/8-bit-pixel-human-portrait-cartoon-young-girl-for-game-assets-in-illustration-vector.jpg"
+        />
       </div>
 
       <div className={styles.user_wrapper}>
