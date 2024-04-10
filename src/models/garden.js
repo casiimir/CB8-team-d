@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 const gardenSchema = new mongoose.Schema({
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
     required: true,
   },
   plots: [
@@ -31,4 +30,4 @@ const gardenSchema = new mongoose.Schema({
 });
 
 module.exports =
-  mongoose.model.Garden || mongoose.model("Garden", gardenSchema);
+  mongoose.models.Garden || mongoose.model("Garden", gardenSchema);
