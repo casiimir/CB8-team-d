@@ -3,7 +3,6 @@ import styles from "./index.module.scss";
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import { MdOutlineEmail } from "react-icons/md";
 
 const handleSubmit = async (event, router) => {
   event.preventDefault();
@@ -19,7 +18,6 @@ const handleSubmit = async (event, router) => {
 
   if (!result.error) {
     console.log("logged in");
-    console.log(result);
     router.push("/habits");
   } else {
     //qua va la risposta che manda un avviso di errore all'utente

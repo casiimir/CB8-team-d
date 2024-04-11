@@ -1,49 +1,15 @@
 import styles from "@/components/header/index.module.scss";
-import { useEffect, useState } from "react";
 import { getSession, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import { IoWaterOutline } from "react-icons/io5";
 import { RiSeedlingLine } from "react-icons/ri";
 import { LiaSeedlingSolid } from "react-icons/lia";
 import Image from "next/image";
+import { useUserResources } from "@/contexts/userResourcesContext";
 
 const Header = () => {
-  const router = useRouter();
   const { data: session, status: sessionStatus } = useSession();
-  const [userResources, setUserResources] = useState([]);
+  const { userResources } = useUserResources();
   const loading = sessionStatus === "loading";
-
-  // const [water, setWater] = useState();
-  // const [soil, setSoil] = useState();
-  // const [seeds, setSeeds] = useState();
-
-  // useEffect(() => {
-  //   setWater(resources.data[0].water);
-  //   setSoil(resources.data[0].soil);
-  //   setSeeds(resources.data[0].seeds);
-  // }, [resources]);
-
-  useEffect(() => {
-    const loadUserResources = async () => {
-      if (session) {
-        const userId = session.user._id;
-        const response = await fetch(`/api/userResources?userId=${userId}`);
-        if (response.ok) {
-          const resources = await response.json();
-          setUserResources(resources.data);
-
-          const water = resources.data[0].water;
-        } else {
-          console.error("Failed to load userResources");
-        }
-      } else {
-        console.log("No session");
-        router.push("/login");
-      }
-    };
-
-    loadUserResources();
-  }, [router, session]);
 
   if (loading) return null;
 
@@ -66,18 +32,15 @@ const Header = () => {
 
         <div className={styles.resources_wrapper}>
           <p className={styles.text}>
-            <IoWaterOutline /> Water
-            {/* {userResources.water} */}
+            <IoWaterOutline /> Water {userResources.water}
           </p>
           <p className={styles.text}>
             <RiSeedlingLine />
-            Seeds
-            {/* {userResources.seeds} */}
+            Seeds {userResources.seeds}
           </p>
           <p className={styles.text}>
             <LiaSeedlingSolid />
-            Soil
-            {/* {userResources.soil} */}
+            Soil {userResources.soil}
           </p>
         </div>
       </div>

@@ -5,14 +5,15 @@ import styles from "../../styles/Garden.module.scss";
 import Plot from "@/components/plot";
 import Navbar from "@/components/navbar";
 import GardenModal from "@/components/gardenModal";
+import { useUserResources } from "@/contexts/userResourcesContext";
 
 const GardenPage = ({ session }) => {
   const router = useRouter();
-  const [plots, setPlots] = useState([]);
-  const [garden, setGarden] = useState([]);
+  const [garden, setGarden] = useState(null);
   const [isGardenModalOpen, setIsGardenModalOpen] = useState(false);
   const [selectedPlot, setSelectedPlot] = useState(null);
   const [trees, setTrees] = useState([]);
+  const { userResources, updateUserResources } = useUserResources();
 
   useEffect(() => {
     fetch("trees.json")
@@ -31,9 +32,8 @@ const GardenPage = ({ session }) => {
         const userId = session.user._id;
         const response = await fetch(`/api/garden?userId=${userId}`);
         if (response.ok) {
-          const garden = await response.json();
-          console.log(garden.data);
-          setGarden(garden.data);
+          const gardenResponse = await response.json();
+          setGarden(gardenResponse.data);
         } else {
           console.error("Failed to load garden");
         }
@@ -46,50 +46,52 @@ const GardenPage = ({ session }) => {
     loadGarden();
   }, [router, session]);
 
-  useEffect(() => {
-    const generatePlots = () => {
-      const rows = 7;
-      const cols = 5;
-      const generatedPlots = [];
+  const createGardenGrid = (plotsData, trees) => {
+    const plots = plotsData.map((plot) => {
+      const row = plot.x;
+      const col = plot.y;
+      if (plot.plant != "weed") {
+        const treeIcon = trees.filter((tree) => tree.name === plot.plant)[0]
+          .sprite;
 
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-          generatedPlots.push({
-            x,
-            y,
-            isEmpty: true,
-            plantIcon: null,
-            plant: null, // Inizialmente il nome dell'albero è null
-          });
-        }
-      }
-
-      return generatedPlots;
-    };
-
-    if (garden.length > 0) {
-      const updatedPlots = generatePlots().map((plot) => {
-        // Trova l'albero corrispondente a questo plot, se esiste
-        const selectedPlot = garden.find(
-          (gardenPlot) => gardenPlot.x === plot.x && gardenPlot.y === plot.y
+        console.log(treeIcon);
+        return (
+          <Plot
+            key={`${plot.x}-${plot.y}`}
+            x={row}
+            y={col}
+            isEmpty={plot.isEmpty}
+            treeName={plot.plant}
+            plantIcon={treeIcon}
+            onClick={handlePlotClick}
+          />
         );
-        if (selectedPlot) {
-          // Se l'albero è stato trovato, assegna il suo nome al plot
-          const selectedTree = trees.find(
-            (tree) => tree.sprite === selectedPlot.plantIcon
-          );
-          plot.plant = selectedTree ? selectedTree.name : null;
-        }
-        return plot;
-      });
-      setPlots(updatedPlots);
-    }
-  }, [garden, trees]);
+      } else {
+        return (
+          <Plot
+            key={`${plot.x}-${plot.y}`}
+            x={row}
+            y={col}
+            isEmpty={true}
+            treeName={plot.plant}
+            plantIcon={null}
+            onClick={handlePlotClick}
+          />
+        );
+      }
+    });
+
+    return plots;
+  };
 
   const handlePlotClick = (x, y) => {
-    const clickedPlot = plots.find((plot) => plot.x === x && plot.y === y);
-    if (clickedPlot.isEmpty) {
+    const clickedPlot = garden.plots.find(
+      (plot) => plot.x === x && plot.y === y
+    );
+    console.log("Clicked plot:", clickedPlot);
+    if (clickedPlot.empty) {
       setSelectedPlot({ x, y });
+      console.log("Selected plot:", selectedPlot);
       setIsGardenModalOpen(true);
     }
   };
@@ -99,17 +101,19 @@ const GardenPage = ({ session }) => {
     setSelectedPlot(null);
   };
 
-  const handleGardenChangeClick = async (id, x, y, plant, empty) => {
-    try {
-      const endpoint = `/api/garden/${id}`;
-      const newBody = {
-        x: x,
-        y: y,
-        plant: plant,
-        empty: empty,
-      };
+  const updateGardenData = async (id, x, y, plant, empty) => {
+    const newBody = {
+      x: x,
+      y: y,
+      plant: plant,
+      empty: empty,
+    };
 
-      const response = await fetch(endpoint, {
+    console.log("Updating garden with body:", newBody);
+
+    try {
+      console.log("Calling the PUT method");
+      const response = await fetch(`/api/garden/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -117,63 +121,74 @@ const GardenPage = ({ session }) => {
         body: JSON.stringify(newBody),
       });
 
+      console.log("Response:", response);
+
       if (!response.ok) {
-        throw new Error("Failed to update plot");
-      } else {
-        const updatedPlot = await response.json();
+        console.error("Failed to update garden in database");
       }
     } catch (error) {
       console.error(error.message);
     }
   };
 
-  const handlePlantSelect = (plantIconUrl) => {
+  const handlePlantSelect = async (plantIconUrl) => {
     setIsGardenModalOpen(false);
     if (selectedPlot) {
       const selectedTree = trees.find((tree) => tree.sprite === plantIconUrl);
+
       if (!selectedTree) {
         console.error("Albero non trovato per l'URL dell'icona:", plantIconUrl);
         return;
       }
       const treeName = selectedTree.name;
+      // Toglie le risorse dall'utente se sono sufficienti
+      if (
+        userResources.soil < selectedTree.cost.soil ||
+        userResources.water < selectedTree.cost.water ||
+        userResources.seeds < selectedTree.cost.seeds
+      ) {
+        console.error("Risorse insufficienti");
+        return;
+      } else {
+        const newUserResources = {
+          ...userResources,
+          soil: userResources.soil - selectedTree.cost.soil,
+          water: userResources.water - selectedTree.cost.water,
+          seeds: userResources.seeds - selectedTree.cost.seeds,
+        };
+        await updateUserResources(newUserResources);
+        const updatedPlots = garden.plots.map((plot) => {
+          if (plot.x === selectedPlot.x && plot.y === selectedPlot.y) {
+            return {
+              ...plot,
+              plantIcon: plantIconUrl,
+              plant: treeName,
+              isEmpty: false,
+            };
+          }
+          return plot;
+        });
+        const newGarden = { ...garden, plots: updatedPlots };
+        setGarden(newGarden);
 
-      const updatedPlots = plots.map((plot) => {
-        if (plot.x === selectedPlot.x && plot.y === selectedPlot.y) {
-          return {
-            ...plot,
-            plantIcon: plantIconUrl,
-            plant: treeName,
-            isEmpty: false,
-          };
-        }
-        return plot;
-      });
-      setPlots(updatedPlots);
-
-      handleGardenChangeClick(
-        garden[0]._id,
-        selectedPlot.x,
-        selectedPlot.y,
-        treeName,
-        false
-      );
+        updateGardenData(
+          garden._id,
+          selectedPlot.x,
+          selectedPlot.y,
+          treeName,
+          false
+        );
+      }
     }
   };
 
   return (
     <div className={styles.garden}>
       <div className={styles.plotsContainer}>
-        {plots.map((plot, index) => (
-          <Plot
-            key={`${plot.x}-${plot.y}`}
-            x={plot.x}
-            y={plot.y}
-            isEmpty={plot.isEmpty}
-            treeName={plot.plant}
-            plantIcon={plot.plantIcon}
-            onClick={handlePlotClick}
-          />
-        ))}
+        {garden &&
+          trees &&
+          garden.plots.length > 0 &&
+          createGardenGrid(garden.plots, trees)}
       </div>
       <Navbar />
       {isGardenModalOpen && (
