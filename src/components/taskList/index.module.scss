@@ -2,13 +2,13 @@
 @import "../../assets/mixins.module.scss";
 
 .TaskList {
-  @include flex-container(column, center, center, 20px);
+  @include flex-container(column, center, center, 20px, nowrap);
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1080px) {
   .TaskList {
     flex-wrap: wrap;
-    max-width: 1200px;
+    max-width: 1080px;
     left: calc(50% - 600px)
   }
 }
