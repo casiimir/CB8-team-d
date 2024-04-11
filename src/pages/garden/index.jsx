@@ -53,9 +53,8 @@ const GardenPage = ({ session }) => {
 
       return generatedPlots;
     };
-    if (garden.data) {
-      setPlots(generatePlots());
-    } else {
+
+    if (garden.length > 0) {
       setPlots(generatePlots());
     }
   }, [garden]);
@@ -116,8 +115,9 @@ const GardenPage = ({ session }) => {
       });
       setPlots(updatedPlots);
     }
-    setSelectedPlot(null);
+
     handleGardenChangeClick(
+      garden[0]._id,
       selectedPlot.x,
       selectedPlot.y,
       plantIconUrl,
