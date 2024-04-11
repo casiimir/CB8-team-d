@@ -13,6 +13,7 @@
   max-height: 120px;
   padding: 10px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Ombra */
+  z-index: 2;
 
   .image {
     border-radius: 50%; /* Imposta il border-radius al 50% per fare un cerchio */
@@ -29,9 +30,9 @@
 }
 
 /* per i dispositivi desktop */
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1080px) {
   .header_wrapper {
-    max-width: 1200px;
-    left: calc(50% - 600px);
+    max-width: 1080px;
+    left: calc(50% - 540px);
   }
 }
