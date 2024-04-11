@@ -1,5 +1,5 @@
 import dbConnect from "@/utils/dbConnect";
-import Daily from "@/models/daily";
+import Garden from "@/models/garden";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -10,9 +10,9 @@ export default async function handler(req, res) {
     case "GET":
       try {
         const { userId } = req.query;
-        const dailies = await Daily.find({ userId });
+        const gardens = await Garden.find({ userId });
 
-        res.status(200).json({ success: true, data: dailies });
+        res.status(200).json({ success: true, data: gardens });
       } catch (error) {
         res.status(400).json({ success: false });
       }
@@ -21,9 +21,9 @@ export default async function handler(req, res) {
     case "POST":
       try {
         const { body } = req;
-        const daily = await Daily.create(body);
+        const garden = await Garden.create(body);
 
-        res.status(201).json({ success: true, data: daily });
+        res.status(201).json({ success: true, data: garden });
       } catch (error) {
         res.status(400).json({ success: false });
       }
@@ -31,7 +31,7 @@ export default async function handler(req, res) {
 
     case "DELETE":
       try {
-        await Daily.deleteMany({});
+        await Garden.deleteMany({});
 
         res.status(204).end();
       } catch (error) {
