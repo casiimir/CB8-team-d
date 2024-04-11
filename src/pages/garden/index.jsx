@@ -12,6 +12,18 @@ const GardenPage = ({ session }) => {
   const [garden, setGarden] = useState([]);
   const [isGardenModalOpen, setIsGardenModalOpen] = useState(false);
   const [selectedPlot, setSelectedPlot] = useState(null);
+  const [trees, setTrees] = useState([]);
+
+  useEffect(() => {
+    fetch("trees.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setTrees(data);
+      })
+      .catch((error) =>
+        console.error("Errore nel caricamento del file JSON:", error)
+      );
+  }, []);
 
   useEffect(() => {
     const loadGarden = async () => {
@@ -47,6 +59,7 @@ const GardenPage = ({ session }) => {
             y,
             isEmpty: true,
             plantIcon: null,
+            plant: null, // Inizialmente il nome dell'albero è null
           });
         }
       }
@@ -55,9 +68,23 @@ const GardenPage = ({ session }) => {
     };
 
     if (garden.length > 0) {
-      setPlots(generatePlots());
+      const updatedPlots = generatePlots().map((plot) => {
+        // Trova l'albero corrispondente a questo plot, se esiste
+        const selectedPlot = garden.find(
+          (gardenPlot) => gardenPlot.x === plot.x && gardenPlot.y === plot.y
+        );
+        if (selectedPlot) {
+          // Se l'albero è stato trovato, assegna il suo nome al plot
+          const selectedTree = trees.find(
+            (tree) => tree.sprite === selectedPlot.plantIcon
+          );
+          plot.plant = selectedTree ? selectedTree.name : null;
+        }
+        return plot;
+      });
+      setPlots(updatedPlots);
     }
-  }, [garden]);
+  }, [garden, trees]);
 
   const handlePlotClick = (x, y) => {
     const clickedPlot = plots.find((plot) => plot.x === x && plot.y === y);
@@ -103,26 +130,34 @@ const GardenPage = ({ session }) => {
   const handlePlantSelect = (plantIconUrl) => {
     setIsGardenModalOpen(false);
     if (selectedPlot) {
+      const selectedTree = trees.find((tree) => tree.sprite === plantIconUrl);
+      if (!selectedTree) {
+        console.error("Albero non trovato per l'URL dell'icona:", plantIconUrl);
+        return;
+      }
+      const treeName = selectedTree.name;
+
       const updatedPlots = plots.map((plot) => {
         if (plot.x === selectedPlot.x && plot.y === selectedPlot.y) {
           return {
             ...plot,
             plantIcon: plantIconUrl,
+            plant: treeName,
             isEmpty: false,
           };
         }
         return plot;
       });
       setPlots(updatedPlots);
-    }
 
-    handleGardenChangeClick(
-      garden[0]._id,
-      selectedPlot.x,
-      selectedPlot.y,
-      plantIconUrl,
-      false
-    );
+      handleGardenChangeClick(
+        garden[0]._id,
+        selectedPlot.x,
+        selectedPlot.y,
+        treeName,
+        false
+      );
+    }
   };
 
   return (
@@ -134,6 +169,7 @@ const GardenPage = ({ session }) => {
             x={plot.x}
             y={plot.y}
             isEmpty={plot.isEmpty}
+            treeName={plot.plant}
             plantIcon={plot.plantIcon}
             onClick={handlePlotClick}
           />
@@ -144,6 +180,7 @@ const GardenPage = ({ session }) => {
         <GardenModal
           onClose={handleCloseGardenModal}
           onPlantSelect={handlePlantSelect}
+          trees={trees}
         />
       )}
     </div>
