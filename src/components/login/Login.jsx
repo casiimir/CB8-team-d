@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./index.module.scss";
-import React, { useState } from "react";
+import React from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 
@@ -31,11 +31,11 @@ export default function Login() {
   return (
     <div className={styles.login_wrapper}>
       <Image
-        className={styles.image}
-        src="https://media.istockphoto.com/id/1045368942/it/vettoriale/design-vettoriale-dellicona-del-logo-a-foglia-verde-astratta-set-di-icone-ecologia-icona.jpg?s=612x612&w=0&k=20&c=bJPBK-fZoXISvp-YwGxeuH58tZAoY1KnnHVUoWyVo4c=" //dominio immagine in next config
+        className={styles.logo}
+        src="/logoColoured.png"
         alt="logo"
         width="200"
-        height="200"
+        height="170"
       />
       <div className={styles.title}>
         <h1>
@@ -64,12 +64,21 @@ export default function Login() {
             name="password"
           />
         </div>
+        <p className={styles.redirect}>Forgot Password?</p>
+
         <button className={styles.button_login} type="submit">
           Log in
         </button>
       </form>
       <div>
-        <button className={styles.button_signup}>Sign up</button>
+        <p className={styles.redirect1}>Don&apos;t have an account yet?</p>
+
+        <button
+          className={styles.button_signup}
+          onClick={() => router.push("/signup")}
+        >
+          Sign up
+        </button>
       </div>
     </div>
   );

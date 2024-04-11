@@ -4,5 +4,4 @@ const nextConfig = {
     domains: ["media.istockphoto.com", "static.vecteezy.com"], //dominio delle immagini
   },
 };
-
 export default nextConfig;

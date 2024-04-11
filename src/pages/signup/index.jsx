@@ -1,3 +1,5 @@
+import styles from "../../styles/SignUp.module.scss";
+import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 
@@ -45,33 +47,65 @@ function Signup() {
   };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <div className={styles.signup_wrapper}>
+      <Image
+        className={styles.logo}
+        src="/logoColoured.png"
+        alt="logo"
+        width="200"
+        height="170"
+      />
+
+      <div className={styles.title}>
+        <h1>
+          Just few quick things to{" "}
+          <span className={styles.highlight}>get started</span>
+        </h1>
+      </div>
+
       <form onSubmit={handleSubmit}>
-        <label>
-          Username:
+        <div>
+          <label>Username</label>
           <input
+            className={styles.input}
             type="username"
             value={username}
             onChange={handleUsernameChange}
           />
-        </label>
-        <label>
-          Email:
-          <input type="email" value={email} onChange={handleEmailChange} />
-        </label>
-        <br />
-        <label>
-          Password:
+        </div>
+
+        <div>
+          <label>E-mail</label>
           <input
+            className={styles.input}
+            type="email"
+            value={email}
+            onChange={handleEmailChange}
+          />
+        </div>
+
+        <div>
+          <label>Password</label>
+          <input
+            className={styles.input}
             type="password"
             value={password}
             onChange={handlePasswordChange}
           />
-        </label>
-        <br />
-        <button type="submit">Sign Up</button>
+        </div>
+
+        <button className={styles.button_signup} _signtype="submit">
+          Sign Up
+        </button>
       </form>
+      <p className={styles.redirect}>Already have an account?</p>
+      <button
+        className={styles.button_login}
+        type="submit"
+        onClick={() => router.push("/login")}
+      >
+        Log in
+      </button>
     </div>
   );
 }
