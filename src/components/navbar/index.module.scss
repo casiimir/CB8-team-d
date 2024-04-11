@@ -21,12 +21,6 @@
     gap: 1.5rem;
     list-style-type: none;
 
-    li {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
     .link {
       text-decoration: none;
       display: flex;
@@ -38,6 +32,10 @@
       &:hover {
         color: $secondary-color;
         transition: color 0.35s;
+        .icon {
+          color: $secondary-color;
+          transition: color 0.35s;
+        }
       }
     }
 
@@ -52,11 +50,6 @@
 
     .icon {
       color: white;
-
-      &:hover {
-        color: $secondary-color;
-        transition: color 0.35s;
-      }
     }
   }
 
