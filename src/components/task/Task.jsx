@@ -3,6 +3,7 @@ import styles from "./index.module.scss";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { IoClose } from "react-icons/io5";
+import { useUserResources } from "@/contexts/userResourcesContext";
 
 const Task = ({
   title,
@@ -19,6 +20,7 @@ const Task = ({
   const [completed, setCompleted] = useState(false);
   const [currentStreakCount, setCurrentStreakCount] = useState(streakCount);
   const [newLastCompleted, setNewLastCompleted] = useState(lastCompleted);
+  const { userResources, updateUserResources } = useUserResources();
 
   const router = useRouter();
 
@@ -48,12 +50,27 @@ const Task = ({
 
     if (router.pathname === "/habits") {
       await updateHabitFunction(id, title, newStreakCount, currentDate);
+      const newUserResources = {
+        ...userResources,
+        water: userResources.water + 1,
+      };
+      await updateUserResources(newUserResources);
     }
     if (router.pathname === "/dailies") {
       await updateDailyFunction(id, title, newCompletedValue, currentDate);
+      const newUserResources = {
+        ...userResources,
+        soil: userResources.soil + 1,
+      };
+      await updateUserResources(newUserResources);
     }
     if (router.pathname === "/todos") {
       await updateTodoFunction(id, title, newCompletedValue, deadline);
+      const newUserResources = {
+        ...userResources,
+        seeds: userResources.seeds + 1,
+      };
+      await updateUserResources(newUserResources);
     }
   };
 
@@ -90,10 +107,6 @@ const Task = ({
       }
     }
   }, [formattedNewLastCompleted]);
-
-  // useEffect(() => {
-  //   setNewLastCompleted(newLastCompleted);
-  // }, [newLastCompleted]);
 
   let additionalClassName = "";
   switch (router.pathname) {

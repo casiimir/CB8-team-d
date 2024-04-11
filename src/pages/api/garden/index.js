@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     case "GET":
       try {
         const { userId } = req.query;
-        const gardens = await Garden.find({ userId });
+        const gardens = await Garden.findOne({ userId });
 
         res.status(200).json({ success: true, data: gardens });
       } catch (error) {
