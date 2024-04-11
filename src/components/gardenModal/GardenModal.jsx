@@ -4,24 +4,11 @@ import styles from "./index.module.scss";
 import { IoWaterOutline, IoClose } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
 
-const GardenModal = ({ onClose, onPlantSelect }) => {
-  const [trees, setTrees] = useState([]);
-
+const GardenModal = ({ onClose, onPlantSelect, trees }) => {
   const handlePlantSelect = (plantIconUrl) => {
     onPlantSelect(plantIconUrl);
     onClose();
   };
-
-  useEffect(() => {
-    fetch("trees.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setTrees(data);
-      })
-      .catch((error) =>
-        console.error("Errore nel caricamento del file JSON:", error)
-      );
-  }, []);
 
   return (
     <>

@@ -31,7 +31,7 @@ export default async function handler(req, res) {
         const { body } = req;
         const garden = await Garden.findByIdAndUpdate(id, body);
 
-        if (!Garden) {
+        if (!garden) {
           return res.status(404).json({ success: false });
         }
 
