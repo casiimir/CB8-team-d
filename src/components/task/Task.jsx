@@ -2,6 +2,7 @@ import { format, differenceInHours } from "date-fns";
 import styles from "./index.module.scss";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { IoClose } from "react-icons/io5";
 
 const Task = ({
   title,
@@ -122,7 +123,7 @@ const Task = ({
           className={styles.deleteBtn}
           onClick={async () => await deleteFunction(id)}
         >
-          X
+          <IoClose className={styles.closeIcon} />
         </button>
       </div>
       <div className={styles.title_streak}>
