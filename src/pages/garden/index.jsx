@@ -50,35 +50,23 @@ const GardenPage = ({ session }) => {
     const plots = plotsData.map((plot) => {
       const row = plot.x;
       const col = plot.y;
-      if (plot.plant != "weed") {
-        const treeIcon = trees.filter((tree) => tree.name === plot.plant)[0]
-          .sprite;
 
-        console.log(treeIcon);
-        return (
-          <Plot
-            key={`${plot.x}-${plot.y}`}
-            x={row}
-            y={col}
-            isEmpty={plot.isEmpty}
-            treeName={plot.plant}
-            plantIcon={treeIcon}
-            onClick={handlePlotClick}
-          />
-        );
-      } else {
-        return (
-          <Plot
-            key={`${plot.x}-${plot.y}`}
-            x={row}
-            y={col}
-            isEmpty={true}
-            treeName={plot.plant}
-            plantIcon={null}
-            onClick={handlePlotClick}
-          />
-        );
-      }
+      const treeIcon =
+        plot?.plant != "weed"
+          ? trees.filter((tree) => tree.name == plot.plant)[0].sprite
+          : null;
+
+      return (
+        <Plot
+          key={`${plot.x}-${plot.y}`}
+          x={row}
+          y={col}
+          isEmpty={plot.empty}
+          treeName={plot.plant}
+          plantIcon={treeIcon}
+          onClick={handlePlotClick}
+        />
+      );
     });
 
     return plots;
@@ -88,10 +76,8 @@ const GardenPage = ({ session }) => {
     const clickedPlot = garden.plots.find(
       (plot) => plot.x === x && plot.y === y
     );
-    console.log("Clicked plot:", clickedPlot);
     if (clickedPlot.empty) {
       setSelectedPlot({ x, y });
-      console.log("Selected plot:", selectedPlot);
       setIsGardenModalOpen(true);
     }
   };
@@ -109,10 +95,7 @@ const GardenPage = ({ session }) => {
       empty: empty,
     };
 
-    console.log("Updating garden with body:", newBody);
-
     try {
-      console.log("Calling the PUT method");
       const response = await fetch(`/api/garden/${id}`, {
         method: "PUT",
         headers: {
@@ -121,7 +104,8 @@ const GardenPage = ({ session }) => {
         body: JSON.stringify(newBody),
       });
 
-      console.log("Response:", response);
+      const responseData = await response.json();
+      setGarden(responseData.data);
 
       if (!response.ok) {
         console.error("Failed to update garden in database");

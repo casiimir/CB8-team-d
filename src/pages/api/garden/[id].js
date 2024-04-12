@@ -2,18 +2,15 @@ import dbConnect from "@/utils/dbConnect";
 import Garden from "@/models/garden";
 
 export default async function handler(req, res) {
-  const {
-    method,
-    query: { userId, id },
-  } = req;
+  const { method } = req;
 
   await dbConnect();
 
   switch (method) {
     case "PUT":
       try {
-        const { body } = req;
-        const garden = await Garden.findById(req.params.id);
+        const { body, query } = req;
+        const garden = await Garden.findById(query.id);
 
         if (!garden) {
           return res.status(404).json({ success: false });
@@ -22,12 +19,12 @@ export default async function handler(req, res) {
           (plot) => plot.x === body.x && plot.y === body.y
         );
         if (plotIndex !== -1) {
-          garden.plots[plotIndex] = {
-            ...garden.plots[plotIndex],
+          const updatedPlot = {
+            ...garden.plots[plotIndex]._doc,
             plant: body.plant,
             empty: body.empty,
           };
-          console.log(garden.plots[plotIndex]);
+          garden.plots.set(plotIndex, updatedPlot);
           garden.markModified("plots");
         } else {
           garden.plots.push(body);
