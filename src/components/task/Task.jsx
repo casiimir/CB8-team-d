@@ -60,7 +60,7 @@ const Task = ({
       await updateDailyFunction(id, title, newCompletedValue, currentDate);
       const newUserResources = {
         ...userResources,
-        soil: userResources.soil + 1,
+        seeds: userResources.seeds + 1,
       };
       await updateUserResources(newUserResources);
     }
@@ -68,7 +68,7 @@ const Task = ({
       await updateTodoFunction(id, title, newCompletedValue, deadline);
       const newUserResources = {
         ...userResources,
-        seeds: userResources.seeds + 1,
+        soil: userResources.soil + 1,
       };
       await updateUserResources(newUserResources);
     }
