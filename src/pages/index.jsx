@@ -1,4 +1,3 @@
-// import Login from "@/components/login";
 import { useSession } from "next-auth/react";
 import Login from "../components/login/index";
 
@@ -9,6 +8,7 @@ export default function Home() {
   }
   return (
     <main>
+      {" "}
       <Login />
     </main>
   );

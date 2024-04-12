@@ -1,12 +1,8 @@
-@import "../../assets/variables.module.scss";
-@import "../../assets/mixins.module.scss";
+@import "../assets/variables.module.scss";
+@import "../assets/mixins.module.scss";
 
-.login_wrapper {
+.signup_wrapper {
   @include flex-container(column, center, center, 1rem);
-
-  .logo {
-    margin: 50px;
-  }
 
   .title {
     text-align: center;
@@ -21,42 +17,41 @@
     margin: 5px;
     text-align: left;
     color: $dark-color;
-    font-size: 16px;
   }
 
   .input {
     @include form-input;
-    font-family: "Nunito";
   }
 
   .input:focus {
     outline: solid $highlight-color;
   }
+  label,
+  input {
+    display: block;
+  }
 
   .button_login {
-    @include main-btn;
+    @include outline-btn;
+
     font-family: "Nunito";
   }
 
   .button_signup {
-    @include outline-btn;
+    @include main-btn;
+
     font-family: "Nunito";
   }
 }
 
 .redirect {
   text-decoration: underline;
-  text-align: right;
-  color: $primary-color;
-  font-size: 16px;
-}
-
-.redirect1 {
-  display: block;
-  text-decoration: underline;
-  text-align: center;
   font-size: 16px;
   color: grey;
+}
+
+.logo {
+  margin: 50px;
 }
 
 /* per i dispositivi desktop */

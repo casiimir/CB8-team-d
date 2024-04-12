@@ -13,7 +13,11 @@
   max-height: 120px;
   padding: 10px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Ombra */
+  // CHECK BELOW
   z-index: 2;
+  .logo {
+    display: none;
+  }
 
   .image {
     border-radius: 50%; /* Imposta il border-radius al 50% per fare un cerchio */
@@ -27,12 +31,22 @@
   .resources_wrapper {
     @include flex-container(row, center, center, 1rem);
   }
+
+  .info_wrapper {
+    @include flex-container(row, center, center, 2rem);
+  }
 }
 
 /* per i dispositivi desktop */
 @media screen and (min-width: 1080px) {
   .header_wrapper {
-    max-width: 1080px;
-    left: calc(50% - 540px);
+    max-width: 1200px;
+    left: calc(50% - 600px);
+    @include flex-container(row, center, space-between, 2rem);
+    padding: 50px;
+
+    .logo {
+      display: block;
+    }
   }
 }
