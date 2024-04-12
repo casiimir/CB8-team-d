@@ -1,0 +1,90 @@
+@import "../../assets/variables.module.scss";
+@import "../../assets/mixins.module.scss";
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  10%,
+  90% {
+    transform: translateX(-10px);
+  }
+  20%,
+  80% {
+    transform: translateX(10px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-10px);
+  }
+  40%,
+  60% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.modal {
+  @include flex-container(column, center, center, 1rem);
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  animation: shake 0.5s ease-in-out;
+
+  .modalBg {
+    width: 90%;
+    height: 250px;
+    background-color: $bg-color;
+    border: 2px solid green;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .modalContent {
+      width: 95%;
+      height: 230px;
+      background-color: $primary-color;
+      border-radius: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+
+      .text {
+        color: white;
+      }
+
+      .closeBtn {
+        position: absolute;
+        border-radius: 100%;
+        border: 2px solid red;
+        background-color: white;
+        width: 1.5rem;
+        height: 1.5rem;
+        right: 8%;
+        top: 5%;
+
+        .closeIcon {
+          margin: 3px 1px 0 1px;
+          font-size: 16px;
+          color: red;
+          transition: transform 0.3s;
+
+          &:hover {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+  }
+}

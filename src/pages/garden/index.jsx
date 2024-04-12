@@ -5,6 +5,7 @@ import styles from "../../styles/Garden.module.scss";
 import Plot from "@/components/plot";
 import Navbar from "@/components/navbar";
 import GardenModal from "@/components/gardenModal";
+import ResourcesModal from "@/components/resourcesModal";
 import { useUserResources } from "@/contexts/userResourcesContext";
 
 const GardenPage = ({ session }) => {
@@ -16,6 +17,8 @@ const GardenPage = ({ session }) => {
   const [plotToRemove, setPlotToRemove] = useState(null);
   //
   const [trees, setTrees] = useState([]);
+  const [insufficientResources, setInsufficientResources] = useState(false);
+
   const { userResources, updateUserResources } = useUserResources();
 
   useEffect(() => {
@@ -181,6 +184,7 @@ const GardenPage = ({ session }) => {
         userResources.seeds < selectedTree.cost.seeds
       ) {
         console.error("Risorse insufficienti");
+        setInsufficientResources(true);
         return;
       } else {
         const newUserResources = {
@@ -229,6 +233,12 @@ const GardenPage = ({ session }) => {
           onClose={handleCloseGardenModal}
           onPlantSelect={handlePlantSelect}
           trees={trees}
+        />
+      )}
+      {insufficientResources && (
+        <ResourcesModal
+          insufficientResources={insufficientResources}
+          setInsufficientResources={setInsufficientResources}
         />
       )}
     </div>

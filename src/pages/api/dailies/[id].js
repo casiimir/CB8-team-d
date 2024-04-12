@@ -51,6 +51,8 @@ export default async function handler(req, res) {
       } catch (error) {
         res.status(400).json({ success: false });
       }
+      break;
+
     default:
       res.setHeader("Allow", ["GET", "PUT", "DELETE"]);
       res.status(405).end(`Metodo ${method} non accettato!`);
