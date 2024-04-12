@@ -12,6 +12,9 @@ const GardenPage = ({ session }) => {
   const [garden, setGarden] = useState(null);
   const [isGardenModalOpen, setIsGardenModalOpen] = useState(false);
   const [selectedPlot, setSelectedPlot] = useState(null);
+  //
+  const [plotToRemove, setPlotToRemove] = useState(null);
+  //
   const [trees, setTrees] = useState([]);
   const { userResources, updateUserResources } = useUserResources();
 
@@ -64,7 +67,10 @@ const GardenPage = ({ session }) => {
           isEmpty={plot.empty}
           treeName={plot.plant}
           plantIcon={treeIcon}
-          onClick={handlePlotClick}
+          onPlotClick={handlePlotClick}
+          plotToRemove={plotToRemove}
+          onRemove={handleRemoveClick}
+          onCancel={handleCancelClick}
         />
       );
     });
@@ -72,15 +78,58 @@ const GardenPage = ({ session }) => {
     return plots;
   };
 
+  // const handlePlotClick = (x, y, isEmpty) => {
+  //   const clickedPlot = garden.plots.find(
+  //     (plot) => plot.x === x && plot.y === y
+  //   );
+  //   setSelectedPlot({ x, y });
+
+  //   if (isEmpty) {
+  //     setIsGardenModalOpen(true);
+  //     // console.log(clickedPlot.empty);
+  //   } else {
+  //     console.log("Pianta già presente");
+  //     updateGardenData(garden._id, x, y, "weed", true);
+  //   }
+  // };
+
   const handlePlotClick = (x, y) => {
+    if (plotToRemove && plotToRemove.x === x && plotToRemove.y === y) {
+      return;
+    }
+
     const clickedPlot = garden.plots.find(
       (plot) => plot.x === x && plot.y === y
     );
     if (clickedPlot.empty) {
       setSelectedPlot({ x, y });
       setIsGardenModalOpen(true);
+    } else {
+      setPlotToRemove({ x, y });
     }
   };
+
+  const handleRemoveClick = async () => {
+    if (plotToRemove) {
+      await updateGardenData(
+        garden._id,
+        plotToRemove.x,
+        plotToRemove.y,
+        "weed",
+        true
+      );
+      setPlotToRemove(null);
+    }
+  };
+
+  const handleCancelClick = async () => {
+    if (plotToRemove) {
+      console.log("Cancellato");
+      setPlotToRemove(null);
+    }
+  };
+
+  //
 
   const handleCloseGardenModal = () => {
     setIsGardenModalOpen(false);
