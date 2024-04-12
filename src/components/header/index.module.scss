@@ -2,7 +2,7 @@
 @import "../../assets/mixins.module.scss";
 
 .header_wrapper {
-  @include flex-container(row, center, center, 2rem);
+  @include flex-container(row, center, center, 0, nowrap);
   position: fixed;
   top: 0;
   background-color: $bg-color;
@@ -15,38 +15,47 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Ombra */
   // CHECK BELOW
   z-index: 2;
-  .logo {
-    display: none;
-  }
 
-  .image {
-    border-radius: 50%; /* Imposta il border-radius al 50% per fare un cerchio */
-  }
+    .logo {
+      display: none;
+    }  
 
-  .name {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
+    .info_wrapper {
+      @include flex-container(row, center, center, 2rem, nowrap);
 
-  .resources_wrapper {
-    @include flex-container(row, center, center, 1rem);
-  }
+        .image {
+          border-radius: 50%; /* Imposta il border-radius al 50% per fare un cerchio */
+        }
+      
+        .name {
+          margin-top: 10px;
+          margin-bottom: 0;
+        }
 
-  .info_wrapper {
-    @include flex-container(row, center, center, 2rem);
-  }
+        .resources_wrapper {
+          @include flex-container(row, center, center, 0.6rem, nowrap);
+          padding: 6px 6px 6px 0;
+        }
+    }
 }
 
 /* per i dispositivi desktop */
 @media screen and (min-width: 1080px) {
   .header_wrapper {
-    max-width: 1200px;
-    left: calc(50% - 600px);
-    @include flex-container(row, center, space-between, 2rem);
-    padding: 50px;
+    max-width: 1080px;
+    left: calc(50% - 540px);
+    @include flex-container(row, center, space-between, 2rem, nowrap);
+    padding: 10px;
 
     .logo {
       display: block;
+      padding-left: 20px;
+      width: 150px;
+      height: auto;
+    }
+
+    .info_wrapper {
+      padding-right: 20px;
     }
   }
 }

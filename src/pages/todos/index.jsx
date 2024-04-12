@@ -2,6 +2,7 @@ import React from "react";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import styles from "../../styles/lists.module.scss";
 import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
 import Navbar from "@/components/navbar";
@@ -100,8 +101,8 @@ const TodosPage = ({ session }) => {
   };
 
   return (
-    <div>
-      <h1>Welcome to the Todos Page</h1>
+    <div className={styles.list_wrapper}>
+      <h2>Your Todos</h2>
       {/* <button onClick={() => createNewTodo(session.user._id, setTodos)}>
         Create new todo
       </button> */}
