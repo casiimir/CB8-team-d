@@ -2,6 +2,7 @@ import React from "react";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import styles from "../../styles/lists.module.scss";
 import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
 import Navbar from "@/components/navbar";
@@ -78,8 +79,8 @@ const HabitsPage = ({ session }) => {
   };
 
   return (
-    <div>
-      <h1>Your Habits</h1>
+    <div className={styles.list_wrapper}>
+      <h2>Your Habits</h2>
       {isModalOpen && (
         <TaskModal
           setTasks={setHabits}

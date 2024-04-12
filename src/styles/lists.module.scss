@@ -1,0 +1,8 @@
+@import "../assets/variables.module.scss";
+@import "../assets/mixins.module.scss";
+
+.list_wrapper {
+    @include flex-container(column, center, center, 0.5rem, wrap);
+    @include wrapper;
+    height: auto;
+}

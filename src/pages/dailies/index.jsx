@@ -2,6 +2,7 @@ import React from "react";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import styles from "../../styles/lists.module.scss";
 import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
 import Navbar from "@/components/navbar";
@@ -77,8 +78,8 @@ const DailiesPage = ({ session }) => {
   };
 
   return (
-    <div>
-      <h1>Welcome to the Dailies Page</h1>
+    <div className={styles.list_wrapper}>
+      <h2>Your Dailies</h2>
       {/* <button onClick={() => createNewDaily(session.user._id, setDailies)}>
         Create new daily
       </button> */}

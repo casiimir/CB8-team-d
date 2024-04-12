@@ -2,18 +2,26 @@
   $direction: column,
   $align: center,
   $justify: center,
-  $gap: 1rem
+  $gap: 1rem,
+  $wrap: wrap
 ) {
   display: flex;
   flex-direction: $direction;
   align-items: $align;
   justify-content: $justify;
   gap: $gap;
+  flex-wrap: $wrap;
 }
 
-@mixin wrapper($width: 100%, $height: 100vh) {
-  width: $width;
-  height: $height;
+@mixin wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 120px 10px;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 @mixin reset($margin: 0 auto, $padding: 0) {
@@ -50,7 +58,7 @@
   border-radius: 20px;
   outline-style: solid;
   outline-color: #5a8433;
-  margin: 10px 0 20px;
+  margin: 0 0 20px 0;
   padding: 10px;
   border: none;
 }

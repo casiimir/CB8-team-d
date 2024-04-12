@@ -30,8 +30,8 @@ const Header = () => {
           className={styles.logo}
           src="/logowide.png"
           alt="logo"
-          width={150}
-          height={57}
+          width="150"
+          height="57"
         />
       </div>
       <div className={styles.info_wrapper}>
