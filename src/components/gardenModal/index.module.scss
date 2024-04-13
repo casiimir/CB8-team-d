@@ -13,40 +13,42 @@
   left: 0;
   z-index: 99;
 
-  .modalBg {
-    width: 90%;
-    height: 250px;
-    background-color: $bg-color;
-    border: 2px solid green;
+  .modalContent {
+    width: 95%;
+    max-height: 90vh;
+    height: auto;
+    background-color: $primary-color;
     border-radius: 40px;
+    border: 10px solid $bg-color;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
 
-    .modalContent {
-      width: 95%;
-      height: 230px;
-      background-color: $primary-color;
-      border-radius: 35px;
+    .mainInfo {
+      width: 100%;
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 20px;
-      position: relative;
+      align-items: center;
+      justify-content: space-between;
+
+      .modalTitle {
+        margin: 10px;
+        color: white;
+        font-weight: 700;
+      }
 
       .closeBtn {
-        position: absolute;
         border-radius: 100%;
         border: 2px solid red;
         background-color: white;
-        width: 1.5rem;
-        height: 1.5rem;
-        right: 5%;
-        top: 5%;
+        width: 1.8rem;
+        height: 1.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         .closeIcon {
-          margin: 3px 1px 0 1px;
-          font-size: 16px;
+          font-size: 18px;
           color: red;
           transition: transform 0.3s;
 
@@ -55,77 +57,70 @@
           }
         }
       }
+    }
 
-      .modalTitle {
-        margin: 10px;
-        color: white;
-        font-weight: 700;
-      }
+    .shop {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 20px;
+      align-items: center;
+      margin: 10px;
 
-      .shop {
+      .plant {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 20px;
-        align-items: center;
-        margin: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        width: auto;
+        padding: 10px;
+        border: 3px solid white;
+        background-color: $primary-color;
+        border-radius: 16px;
 
-        .plant {
+        .name {
+          margin: 0;
+        }
+
+        .plantInfo {
+          display: flex;
+        }
+
+        .resources {
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
-          margin-bottom: 20px;
-          width: auto;
-          padding: 10px;
-          border: 3px solid white;
-          background-color: $primary-color;
-          border-radius: 16px;
-
-          .name {
-            margin: 0;
-          }
-
-          .plantInfo {
-            display: flex;
-          }
-
-          .resources {
-            display: flex;
-            flex-direction: column;
-          }
-
-          .addBtn {
-            position: absolute;
-            border-radius: 100%;
-            border: 2px solid $primary-color;
-            background-color: white;
-            width: 1.5rem;
-            height: 1.5rem;
-            bottom: 8%;
-            transition: transform 0.3s;
-
-            .addIcon {
-              margin: 3px 1px 0 1px;
-              font-size: 16px;
-              color: $primary-color;
-            }
-
-            &:hover {
-              transform: scale(1.1);
-            }
-          }
         }
 
-        .plant img {
-          margin-bottom: 10px;
-          width: 50px;
-          height: auto;
-        }
+        // .addBtn {
+        //   position: absolute;
+        //   border-radius: 100%;
+        //   border: 2px solid $primary-color;
+        //   background-color: white;
+        //   width: 1.5rem;
+        //   height: 1.5rem;
+        //   bottom: 8%;
+        //   transition: transform 0.3s;
 
-        .plant p {
-          margin-top: 5px;
-          color: white;
-        }
+        //   .addIcon {
+        //     margin: 3px 1px 0 1px;
+        //     font-size: 16px;
+        //     color: $primary-color;
+        //   }
+
+        //   &:hover {
+        //     transform: scale(1.1);
+        //   }
+        // }
+      }
+
+      .plant img {
+        margin-bottom: 10px;
+        width: 50px;
+        height: auto;
+      }
+
+      .plant p {
+        margin-top: 5px;
+        color: white;
       }
     }
   }
