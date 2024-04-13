@@ -2,27 +2,29 @@
 @import "../assets/mixins.module.scss";
 
 .userpage_wrapper {
-    @include flex-container(row);
-    @include wrapper;
-  
-    label, input {
-        display: block;
-    }
+  @include flex-container(row);
+  @include wrapper;
 
-    input {
-        @include form-input;
-        font-family: $mainFont;
-    }
+  label,
+  input {
+    display: block;
+  }
 
-    .btn_save, .btn_del {
-        @include main-btn;
-        cursor: pointer;
-        margin-top: 6px;
-    }
+  input {
+    @include form-input;
+    font-family: $mainFont;
+  }
 
-    .btn_edit {
-        @include outline-btn;
-        cursor: pointer;
-        margin-bottom: 0;
-    }
+  .btn_save,
+  .btn_del {
+    @include main-btn;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+
+  .btn_edit {
+    @include outline-btn;
+    cursor: pointer;
+    margin-bottom: 0;
+  }
 }
