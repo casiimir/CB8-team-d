@@ -6,6 +6,7 @@ import styles from "../../styles/lists.module.scss";
 import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
 import Navbar from "@/components/navbar";
+import Loader from "@/components/loader/Loader.jsx";
 
 const HabitsPage = ({ session }) => {
   const router = useRouter();
@@ -99,7 +100,7 @@ const HabitsPage = ({ session }) => {
     </div>
   ) : (
     <div>
-      <div>Loading...</div>
+      <Loader />
     </div>
   );
 };

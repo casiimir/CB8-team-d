@@ -7,6 +7,7 @@ import Navbar from "@/components/navbar";
 import GardenModal from "@/components/gardenModal";
 import ResourcesModal from "@/components/resourcesModal";
 import { useUserResources } from "@/contexts/userResourcesContext";
+import Loader from "@/components/loader/Loader.jsx";
 
 const GardenPage = ({ session }) => {
   const router = useRouter();
@@ -244,7 +245,7 @@ const GardenPage = ({ session }) => {
     </div>
   ) : (
     <div>
-      <div>Loading...</div>
+      <Loader />
     </div>
   );
 };
