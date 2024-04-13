@@ -107,9 +107,6 @@ const TodosPage = ({ session }) => {
       <Header />
       <div className={styles.list_wrapper}>
         <h2>Your Todos</h2>
-        {/* <button onClick={() => createNewTodo(session.user._id, setTodos)}>
-          Create new todo
-        </button> */}
         {isModalOpen && (
           <TaskModal
             setTasks={setTodos}
@@ -119,11 +116,17 @@ const TodosPage = ({ session }) => {
             setIsOpen={setIsModalOpen}
           />
         )}
-        <TaskList
-          tasks={todos}
-          deleteFunction={handleDeleteClick}
-          updateTodoFunction={handleTodoChangeClick}
-        />
+        <div id="wrapper">
+          <div className={styles.scrollbar} id="style-default">
+            <div className={styles.force_overflow}>
+              <TaskList
+                tasks={todos}
+                deleteFunction={handleDeleteClick}
+                updateTodoFunction={handleTodoChangeClick}
+              />
+            </div>
+          </div>
+        </div>
         <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </div>
     </div>

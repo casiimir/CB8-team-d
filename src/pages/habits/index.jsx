@@ -94,11 +94,17 @@ const HabitsPage = ({ session }) => {
             setIsOpen={setIsModalOpen}
           />
         )}
-        <TaskList
-          tasks={habits}
-          deleteFunction={handleDeleteClick}
-          updateHabitFunction={handleHabitChangeClick}
-        />
+        <div id="wrapper">
+          <div className={styles.scrollbar} id="style-default">
+            <div className={styles.force_overflow}>
+              <TaskList
+                tasks={habits}
+                deleteFunction={handleDeleteClick}
+                updateHabitFunction={handleHabitChangeClick}
+              />
+            </div>
+          </div>
+        </div>
         <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </div>
     </div>

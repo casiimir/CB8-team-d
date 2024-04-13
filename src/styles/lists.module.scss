@@ -2,7 +2,26 @@
 @import "../assets/mixins.module.scss";
 
 .list_wrapper {
-    @include flex-container(column, center, center, 0.5rem, wrap);
-    @include wrapper;
-    height: auto;
+  @include flex-container(column, center, center, 0.5rem, wrap);
+  @include wrapper;
+  height: auto;
+}
+
+.scrollbar {
+  float: left;
+  height: 455px;
+  width: auto;
+  background: white;
+  overflow-y: scroll;
+  margin-bottom: 25px;
+
+  .force_overflow {
+    min-height: 450px;
+  }
+}
+
+#wrapper {
+  text-align: center;
+  width: 500px;
+  margin: auto;
 }
