@@ -52,7 +52,7 @@ const Task = ({
       await updateHabitFunction(id, title, newStreakCount, currentDate);
       const newUserResources = {
         ...userResources,
-        water: userResources.water + 1,
+        water: (userResources.water || 0) + 1,
       };
       await updateUserResources(newUserResources);
     }
@@ -60,7 +60,7 @@ const Task = ({
       await updateDailyFunction(id, title, newCompletedValue, currentDate);
       const newUserResources = {
         ...userResources,
-        seeds: userResources.seeds + 1,
+        seeds: (userResources.seeds || 0) + 1,
       };
       await updateUserResources(newUserResources);
     }
@@ -68,8 +68,9 @@ const Task = ({
       await updateTodoFunction(id, title, newCompletedValue, deadline);
       const newUserResources = {
         ...userResources,
-        soil: userResources.soil + 1,
+        soil: (userResources.soil || 0) + 1,
       };
+      console.log(newUserResources);
       await updateUserResources(newUserResources);
     }
   };

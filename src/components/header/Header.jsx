@@ -2,13 +2,16 @@ import styles from "@/components/header/index.module.scss";
 import { getSession, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useUserResources } from "@/contexts/userResourcesContext";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const { data: session, status: sessionStatus } = useSession();
   const { userResources } = useUserResources();
   const loading = sessionStatus === "loading";
 
-  if (loading) return null;
+  if (loading || userResources === null) {
+    return null;
+  }
 
   const user = session?.user?.username;
 
@@ -60,7 +63,9 @@ const Header = () => {
                 width={35}
                 height={35}
               />
-              <p className={styles.text}>{userResources.water}</p>
+              <p className={styles.text}>
+                {userResources?.water >= 0 && userResources.water}
+              </p>
 
               <Image
                 className={styles.water}
@@ -69,7 +74,9 @@ const Header = () => {
                 width={35}
                 height={35}
               />
-              <p className={styles.text}> {userResources.seeds}</p>
+              <p className={styles.text}>
+                {userResources?.seeds >= 0 && userResources.seeds}
+              </p>
 
               <Image
                 className={styles.water}
@@ -78,7 +85,9 @@ const Header = () => {
                 width={35}
                 height={35}
               />
-              <p className={styles.text}>{userResources.soil}</p>
+              <p className={styles.text}>
+                {userResources?.soil >= 0 && userResources.soil}
+              </p>
             </div>
           </div>
         </div>

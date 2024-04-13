@@ -7,6 +7,7 @@ import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
 import Navbar from "@/components/navbar";
 import Loader from "@/components/loader/Loader.jsx";
+import Header from "@/components/header";
 
 const HabitsPage = ({ session }) => {
   const router = useRouter();
@@ -80,23 +81,26 @@ const HabitsPage = ({ session }) => {
   };
 
   return session ? (
-    <div className={styles.list_wrapper}>
-      <h2>Your Habits</h2>
-      {isModalOpen && (
-        <TaskModal
-          setTasks={setHabits}
-          dataModal={{ pageTitle: "New Habit", showDateInput: false }}
-          session={session}
-          isOpen={isModalOpen}
-          setIsOpen={setIsModalOpen}
+    <div>
+      <Header />
+      <div className={styles.list_wrapper}>
+        <h2>Your Habits</h2>
+        {isModalOpen && (
+          <TaskModal
+            setTasks={setHabits}
+            dataModal={{ pageTitle: "New Habit", showDateInput: false }}
+            session={session}
+            isOpen={isModalOpen}
+            setIsOpen={setIsModalOpen}
+          />
+        )}
+        <TaskList
+          tasks={habits}
+          deleteFunction={handleDeleteClick}
+          updateHabitFunction={handleHabitChangeClick}
         />
-      )}
-      <TaskList
-        tasks={habits}
-        deleteFunction={handleDeleteClick}
-        updateHabitFunction={handleHabitChangeClick}
-      />
-      <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      </div>
     </div>
   ) : (
     <Loader />

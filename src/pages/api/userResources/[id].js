@@ -66,6 +66,7 @@ export default async function handler(req, res) {
         }
 
         // Increment the specified resource
+        console.log(userResources[resourceType]);
         userResources[resourceType] += 1;
         await userResources.save();
 

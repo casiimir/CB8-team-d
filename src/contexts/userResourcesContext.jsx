@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const UserResourcesContext = createContext();
 
@@ -9,10 +9,34 @@ export function useUserResources() {
 
 export function UserResourcesProvider({ children }) {
   const [userResources, setUserResources] = useState([]);
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    const loadUserResources = async () => {
+      if (status === "authenticated") {
+        // Check if the session is authenticated
+        const userId = session.user._id;
+        try {
+          const response = await fetch(`/api/userResources?userId=${userId}`);
+          if (response.ok) {
+            const resources = await response.json();
+            setUserResources(resources.data[0]);
+          } else {
+            console.error("Failed to load userResources");
+          }
+        } catch (error) {
+          console.error("Error when loading userResources", error);
+        }
+      }
+    };
+
+    if (status !== "loading") {
+      loadUserResources();
+    }
+  }, [status, session]);
 
   const updateUserResources = async (newResources) => {
-    const session = await getSession();
-    if (session) {
+    if (status === "authenticated") {
       const userId = session.user._id;
 
       // Update state
@@ -32,24 +56,6 @@ export function UserResourcesProvider({ children }) {
       }
     }
   };
-
-  useEffect(() => {
-    const loadUserResources = async () => {
-      const session = await getSession();
-      if (session) {
-        const userId = session.user._id;
-        const response = await fetch(`/api/userResources?userId=${userId}`);
-        if (response.ok) {
-          const resources = await response.json();
-          setUserResources(resources.data[0]);
-        } else {
-          console.error("Failed to load userResources");
-        }
-      }
-    };
-
-    loadUserResources();
-  }, []);
 
   const value = {
     userResources,

@@ -11,17 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <SessionProvider session={pageProps.session}>
       <UserResourcesProvider>
-        {pathName !== "/login" &&
-          pathName !== "/" &&
-          pathName !== "/signup" && (
-            <>
-              <Header />
-              <Component {...pageProps} />
-            </>
-          )}
-        {pathName === "/login" || pathName === "/" || pathName === "/signup" ? (
-          <Component {...pageProps} />
-        ) : null}
+        <Component {...pageProps} />
       </UserResourcesProvider>
     </SessionProvider>
   );
