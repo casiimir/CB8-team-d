@@ -69,17 +69,6 @@ const Header = () => {
 
               <Image
                 className={styles.water}
-                src="/seeds.png"
-                alt="Seeds"
-                width={35}
-                height={35}
-              />
-              <p className={styles.text}>
-                {userResources?.seeds >= 0 && userResources.seeds}
-              </p>
-
-              <Image
-                className={styles.water}
                 src="/soil.png"
                 alt="Soil"
                 width={35}
@@ -87,6 +76,17 @@ const Header = () => {
               />
               <p className={styles.text}>
                 {userResources?.soil >= 0 && userResources.soil}
+              </p>
+
+              <Image
+                className={styles.water}
+                src="/seeds.png"
+                alt="Seeds"
+                width={35}
+                height={35}
+              />
+              <p className={styles.text}>
+                {userResources?.seeds >= 0 && userResources.seeds}
               </p>
             </div>
           </div>
