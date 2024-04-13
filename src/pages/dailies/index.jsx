@@ -96,11 +96,17 @@ const DailiesPage = ({ session }) => {
             setIsOpen={setIsModalOpen}
           />
         )}
-        <TaskList
-          tasks={dailies}
-          deleteFunction={handleDeleteClick}
-          updateDailyFunction={handleDailyChangeClick}
-        />
+        <div id="wrapper">
+          <div className={styles.scrollbar} id="style-default">
+            <div className={styles.force_overflow}>
+              <TaskList
+                tasks={dailies}
+                deleteFunction={handleDeleteClick}
+                updateDailyFunction={handleDailyChangeClick}
+              />
+            </div>
+          </div>
+        </div>
         <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </div>
     </div>
