@@ -7,6 +7,7 @@ import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
 import Navbar from "@/components/navbar";
 import Loader from "@/components/loader/Loader.jsx";
+import Header from "@/components/header";
 
 // const createNewTodo = async (userId, setTodos) => {
 //   const response = await fetch("/api/todos", {
@@ -102,26 +103,29 @@ const TodosPage = ({ session }) => {
   };
 
   return session ? (
-    <div className={styles.list_wrapper}>
-      <h2>Your Todos</h2>
-      {/* <button onClick={() => createNewTodo(session.user._id, setTodos)}>
-        Create new todo
-      </button> */}
-      {isModalOpen && (
-        <TaskModal
-          setTasks={setTodos}
-          dataModal={{ pageTitle: "New To-do", showDateInput: true }}
-          session={session}
-          isOpen={isModalOpen}
-          setIsOpen={setIsModalOpen}
+    <div>
+      <Header />
+      <div className={styles.list_wrapper}>
+        <h2>Your Todos</h2>
+        {/* <button onClick={() => createNewTodo(session.user._id, setTodos)}>
+          Create new todo
+        </button> */}
+        {isModalOpen && (
+          <TaskModal
+            setTasks={setTodos}
+            dataModal={{ pageTitle: "New To-do", showDateInput: true }}
+            session={session}
+            isOpen={isModalOpen}
+            setIsOpen={setIsModalOpen}
+          />
+        )}
+        <TaskList
+          tasks={todos}
+          deleteFunction={handleDeleteClick}
+          updateTodoFunction={handleTodoChangeClick}
         />
-      )}
-      <TaskList
-        tasks={todos}
-        deleteFunction={handleDeleteClick}
-        updateTodoFunction={handleTodoChangeClick}
-      />
-      <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      </div>
     </div>
   ) : (
     <Loader />

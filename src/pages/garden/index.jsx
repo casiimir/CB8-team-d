@@ -8,6 +8,7 @@ import GardenModal from "@/components/gardenModal";
 import ResourcesModal from "@/components/resourcesModal";
 import { useUserResources } from "@/contexts/userResourcesContext";
 import Loader from "@/components/loader/Loader.jsx";
+import Header from "@/components/header";
 
 const GardenPage = ({ session }) => {
   const router = useRouter();
@@ -180,9 +181,9 @@ const GardenPage = ({ session }) => {
       const treeName = selectedTree.name;
       // Toglie le risorse dall'utente se sono sufficienti
       if (
-        userResources.soil < selectedTree.cost.soil ||
-        userResources.water < selectedTree.cost.water ||
-        userResources.seeds < selectedTree.cost.seeds
+        (userResources.soil || 0) < selectedTree.cost.soil ||
+        (userResources.water || 0) < selectedTree.cost.water ||
+        (userResources.seeds || 0) < selectedTree.cost.seeds
       ) {
         console.error("Risorse insufficienti");
         setInsufficientResources(true);
@@ -221,27 +222,30 @@ const GardenPage = ({ session }) => {
   };
 
   return session ? (
-    <div className={styles.garden}>
-      <div className={styles.plotsContainer}>
-        {garden &&
-          trees &&
-          garden.plots.length > 0 &&
-          createGardenGrid(garden.plots, trees)}
+    <div>
+      <Header />
+      <div className={styles.garden}>
+        <div className={styles.plotsContainer}>
+          {garden &&
+            trees &&
+            garden.plots.length > 0 &&
+            createGardenGrid(garden.plots, trees)}
+        </div>
+        <Navbar />
+        {isGardenModalOpen && (
+          <GardenModal
+            onClose={handleCloseGardenModal}
+            onPlantSelect={handlePlantSelect}
+            trees={trees}
+          />
+        )}
+        {insufficientResources && (
+          <ResourcesModal
+            insufficientResources={insufficientResources}
+            setInsufficientResources={setInsufficientResources}
+          />
+        )}
       </div>
-      <Navbar />
-      {isGardenModalOpen && (
-        <GardenModal
-          onClose={handleCloseGardenModal}
-          onPlantSelect={handlePlantSelect}
-          trees={trees}
-        />
-      )}
-      {insufficientResources && (
-        <ResourcesModal
-          insufficientResources={insufficientResources}
-          setInsufficientResources={setInsufficientResources}
-        />
-      )}
     </div>
   ) : (
     <Loader />

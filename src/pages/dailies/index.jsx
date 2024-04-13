@@ -7,6 +7,7 @@ import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
 import Navbar from "@/components/navbar";
 import Loader from "@/components/loader/Loader.jsx";
+import Header from "@/components/header";
 
 const DailiesPage = ({ session }) => {
   const router = useRouter();
@@ -79,26 +80,29 @@ const DailiesPage = ({ session }) => {
   };
 
   return session ? (
-    <div className={styles.list_wrapper}>
-      <h2>Your Dailies</h2>
-      {/* <button onClick={() => createNewDaily(session.user._id, setDailies)}>
-        Create new daily
-      </button> */}
-      {isModalOpen && (
-        <TaskModal
-          setTasks={setDailies}
-          dataModal={{ pageTitle: "New Daily", showDateInput: false }}
-          session={session}
-          isOpen={isModalOpen}
-          setIsOpen={setIsModalOpen}
+    <div>
+      <Header />
+      <div className={styles.list_wrapper}>
+        <h2>Your Dailies</h2>
+        {/* <button onClick={() => createNewDaily(session.user._id, setDailies)}>
+          Create new daily
+        </button> */}
+        {isModalOpen && (
+          <TaskModal
+            setTasks={setDailies}
+            dataModal={{ pageTitle: "New Daily", showDateInput: false }}
+            session={session}
+            isOpen={isModalOpen}
+            setIsOpen={setIsModalOpen}
+          />
+        )}
+        <TaskList
+          tasks={dailies}
+          deleteFunction={handleDeleteClick}
+          updateDailyFunction={handleDailyChangeClick}
         />
-      )}
-      <TaskList
-        tasks={dailies}
-        deleteFunction={handleDeleteClick}
-        updateDailyFunction={handleDailyChangeClick}
-      />
-      <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      </div>
     </div>
   ) : (
     <Loader />
