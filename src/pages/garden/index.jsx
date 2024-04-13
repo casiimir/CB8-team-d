@@ -222,16 +222,16 @@ const GardenPage = ({ session }) => {
   };
 
   return session ? (
-    <div>
+    <>
       <Header />
-      <div className={styles.garden}>
+      <div className={styles.gardenContainer}>
         <div className={styles.plotsContainer}>
           {garden &&
             trees &&
             garden.plots.length > 0 &&
             createGardenGrid(garden.plots, trees)}
         </div>
-        <Navbar />
+
         {isGardenModalOpen && (
           <GardenModal
             onClose={handleCloseGardenModal}
@@ -246,7 +246,8 @@ const GardenPage = ({ session }) => {
           />
         )}
       </div>
-    </div>
+      <Navbar />
+    </>
   ) : (
     <Loader />
   );

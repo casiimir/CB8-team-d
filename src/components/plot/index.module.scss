@@ -1,24 +1,26 @@
 @import "../../assets/variables.module.scss";
 
 .plot {
-  width: 100px;
-  height: 100px;
-  border: 1px solid #cccccc00;
+  width: 50px;
+  height: 50px;
+  // background: radial-gradient(circle at center, #000000 10%, #303928 11%);
+  border: 1px solid #cccccc2d;
+  // border: 1px solid #353738;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   position: relative;
-  border-radius: 25px;
+  border-radius: 10px;
   // border: 2px solid red;
 
   &:hover {
-    border: 1px solid #cccccc55;
+    border: 1px solid #cccccc62;
   }
 
   .buttonWrapper {
     position: relative;
-    width: 100%;
+    width: 70px;
     height: 50%;
     // top: 0;
     // right: 0;
@@ -81,11 +83,57 @@
 
   .plantIcon {
     position: absolute;
-    width: 140px;
+    width: 4rem;
     height: auto;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+    // top: 30%;
+    // left: 50%;
     // display: none;
+    transition: transform 0.5s ease-in-out;
+
+    &:hover {
+      // transform: scale(1.1);
+
+      // animation: skew-x-shake 3s;
+      animation: horizontal-shaking 0.15s;
+
+      // @keyframes skew-x-shake {
+      //   0% {
+      //     transform: skewX(-15deg);
+      //   }
+      //   5% {
+      //     transform: skewX(15deg);
+      //   }
+      //   10% {
+      //     transform: skewX(-15deg);
+      //   }
+      //   15% {
+      //     transform: skewX(15deg);
+      //   }
+      //   20% {
+      //     transform: skewX(0deg);
+      //   }
+      //   100% {
+      //     transform: skewX(0deg);
+      //   }
+      // }
+      @keyframes horizontal-shaking {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(2.3px);
+        }
+        50% {
+          transform: translateX(-2.5px);
+        }
+        75% {
+          transform: translateX(2.5px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+    }
   }
 }

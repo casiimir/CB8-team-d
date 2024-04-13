@@ -1,7 +1,7 @@
 [
   {
     "name": "Cotton Tree",
-    "sprite": "./sprites/albero3.png",
+    "sprite": "./sprites/albero1.png",
     "cost": {
       "soil": "1",
       "seeds": "2",
@@ -10,7 +10,7 @@
   },
   {
     "name": "Deciduous Tree",
-    "sprite": "https://img.icons8.com/color/48/deciduous-tree.png",
+    "sprite": "./sprites/albero2.png",
     "cost": {
       "soil": "3",
       "seeds": "2",
@@ -19,7 +19,7 @@
   },
   {
     "name": "Coniferous Tree",
-    "sprite": "https://img.icons8.com/plasticine/100/coniferous-tree.png",
+    "sprite": "./sprites/albero3.png",
     "cost": {
       "soil": "3",
       "seeds": "3",
@@ -28,7 +28,7 @@
   },
   {
     "name": "Apple Tree",
-    "sprite": "https://img.icons8.com/doodle/48/apple-tree.png",
+    "sprite": "./sprites/albero4.png",
     "cost": {
       "soil": "2",
       "seeds": "2",
@@ -37,7 +37,7 @@
   },
   {
     "name": "Willow",
-    "sprite": "https://img.icons8.com/stickers/100/willow.png",
+    "sprite": "./sprites/albero5.png",
     "cost": {
       "soil": "4",
       "seeds": "3",
