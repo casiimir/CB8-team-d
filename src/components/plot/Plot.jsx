@@ -1,4 +1,7 @@
 import styles from "./index.module.scss";
+import { IoClose } from "react-icons/io5";
+import { LuAxe } from "react-icons/lu";
+import { GiHatchet } from "react-icons/gi";
 
 const Plot = ({
   x,
@@ -6,7 +9,6 @@ const Plot = ({
   isEmpty,
   plantIcon,
   onPlotClick,
-  // treeName,
   plotToRemove,
   onRemove,
   onCancel,
@@ -24,16 +26,20 @@ const Plot = ({
       onClick={handleClick}
     >
       {!isEmpty && (
-        <div>
-          <img src={plantIcon} alt="Plant" />
-          {/* <div>{treeName}</div> */}
+        <>
+          <img className={styles.plantIcon} src={plantIcon} alt="Plant" />
           {showRemoveButton && (
-            <div>
-              <button onClick={() => onRemove()}>Remove tree</button>
-              <button onClick={() => onCancel()}>Cancel</button>
+            <div className={styles.buttonWrapper}>
+              <button onClick={() => onRemove()} className={styles.removeBtn}>
+                <LuAxe className={styles.removeIcon} />
+              </button>
+              <button onClick={() => onCancel()} className={styles.closeBtn}>
+                {" "}
+                <IoClose className={styles.closeIcon} />
+              </button>
             </div>
           )}
-        </div>
+        </>
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 [
   {
     "name": "Cotton Tree",
-    "sprite": "https://img.icons8.com/cotton/64/tree.png",
+    "sprite": "./sprites/albero3.png",
     "cost": {
       "soil": "1",
       "seeds": "2",
