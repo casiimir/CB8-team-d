@@ -93,7 +93,8 @@ function Signup() {
             type="password"
             value={password}
             onChange={handlePasswordChange}
-            placeholder="**********"
+            placeholder="••••••••••
+            "
           />
         </div>
 

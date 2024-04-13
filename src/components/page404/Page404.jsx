@@ -1,7 +1,7 @@
 const Page404 = () => {
   return (
     <div>
-      <h1> </h1>
+      <p> Sorry this page can not be found</p>
     </div>
   );
 };

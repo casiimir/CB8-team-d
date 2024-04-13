@@ -52,6 +52,7 @@ function Login() {
             type="email"
             id="email"
             name="email"
+            placeholder="example@mail.com"
           />
         </div>
 
@@ -62,6 +63,8 @@ function Login() {
             type="password"
             id="password"
             name="password"
+            placeholder="••••••••••
+            "
           />
         </div>
         <p className={styles.redirect}>Forgot Password?</p>
