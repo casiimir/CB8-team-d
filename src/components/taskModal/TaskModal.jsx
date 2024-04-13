@@ -64,44 +64,50 @@ const TaskModal = ({ dataModal, setTasks, session, isOpen, setIsOpen }) => {
   return (
     <>
       <div className={styles.modal}>
-        <div className={styles.modalBg}>
-          <div className={styles.modalContent}>
+        <div className={styles.modalContent}>
+          <div className={styles.mainInfo}>
+            <h3 className={styles.modalTitle}>{dataModal.pageTitle}</h3>
             <button onClick={closeModal} className={styles.closeBtn}>
               <IoClose className={styles.closeIcon} />
             </button>
-            <h3 className={styles.modalTitle}>{dataModal.pageTitle}</h3>
+          </div>
+          <div className={styles.formInfo}>
             <form action="" onSubmit={onHandleSubmit} className={styles.form}>
-              <input
-                ref={titleInputRef}
-                type="text"
-                id="title"
-                value={title}
-                placeholder="Title"
-                onChange={handleTitleChange}
-                className={styles.input}
-              />
-              {dataModal.showDateInput && (
-                <DatePicker
+              <div className={styles.text}>
+                <input
+                  ref={titleInputRef}
                   type="text"
-                  id="date"
-                  selected={selectedDate}
-                  onChange={(date) => setSelectedDate(date)}
-                  className={styles.dateInput}
-                  dateFormat="dd/MM/yyyy"
-                  placeholderText={format(new Date(), "dd/MM/yyyy")}
+                  id="title"
+                  value={title}
+                  placeholder="Title"
+                  onChange={handleTitleChange}
+                  className={styles.input}
                 />
-              )}
+                {dataModal.showDateInput && (
+                  <DatePicker
+                    type="text"
+                    id="date"
+                    selected={selectedDate}
+                    onChange={(date) => setSelectedDate(date)}
+                    className={styles.dateInput}
+                    dateFormat="dd/MM/yyyy"
+                    placeholderText={format(new Date(), "dd/MM/yyyy")}
+                  />
+                )}
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  className={styles.addTaskBtn}
+                  onClick={() => {
+                    createNewTask(session.user._id, setTasks);
+                    closeModal();
+                  }}
+                >
+                  <FaArrowUp className={styles.btnIcon} />
+                </button>
+              </div>
             </form>
-            <button
-              type="submit"
-              className={styles.addTaskBtn}
-              onClick={() => {
-                createNewTask(session.user._id, setTasks);
-                closeModal();
-              }}
-            >
-              <FaArrowUp className={styles.btnIcon} />
-            </button>
           </div>
         </div>
       </div>

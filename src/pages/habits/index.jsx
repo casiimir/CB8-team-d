@@ -83,7 +83,7 @@ const HabitsPage = ({ session }) => {
       {isModalOpen && (
         <TaskModal
           setTasks={setHabits}
-          dataModal={("New Habit", false)}
+          dataModal={{ pageTitle: "New Habit", showDateInput: false }}
           session={session}
           isOpen={isModalOpen}
           setIsOpen={setIsModalOpen}

@@ -85,7 +85,7 @@ const DailiesPage = ({ session }) => {
       {isModalOpen && (
         <TaskModal
           setTasks={setDailies}
-          dataModal={("New Daily", false)}
+          dataModal={{ pageTitle: "New Daily", showDateInput: false }}
           session={session}
           isOpen={isModalOpen}
           setIsOpen={setIsModalOpen}
