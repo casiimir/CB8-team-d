@@ -102,14 +102,16 @@ function Signup() {
           Sign Up
         </button>
       </form>
-      <p className={styles.redirect}>Already have an account?</p>
-      <button
-        className={styles.button_login}
-        type="submit"
-        onClick={() => router.push("/login")}
-      >
-        Log in
-      </button>
+      <div>
+        <p className={styles.redirect}>Already have an account?</p>
+        <button
+          className={styles.button_login}
+          type="submit"
+          onClick={() => router.push("/login")}
+        >
+          Log in
+        </button>
+      </div>
     </div>
   );
 }

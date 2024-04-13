@@ -2,29 +2,33 @@
 @import "../assets/mixins.module.scss";
 
 .signup_wrapper {
-  @include flex-container(column, center, center, 1rem);
+  @include flex-container(column, center, center, 0.8rem);
 
   .title {
     text-align: center;
 
     .highlight {
-      color: $highlight-color;
+      color: $primary-color;
     }
   }
 
   .text {
     font-weight: 600;
-
     text-align: left;
     color: $primary-color;
+    margin-bottom: 5px;
   }
 
   .input {
     @include form-input;
   }
 
+  div:nth-child(3) .input {
+    margin-bottom: 10px;
+  }
+
   .input:focus {
-    outline: solid $highlight-color;
+    outline: solid $secondary-color;
   }
   label,
   input {
@@ -34,28 +38,30 @@
   .button_login {
     @include outline-btn;
     &:hover {
-      background-color: $highlight-color;
-      color: white;
-      border: 4px solid #85e27c;
+      background-color: white;
+      color: $secondary-color;
+      border: 2px solid $secondary-color;
     }
   }
 
   .button_signup {
     @include main-btn;
     &:hover {
-      background-color: $highlight-color;
-      border: 4px solid #85e27c;
+      background-color: $secondary-color;
+      border: 2px solid $secondary-color;
     }
   }
 }
 
 .redirect {
+  display: block;
+  text-align: center;
   font-size: 16px;
   color: grey;
 }
 
 .logo {
-  margin: 50px;
+  margin-top: 30px;
 }
 
 /* per i dispositivi desktop */

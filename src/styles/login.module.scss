@@ -5,60 +5,69 @@
   @include flex-container(column, center, center, 1rem);
 
   .logo {
-    margin: 50px;
+    margin-top: 30px;
   }
 
   .title {
     text-align: center;
+    font-weight: 200;
 
     .highlight {
-      color: $highlight-color;
+      font-weight: 700;
+      color: $primary-color;
     }
   }
 
-  .text {
-    font-weight: 600;
+  .form_wrapper {
+    display: flex;
+    flex-direction: column;
 
-    text-align: left;
-    color: $primary-color;
+    .text {
+      font-weight: 600;
+      text-align: left;
+      color: $primary-color;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .input {
+      @include form-input;
+    }
+    input:nth-child(2) {
+      margin-bottom: 10px;
+    }
+
+    .input:focus {
+      outline: solid $secondary-color;
+    }
+  }
+
+  .redirect {
+    text-align: right;
+    color: grey;
     font-size: 16px;
-  }
-
-  .input {
-    @include form-input;
-  }
-
-  .input:focus {
-    outline: solid $highlight-color;
   }
 
   .button_login {
     @include main-btn;
     &:hover {
-      background-color: $highlight-color;
-      border: 4px solid #85e27c;
+      background-color: $secondary-color;
+      border: 2px solid $secondary-color;
     }
   }
 
   .button_signup {
     @include outline-btn;
     &:hover {
-      background-color: $highlight-color;
-      color: white;
-      border: 4px solid #85e27c;
+      background-color: white;
+      color: $secondary-color;
+      border: 2px solid $secondary-color;
     }
   }
 }
 
-.redirect {
-  text-align: right;
-  color: grey;
-  font-size: 16px;
-}
-
 .redirect1 {
   display: block;
-
   text-align: center;
   font-size: 16px;
   color: grey;
