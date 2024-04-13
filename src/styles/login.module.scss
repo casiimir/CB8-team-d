@@ -17,16 +17,15 @@
   }
 
   .text {
-    font-weight: 500;
-    margin: 5px;
+    font-weight: 600;
+
     text-align: left;
-    color: $dark-color;
+    color: $primary-color;
     font-size: 16px;
   }
 
   .input {
     @include form-input;
-    font-family: "Nunito";
   }
 
   .input:focus {
@@ -35,25 +34,22 @@
 
   .button_login {
     @include main-btn;
-    font-family: "Nunito";
   }
 
   .button_signup {
     @include outline-btn;
-    font-family: "Nunito";
   }
 }
 
 .redirect {
-  text-decoration: underline;
   text-align: right;
-  color: $primary-color;
+  color: grey;
   font-size: 16px;
 }
 
 .redirect1 {
   display: block;
-  text-decoration: underline;
+
   text-align: center;
   font-size: 16px;
   color: grey;
