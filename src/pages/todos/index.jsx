@@ -6,6 +6,7 @@ import styles from "../../styles/lists.module.scss";
 import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
 import Navbar from "@/components/navbar";
+import Loader from "@/components/loader/Loader.jsx";
 
 // const createNewTodo = async (userId, setTodos) => {
 //   const response = await fetch("/api/todos", {
@@ -124,7 +125,7 @@ const TodosPage = ({ session }) => {
     </div>
   ) : (
     <div>
-      <div>Loading...</div>
+      <Loader />
     </div>
   );
 };
