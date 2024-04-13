@@ -8,6 +8,7 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
+import Image from "next/image";
 
 const Navbar = ({ isModalOpen, setIsModalOpen }) => {
   const pathName = usePathname();
@@ -88,17 +89,13 @@ const Navbar = ({ isModalOpen, setIsModalOpen }) => {
           </button>
         ) : (
           <button
-            className={styles.addBtn}
+            className={`${styles.addBtn} ${
+              pathName === "/garden" ? `${styles.GardenLogo}` : ""
+            }`}
             onClick={() => setIsModalOpen(!isModalOpen)}
             disabled={pathName === "/garden"}
           >
-            <img
-              src="https://img.icons8.com/ios-filled/50/FFFFFF/potted-plant.png"
-              alt="potted-plant"
-              width="50"
-              height="50"
-              className={styles.btnIcon}
-            />
+            <Image src="/logoWhite.png" alt="logo" width="56" height="56" />
           </button>
         )}
       </nav>
