@@ -65,32 +65,35 @@ function Signup() {
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Username</label>
+          <label className={styles.text}>Username</label>
           <input
             className={styles.input}
             type="username"
             value={username}
             onChange={handleUsernameChange}
+            placeholder="John Doe"
           />
         </div>
 
         <div>
-          <label>E-mail</label>
+          <label className={styles.text}>E-mail</label>
           <input
             className={styles.input}
             type="email"
             value={email}
             onChange={handleEmailChange}
+            placeholder="example@mail.com"
           />
         </div>
 
         <div>
-          <label>Password</label>
+          <label className={styles.text}>Password</label>
           <input
             className={styles.input}
             type="password"
             value={password}
             onChange={handlePasswordChange}
+            placeholder="**********"
           />
         </div>
 
