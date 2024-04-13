@@ -1,5 +1,4 @@
 // import { useSession } from "next-auth/react";
-import Loader from "../components/loader/Loader.jsx";
 
 export default function Home() {
   // const { data: session } = useSession();
@@ -9,7 +8,6 @@ export default function Home() {
   return (
     <main>
       <h1>Landing Page</h1>
-      <Loader />
     </main>
   );
 }

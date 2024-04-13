@@ -99,9 +99,7 @@ const HabitsPage = ({ session }) => {
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   ) : (
-    <div>
-      <Loader />
-    </div>
+    <Loader />
   );
 };
 

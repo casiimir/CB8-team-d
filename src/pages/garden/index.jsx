@@ -244,9 +244,7 @@ const GardenPage = ({ session }) => {
       )}
     </div>
   ) : (
-    <div>
-      <Loader />
-    </div>
+    <Loader />
   );
 };
 
