@@ -90,12 +90,18 @@ const Navbar = ({ isModalOpen, setIsModalOpen }) => {
         ) : (
           <button
             className={`${styles.addBtn} ${
-              pathName === "/garden" ? `${styles.GardenLogo}` : ""
+              pathName === "/garden" ? `${styles.logoWrapper}` : ""
             }`}
             onClick={() => setIsModalOpen(!isModalOpen)}
             disabled={pathName === "/garden"}
           >
-            <Image src="/logoWhite.png" alt="logo" width="56" height="56" />
+            <Image
+              src="/logoWhite.png"
+              alt="logo"
+              width="56"
+              height="56"
+              className={styles.logo}
+            />
           </button>
         )}
       </nav>

@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Image from "next/image";
-import styles from "../../styles/userpage.module.scss";
+import styles from "../../styles/Userpage.module.scss";
 
 export default function UserProfilePage() {
   const [user, setUser] = useState({
-    name: 'Pippo',
-    surname: 'Pollo',
-    username: 'Pippollo5798',
-    email: 'pippolloe@pippo.com',
-    imageUrl: 'https://static.vecteezy.com/system/resources/previews/019/633/059/original/8-bit-pixel-human-portrait-cartoon-young-girl-for-game-assets-in-illustration-vector.jpg'
+    name: "Pippo",
+    surname: "Pollo",
+    username: "Pippollo5798",
+    email: "pippolloe@pippo.com",
+    imageUrl:
+      "https://static.vecteezy.com/system/resources/previews/019/633/059/original/8-bit-pixel-human-portrait-cartoon-young-girl-for-game-assets-in-illustration-vector.jpg",
   });
 
   const [editing, setEditing] = useState(false);
@@ -39,13 +40,13 @@ export default function UserProfilePage() {
     <div className={styles.userpage_wrapper}>
       <div className={styles.image_wrapper}>
         <Image
-        className={styles.image}
-        src={user.imageUrl} 
-        priority={false}
-        alt="User Image"
-        width="200"
-        height="200"
-      />
+          className={styles.image}
+          src={user.imageUrl}
+          priority={false}
+          alt="User Image"
+          width="200"
+          height="200"
+        />
       </div>
       <form onSubmit={onHandleSubmit} className={styles.submit_form}>
         {/* <div>
@@ -94,14 +95,24 @@ export default function UserProfilePage() {
         </div>
         <div className={styles.btn_wrapper}>
           {editing ? (
-            <button type="submit" className={styles.btn_sub}>Save Account</button>
+            <button type="submit" className={styles.btn_sub}>
+              Save Account
+            </button>
           ) : (
-            <button type="button" onClick={onHandleEdit} className={styles.btn_edit}>
+            <button
+              type="button"
+              onClick={onHandleEdit}
+              className={styles.btn_edit}
+            >
               Edit Account
             </button>
           )}
           <br />
-          <button type="button" onClick={onHandleDelete} className={styles.btn_del}>
+          <button
+            type="button"
+            onClick={onHandleDelete}
+            className={styles.btn_del}
+          >
             Delete Account
           </button>
         </div>

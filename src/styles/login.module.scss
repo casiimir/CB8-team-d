@@ -40,6 +40,9 @@
     .input:focus {
       outline: solid $secondary-color;
     }
+    .input::placeholder {
+      color: $placeholder-color;
+    }
   }
 
   .redirect {
