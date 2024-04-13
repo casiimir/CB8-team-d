@@ -46,7 +46,7 @@ function Login() {
 
       <form onSubmit={(event) => handleSubmit(event, router)}>
         <div className={styles.form_wrapper}>
-          <p className={styles.text}>E-mail</p>
+          <label className={styles.text}>E-mail</label>
           <input
             className={styles.input}
             type="email"
@@ -56,8 +56,8 @@ function Login() {
           />
         </div>
 
-        <div>
-          <p className={styles.text}>Password</p>
+        <div className={styles.form_wrapper}>
+          <label className={styles.text}>Password</label>
           <input
             className={styles.input}
             type="password"
