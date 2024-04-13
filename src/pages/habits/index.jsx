@@ -78,7 +78,7 @@ const HabitsPage = ({ session }) => {
     }
   };
 
-  return (
+  return session ? (
     <div className={styles.list_wrapper}>
       <h2>Your Habits</h2>
       {isModalOpen && (
@@ -96,6 +96,10 @@ const HabitsPage = ({ session }) => {
         updateHabitFunction={handleHabitChangeClick}
       />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+    </div>
+  ) : (
+    <div>
+      <div>Loading...</div>
     </div>
   );
 };

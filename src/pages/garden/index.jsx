@@ -219,7 +219,7 @@ const GardenPage = ({ session }) => {
     }
   };
 
-  return (
+  return session ? (
     <div className={styles.garden}>
       <div className={styles.plotsContainer}>
         {garden &&
@@ -241,6 +241,10 @@ const GardenPage = ({ session }) => {
           setInsufficientResources={setInsufficientResources}
         />
       )}
+    </div>
+  ) : (
+    <div>
+      <div>Loading...</div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
-@import "../../assets/variables.module.scss";
-@import "../../assets/mixins.module.scss";
+@import "../assets/variables.module.scss";
+@import "../assets/mixins.module.scss";
 
 .login_wrapper {
   @include flex-container(column, center, center, 1rem);

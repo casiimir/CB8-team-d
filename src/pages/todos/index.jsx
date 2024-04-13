@@ -100,7 +100,7 @@ const TodosPage = ({ session }) => {
     }
   };
 
-  return (
+  return session ? (
     <div className={styles.list_wrapper}>
       <h2>Your Todos</h2>
       {/* <button onClick={() => createNewTodo(session.user._id, setTodos)}>
@@ -121,6 +121,10 @@ const TodosPage = ({ session }) => {
         updateTodoFunction={handleTodoChangeClick}
       />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+    </div>
+  ) : (
+    <div>
+      <div>Loading...</div>
     </div>
   );
 };

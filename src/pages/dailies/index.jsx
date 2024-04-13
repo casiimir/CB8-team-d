@@ -77,7 +77,7 @@ const DailiesPage = ({ session }) => {
     }
   };
 
-  return (
+  return session ? (
     <div className={styles.list_wrapper}>
       <h2>Your Dailies</h2>
       {/* <button onClick={() => createNewDaily(session.user._id, setDailies)}>
@@ -98,6 +98,10 @@ const DailiesPage = ({ session }) => {
         updateDailyFunction={handleDailyChangeClick}
       />
       <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+    </div>
+  ) : (
+    <div>
+      <div>Loading...</div>
     </div>
   );
 };
