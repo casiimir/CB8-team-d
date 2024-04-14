@@ -10,7 +10,7 @@ const TaskList = ({
 }) => {
   return (
     <div className={styles.TaskList}>
-      {tasks.length > 0 &&
+      {tasks.length > 0 ? (
         tasks.map((task) => (
           <div key={task._id} className={styles.TaskItem}>
             <Task
@@ -26,7 +26,10 @@ const TaskList = ({
               updateTodoFunction={updateTodoFunction}
             />
           </div>
-        ))}
+        ))
+      ) : (
+        <h4>It&apos;s time to start growing!</h4>
+      )}
     </div>
   );
 };

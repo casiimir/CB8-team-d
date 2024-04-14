@@ -69,16 +69,18 @@
     .shop {
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: space-around;
       gap: 10px;
-      align-items: center;
+      align-items: baseline;
       margin: 10px;
 
       .plant {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         align-items: flex-start;
         width: auto;
+        height: 160px;
         padding: 10px;
         border: 3px solid white;
         background-color: $primary-color;
@@ -91,6 +93,7 @@
         .plantInfo {
           display: flex;
           justify-content: space-between;
+          align-items: flex-end;
           gap: 0.5rem;
           background-color: $primary-color;
           border: none;
@@ -119,5 +122,11 @@
         color: white;
       }
     }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .modalContent {
+    max-width: 40%;
   }
 }

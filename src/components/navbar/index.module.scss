@@ -10,7 +10,7 @@
   width: 100%;
   background-color: $primary-color;
   z-index: 2;
-  border: 5px solid white;
+  border-top: 5px solid white;
   border-top-left-radius: 60px;
   border-top-right-radius: 60px;
 
@@ -74,9 +74,7 @@
   }
 
   .logoWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: none;
 
     .logo {
       height: auto;
@@ -85,6 +83,14 @@
 
   .btnIcon {
     font-size: 40px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .logoWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 
