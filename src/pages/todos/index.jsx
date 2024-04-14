@@ -116,17 +116,11 @@ const TodosPage = ({ session }) => {
             setIsOpen={setIsModalOpen}
           />
         )}
-        <div id="wrapper">
-          <div className={styles.scrollbar} id="style-default">
-            <div className={styles.force_overflow}>
-              <TaskList
-                tasks={todos}
-                deleteFunction={handleDeleteClick}
-                updateTodoFunction={handleTodoChangeClick}
-              />
-            </div>
-          </div>
-        </div>
+        <TaskList
+          tasks={todos}
+          deleteFunction={handleDeleteClick}
+          updateTodoFunction={handleTodoChangeClick}
+        />
         <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </div>
     </div>
