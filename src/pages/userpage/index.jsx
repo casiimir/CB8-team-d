@@ -72,7 +72,9 @@ export default function UserProfilePage() {
           />
         </div> */}
         <div>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username" className={styles.label}>
+            Username
+          </label>
           <input
             type="text"
             id="username"
@@ -83,7 +85,9 @@ export default function UserProfilePage() {
           />
         </div>
         <div>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" className={styles.label}>
+            Email
+          </label>
           <input
             type="email"
             id="email"

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import styles from "./index.module.scss";
 import { IoWaterOutline, IoClose } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
@@ -20,37 +21,6 @@ const GardenModal = ({ onClose, onPlantSelect, trees }) => {
               <IoClose className={styles.closeIcon} />
             </button>
           </div>
-          {/* <div className={styles.shop}>
-              {plantsData.map((plant, index) => (
-                <div key={index} className={styles.plant}>
-                  <p className={styles.name}>{plant.name}</p>
-                  <div className={styles.plantInfo}>
-                    <img
-                      width="50"
-                      height="50"
-                      src={plant.imageUrl}
-                      alt={plant.name}
-                    />
-                    <div className={styles.resources}>
-                      <p>
-                        {" "}
-                        <IoWaterOutline />2
-                      </p>
-                      <p>
-                        {" "}
-                        <IoWaterOutline />2
-                      </p>
-                    </div>
-                  </div> */}
-          {/* <button
-                    className={styles.addBtn}
-                    onClick={() => handlePlantSelect(plant.imageUrl)}
-                  > */}
-          {/* <FaCheck className={styles.addIcon} />
-                  </button>
-                </div>
-              ))}
-            </div> */}
           <div className={styles.shop}>
             {trees.map((tree, index) => (
               <div key={index} className={styles.plant}>
@@ -66,9 +36,36 @@ const GardenModal = ({ onClose, onPlantSelect, trees }) => {
                     alt={tree.name}
                   />
                   <div>
-                    <p>{tree.cost.soil} soil</p>
-                    <p>{tree.cost.seeds} seeds</p>
-                    <p>{tree.cost.water} water</p>
+                    <p className={styles.resourcesWrapper}>
+                      {tree.cost.soil}{" "}
+                      <Image
+                        className={styles.resource}
+                        src="/soil.png"
+                        alt="Soil"
+                        width={20}
+                        height={20}
+                      />
+                    </p>
+                    <p className={styles.resourcesWrapper}>
+                      {tree.cost.seeds}{" "}
+                      <Image
+                        className={styles.resource}
+                        src="/seeds.png"
+                        alt="Seeds"
+                        width={20}
+                        height={20}
+                      />
+                    </p>
+                    <p className={styles.resourcesWrapper}>
+                      {tree.cost.water}{" "}
+                      <Image
+                        className={styles.resource}
+                        src="/water.png"
+                        alt="Water"
+                        width={20}
+                        height={20}
+                      />
+                    </p>
                   </div>
                 </button>
               </div>
