@@ -3,13 +3,13 @@
 
 .userpage_wrapper {
   @include flex-container(row);
-  // position: relative;
+  position: relative;
   width: 100%;
   max-width: 1080px;
   margin: 0 auto;
   height: 100vh;
   box-sizing: border-box;
-  overflow-y: auto;
+  padding: 120px 0;
 
   .image {
     border-radius: 60px;
@@ -40,5 +40,13 @@
     @include outline-btn;
     cursor: pointer;
     margin-bottom: 0;
+  }
+}
+
+/* per i dispositivi desktop */
+@media screen and (min-width: 1080px) {
+  .image {
+    width: 250px;
+    height: 250px;
   }
 }

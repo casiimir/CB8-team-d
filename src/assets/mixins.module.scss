@@ -40,6 +40,8 @@
   border-radius: 26px;
   margin: 10px 0 20px 0;
   padding: 10px;
+  transition: all 0.6s linear;
+  cursor: pointer;
 }
 
 @mixin outline-btn {
@@ -51,6 +53,8 @@
   border-radius: 26px;
   margin: 10px 0 20px;
   padding: 10px;
+  transition: all 0.6s linear;
+  cursor: pointer;
 }
 @mixin form-input {
   font-size: 16px;

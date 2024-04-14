@@ -14,12 +14,11 @@
 }
 
 .scrollbar {
-  float: left;
-  height: 455px;
+  height: 480px;
   width: auto;
   background: white;
   overflow-y: scroll;
-  margin-bottom: 25px;
+  padding:0 10px;
 
   .force_overflow {
     min-height: 450px;
@@ -31,3 +30,5 @@
   width: 500px;
   margin: auto;
 }
+
+  
