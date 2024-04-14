@@ -142,8 +142,8 @@ const Task = ({
       </div>
       <div className={styles.title_streak}>
         <p>{title}</p>
-        {lastCompleted && <p>Last Completed: {formattedNewLastCompleted}</p>}
-        {deadline && <p>Deadline: {formattedDeadline}</p>}
+        {lastCompleted && <p className={styles.smaller}>Last Completed: {formattedNewLastCompleted}</p>}
+        {deadline && <p className={styles.smaller}>Deadline: {formattedDeadline}</p>}
         {(streakCount !== undefined || streakCount === 0) && (
           <div className={styles.streakContainer}>
             {[...Array(7)].map((_, index) => (
