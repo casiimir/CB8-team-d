@@ -1,6 +1,6 @@
 [
   {
-    "name": "Cotton Tree",
+    "name": "Birch Tree",
     "sprite": "./sprites/albero1.png",
     "cost": {
       "soil": "1",
@@ -9,7 +9,7 @@
     }
   },
   {
-    "name": "Deciduous Tree",
+    "name": "Fir Tree",
     "sprite": "./sprites/albero2.png",
     "cost": {
       "soil": "3",
@@ -18,7 +18,7 @@
     }
   },
   {
-    "name": "Coniferous Tree",
+    "name": "Lemon Tree",
     "sprite": "./sprites/albero3.png",
     "cost": {
       "soil": "3",
@@ -27,7 +27,7 @@
     }
   },
   {
-    "name": "Apple Tree",
+    "name": "Cherry Tree",
     "sprite": "./sprites/albero4.png",
     "cost": {
       "soil": "2",
@@ -36,12 +36,21 @@
     }
   },
   {
-    "name": "Willow",
+    "name": "Palm Tree",
     "sprite": "./sprites/albero5.png",
     "cost": {
       "soil": "4",
       "seeds": "3",
       "water": "2"
+    }
+  },
+  {
+    "name": "Gingko Biloba",
+    "sprite": "./sprites/albero6.png",
+    "cost": {
+      "soil": "5",
+      "seeds": "7",
+      "water": "4"
     }
   }
 ]
