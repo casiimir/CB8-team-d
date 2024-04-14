@@ -7,7 +7,7 @@
   // border: 2px solid red;
   height: 100vh;
   width: 100%;
-  background-image: url("/sprites/pratino.png");
+  background-image: url("/sprites/pratino3.png");
   background-repeat: repeat;
 }
 
@@ -43,8 +43,8 @@
 }
 
 @media (max-width: 768px) {
-  .gardenContainer {
-  }
+  // .gardenContainer {
+  // }
   .plotsContainer {
     grid-template-columns: repeat(5, 50px);
     grid-template-rows: repeat(7, 50px);

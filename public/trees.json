@@ -45,7 +45,7 @@
     }
   },
   {
-    "name": "Gingko Biloba",
+    "name": "Gingko",
     "sprite": "./sprites/albero6.png",
     "cost": {
       "soil": "5",
