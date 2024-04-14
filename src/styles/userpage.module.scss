@@ -15,6 +15,10 @@
     font-family: $mainFont;
   }
 
+  input::placeholder {
+    color: $placeholder-color;
+  }
+
   .btn_save,
   .btn_del {
     @include main-btn;

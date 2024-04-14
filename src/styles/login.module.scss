@@ -3,6 +3,7 @@
 
 .login_wrapper {
   @include flex-container(column, center, center, 1rem);
+  background-color: $bg-color;
 
   .logo {
     margin-top: 30px;
