@@ -10,11 +10,17 @@ const TaskList = ({
   updateDailyFunction,
   updateTodoFunction,
 }) => {
+  const [hasTasks, setHasTasks] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (tasks.length > 0) {
-      setIsLoading(false);
+      setHasTasks(true);
+    } else {
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
     }
   }, [tasks]);
 
@@ -22,7 +28,7 @@ const TaskList = ({
     <div>
       {isLoading ? (
         <Loader />
-      ) : tasks.length > 0 ? (
+      ) : hasTasks ? (
         <div id="wrapper">
           <div className={styles.scrollbar} id="style-default">
             <div className={styles.force_overflow}>

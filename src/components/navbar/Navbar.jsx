@@ -80,7 +80,7 @@ const Navbar = ({ isModalOpen, setIsModalOpen }) => {
             </Link>
           </li>
         </ul>
-        {pathName !== "/garden" ? (
+        {pathName !== "/garden" && pathName !== "/userpage" ? (
           <button
             className={styles.addBtn}
             onClick={() => setIsModalOpen(!isModalOpen)}
@@ -90,10 +90,12 @@ const Navbar = ({ isModalOpen, setIsModalOpen }) => {
         ) : (
           <button
             className={`${styles.addBtn} ${
-              pathName === "/garden" ? `${styles.logoWrapper}` : ""
+              pathName === "/garden" || pathName === "/userpage"
+                ? `${styles.logoWrapper}`
+                : ""
             }`}
             onClick={() => setIsModalOpen(!isModalOpen)}
-            disabled={pathName === "/garden"}
+            disabled={pathName === "/garden" || pathName === "/userpage"}
           >
             <Image
               src="/logoWhite.png"
