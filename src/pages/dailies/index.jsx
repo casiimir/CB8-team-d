@@ -84,9 +84,6 @@ const DailiesPage = ({ session }) => {
       <Header />
       <div className={styles.list_wrapper}>
         <h2>Your Dailies</h2>
-        {/* <button onClick={() => createNewDaily(session.user._id, setDailies)}>
-          Create new daily
-        </button> */}
         {isModalOpen && (
           <TaskModal
             setTasks={setDailies}
@@ -96,17 +93,11 @@ const DailiesPage = ({ session }) => {
             setIsOpen={setIsModalOpen}
           />
         )}
-        <div id="wrapper">
-          <div className={styles.scrollbar} id="style-default">
-            <div className={styles.force_overflow}>
-              <TaskList
-                tasks={dailies}
-                deleteFunction={handleDeleteClick}
-                updateDailyFunction={handleDailyChangeClick}
-              />
-            </div>
-          </div>
-        </div>
+        <TaskList
+          tasks={dailies}
+          deleteFunction={handleDeleteClick}
+          updateDailyFunction={handleDailyChangeClick}
+        />
         <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </div>
     </div>
