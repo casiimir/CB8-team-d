@@ -1,6 +1,7 @@
 import styles from "@/components/header/index.module.scss";
 import { getSession, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useUserResources } from "@/contexts/userResourcesContext";
 import { useEffect, useState } from "react";
 
@@ -40,14 +41,16 @@ const Header = () => {
         </div>
         <div className={styles.info_wrapper}>
           <div className={styles.img_wrapper}>
-            <Image
-              className={styles.image}
-              src={imageUrl}
-              priority={false}
-              alt="User Image"
-              width="80"
-              height="80"
-            />
+            <Link href="/userpage">
+              <Image
+                className={styles.image}
+                src={imageUrl}
+                priority={false}
+                alt="User Image"
+                width="80"
+                height="80"
+              />
+            </Link>
 
             {/* <img className={styles.image} /> */}
           </div>
