@@ -1,5 +1,4 @@
 // import { useSession } from "next-auth/react";
-import Page404 from "../components/page404/Page404";
 
 export default function Home() {
   // const { data: session } = useSession();
@@ -8,7 +7,7 @@ export default function Home() {
   // }
   return (
     <main>
-      <Page404 />
+      <h1>landing page</h1>
     </main>
   );
 }

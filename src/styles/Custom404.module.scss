@@ -1,0 +1,46 @@
+@import "../assets/mixins.module.scss";
+@import "../assets/variables.module.scss";
+
+.notfound_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.items_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+  margin: 15px;
+}
+
+.highlight {
+  color: $primary-color;
+}
+
+.button_login {
+  @include main-btn;
+  text-align: center;
+  &:hover {
+    background-color: $secondary-color;
+    border: 4px solid #eb770f;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .image {
+    width: 400px;
+    height: 400px;
+  }
+}
