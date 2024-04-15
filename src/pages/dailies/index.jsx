@@ -2,7 +2,7 @@ import React from "react";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import styles from "../../styles/Lists.module.scss";
+import styles from "../../styles/lists.module.scss";
 import TaskList from "../../components/taskList";
 import TaskModal from "@/components/taskModal";
 import Navbar from "@/components/navbar";
