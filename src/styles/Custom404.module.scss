@@ -33,6 +33,8 @@
 .button_login {
   @include main-btn;
   text-align: center;
+  border: 4px solid $primary-color;
+
   &:hover {
     background-color: $secondary-color;
     border: 4px solid #eb770f;

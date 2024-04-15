@@ -16,26 +16,31 @@
   // CHECK BELOW
   z-index: 2;
 
-    .logo {
-      display: none;
-    }  
+  .logo {
+    display: none;
+  }
 
-    .info_wrapper {
-      @include flex-container(row, center, center, 2rem, nowrap);
+  .info_wrapper {
+    @include flex-container(row, center, center, 2rem, nowrap);
 
-        .image {
-          border-radius: 50%; /* Imposta il border-radius al 50% per fare un cerchio */
-        }
-      
-        .name {
-          margin: 0;
-        }
-
-        .resources_wrapper {
-          @include flex-container(row, center, center, 0.6rem, nowrap);
-          padding: 6px 6px 6px 0;
-        }
+    .image {
+      border-radius: 50%; /* Imposta il border-radius al 50% per fare un cerchio */
     }
+
+    .name {
+      margin: 0;
+    }
+
+    .resources_wrapper {
+      @include flex-container(row, center, center, 0.6rem, nowrap);
+      padding: 6px 6px 6px 0;
+      // width: 200px;
+
+      .text {
+        width: 35px;
+      }
+    }
+  }
 }
 
 /* per i dispositivi desktop */
@@ -55,6 +60,10 @@
 
     .info_wrapper {
       padding-right: 20px;
+    }
+
+    .resources_wrapper {
+      margin-right: 20px;
     }
   }
 }
