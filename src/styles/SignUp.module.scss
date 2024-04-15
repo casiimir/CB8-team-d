@@ -21,6 +21,7 @@
 
   .input {
     @include form-input;
+    color: black;
   }
 
   div:nth-child(3) .input {

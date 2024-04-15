@@ -29,10 +29,10 @@ const GardenModal = ({ onClose, onPlantSelect, trees }) => {
                   className={styles.plantInfo}
                   onClick={() => handlePlantSelect(tree.sprite)}
                 >
-                  <img
+                  <Image
                     width="50"
                     height="50"
-                    src={tree.sprite}
+                    src={`/${tree.sprite}`}
                     alt={tree.name}
                   />
                   <div>

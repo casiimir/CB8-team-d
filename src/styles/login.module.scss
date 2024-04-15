@@ -33,6 +33,7 @@
 
     .input {
       @include form-input;
+      color: black;
     }
     input:nth-child(2) {
       margin-bottom: 10px;

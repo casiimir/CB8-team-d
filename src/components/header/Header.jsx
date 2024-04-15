@@ -16,14 +16,6 @@ const Header = () => {
 
   const user = session?.user?.username;
 
-  // const [user, setUser] = useState({
-  //   name: "Pippo",
-  //   surname: "Pollo",
-  //   username: "Pippollo5798",
-  //   email: "pippolloe@pippo.com",
-  //   imageUrl:
-  //     "https://static.vecteezy.com/system/resources/previews/019/633/059/original/8-bit-pixel-human-portrait-cartoon-young-girl-for-game-assets-in-illustration-vector.jpg",
-  // });
   const imageUrl =
     "https://static.vecteezy.com/system/resources/previews/019/633/059/original/8-bit-pixel-human-portrait-cartoon-young-girl-for-game-assets-in-illustration-vector.jpg";
 
@@ -31,13 +23,15 @@ const Header = () => {
     session && (
       <div className={styles.header_wrapper}>
         <div className={styles.logo_wrapper}>
-          <Image
-            className={styles.logo}
-            src="/logowide.png"
-            alt="logo"
-            width="150"
-            height="57"
-          />
+          <Link href={"/"}>
+            <Image
+              className={styles.logo}
+              src="/logowide.png"
+              alt="logo"
+              width="150"
+              height="57"
+            />
+          </Link>
         </div>
         <div className={styles.info_wrapper}>
           <div className={styles.img_wrapper}>
@@ -51,8 +45,6 @@ const Header = () => {
                 height="80"
               />
             </Link>
-
-            {/* <img className={styles.image} /> */}
           </div>
 
           <div className={styles.user_wrapper}>
@@ -63,8 +55,8 @@ const Header = () => {
                 className={styles.water}
                 src="/water.png"
                 alt="Water"
-                width={35}
-                height={35}
+                width={30}
+                height={30}
               />
               <p className={styles.text}>
                 {userResources?.water >= 0 && userResources.water}
@@ -74,8 +66,8 @@ const Header = () => {
                 className={styles.water}
                 src="/soil.png"
                 alt="Soil"
-                width={35}
-                height={35}
+                width={30}
+                height={30}
               />
               <p className={styles.text}>
                 {userResources?.soil >= 0 && userResources.soil}
@@ -85,8 +77,8 @@ const Header = () => {
                 className={styles.water}
                 src="/seeds.png"
                 alt="Seeds"
-                width={35}
-                height={35}
+                width={30}
+                height={30}
               />
               <p className={styles.text}>
                 {userResources?.seeds >= 0 && userResources.seeds}
