@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import styles from "../../styles/garden.module.scss";
+import styles from "@/styles/garden.module.scss";
 import Plot from "@/components/plot";
 import Navbar from "@/components/navbar";
 import GardenModal from "@/components/gardenModal";
@@ -10,8 +10,14 @@ import { useUserResources } from "@/contexts/userResourcesContext";
 import Loader from "@/components/loader/Loader.jsx";
 import Header from "@/components/header";
 
-const GardenPage = ({ session }) => {
+const GardenPage = () => {
   const router = useRouter();
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/login");
+    },
+  });
   const [garden, setGarden] = useState(null);
   const [isGardenModalOpen, setIsGardenModalOpen] = useState(false);
   const [selectedPlot, setSelectedPlot] = useState(null);
@@ -82,21 +88,6 @@ const GardenPage = ({ session }) => {
 
     return plots;
   };
-
-  // const handlePlotClick = (x, y, isEmpty) => {
-  //   const clickedPlot = garden.plots.find(
-  //     (plot) => plot.x === x && plot.y === y
-  //   );
-  //   setSelectedPlot({ x, y });
-
-  //   if (isEmpty) {
-  //     setIsGardenModalOpen(true);
-  //     // console.log(clickedPlot.empty);
-  //   } else {
-  //     console.log("Pianta già presente");
-  //     updateGardenData(garden._id, x, y, "weed", true);
-  //   }
-  // };
 
   const handlePlotClick = (x, y) => {
     if (plotToRemove && plotToRemove.x === x && plotToRemove.y === y) {
@@ -221,7 +212,11 @@ const GardenPage = ({ session }) => {
     }
   };
 
-  return session ? (
+  if (status === "loading") {
+    return <Loader />;
+  }
+
+  return (
     <>
       <Header />
       <div className={styles.gardenContainer}>
@@ -248,17 +243,7 @@ const GardenPage = ({ session }) => {
       </div>
       <Navbar />
     </>
-  ) : (
-    <Loader />
   );
 };
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      session: await getSession(context),
-    },
-  };
-}
 
 export default GardenPage;

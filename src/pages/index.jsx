@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from "react-icons/fa";
-import styles from "../styles/landing.module.scss";
+import styles from "@/styles/landing.module.scss";
 
 export default function Home() {
   const [slideIndex, setSlideIndex] = useState(0);
