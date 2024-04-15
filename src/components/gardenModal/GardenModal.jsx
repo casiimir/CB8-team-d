@@ -32,7 +32,7 @@ const GardenModal = ({ onClose, onPlantSelect, trees }) => {
                   <Image
                     width="50"
                     height="50"
-                    src={`/${tree.sprite}`}
+                    src={`/sprites/${tree.sprite}`}
                     alt={tree.name}
                   />
                   <div>
