@@ -1,0 +1,85 @@
+@import "../assets/variables.module.scss";
+@import "../assets/mixins.module.scss";
+
+.intro {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  .background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+  }
+
+  .mainArea {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+
+    .logoArea {
+      @include flex-container(column, center, center, 1rem);
+      background-color: $bg-color;
+
+      img {
+        margin-top: 30px;
+      }
+    }
+
+    .title {
+      width: 100%;
+      color: 000;
+      text-align: center;
+      margin-top: 10px;
+
+      h3 {
+        margin-bottom: 20px;
+      }
+    }
+
+    .btnWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px;
+
+      .startBtn {
+        @include main-btn;
+      }
+    }
+
+    .actions {
+      width: 100%;
+      height: 8%;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(black, 0.5);
+      border-top-left-radius: 70px;
+      border-top-right-radius: 70px;
+      position: absolute;
+      bottom: 0;
+
+      button {
+        background: none;
+        border: 0;
+        color: $secondary-color;
+        font-weight: 700;
+        font-size: 20px;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
+}
