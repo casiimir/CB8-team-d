@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import styles from "../../styles/garden.module.scss";
+import styles from "@/styles/garden.module.scss";
 import Plot from "@/components/plot";
 import Navbar from "@/components/navbar";
 import GardenModal from "@/components/gardenModal";

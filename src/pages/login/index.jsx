@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "../../styles/login.module.scss";
+import styles from "@/styles/login.module.scss";
 import React from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
