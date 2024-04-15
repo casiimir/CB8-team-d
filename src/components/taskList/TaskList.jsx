@@ -2,6 +2,7 @@ import styles from "./index.module.scss";
 import Task from "../task";
 import Loader from "../loader";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const TaskList = ({
   tasks,
@@ -16,6 +17,7 @@ const TaskList = ({
   useEffect(() => {
     if (tasks.length > 0) {
       setHasTasks(true);
+      setIsLoading(false);
     } else {
       setIsLoading(true);
       setTimeout(() => {
@@ -54,9 +56,17 @@ const TaskList = ({
           </div>
         </div>
       ) : (
-        <h4>
-          It's time to start growing! Choose your tasks and let's get to work!
-        </h4>
+        <div className={styles.noTask}>
+          <h5>It's time to start growing!</h5>
+          <Image
+            src="/leaves2.jpeg"
+            alt="leaves"
+            width="550"
+            height="400"
+            className={styles.leaves}
+          />
+          <h5>Choose your tasks and let's get to work!</h5>
+        </div>
       )}
     </div>
   );

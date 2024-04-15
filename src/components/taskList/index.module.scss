@@ -5,6 +5,19 @@
   @include flex-container(column, center, center, 20px);
 }
 
+.noTask {
+  @include flex-container(column, center, center, 45px);
+  margin-top: 20px;
+
+  .leaves {
+    height: auto;
+    width: 80%;
+  }
+  h5 {
+    text-align: center;
+  }
+}
+
 @media screen and (min-width: 1080px) {
   .TaskList {
     flex-wrap: wrap;
@@ -18,7 +31,7 @@
   width: auto;
   background: white;
   overflow-y: scroll;
-  padding:0 10px;
+  padding: 0 15px;
 
   .force_overflow {
     min-height: 450px;
@@ -30,5 +43,3 @@
   width: 500px;
   margin: auto;
 }
-
-  
