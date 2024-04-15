@@ -7,13 +7,29 @@ export default function Custom404() {
   return (
     <div className={styles.notfound_wrapper}>
       <div className={styles.items_wrapper}>
-        <Image
-          className={styles.image}
-          src="/bare tree.png"
-          alt=" bare tree"
-          width="200"
-          height="200"
-        />
+        <div className={styles.image_wrapper}>
+          <Image
+            className={styles.image1}
+            src="/sprites/secco3.png"
+            alt=" bare tree"
+            width="50"
+            height="50"
+          />
+          <Image
+            className={styles.image}
+            src="/sprites/secco4.png"
+            alt=" bare tree"
+            width="100"
+            height="150"
+          />
+          <Image
+            className={styles.image1}
+            src="/sprites/secco3.png"
+            alt=" bare tree"
+            width="50"
+            height="50"
+          />
+        </div>
         <h1 className={styles.title}>
           <span className={styles.highlight}> Oops!</span> It seems that nothing{" "}
           grows here!
