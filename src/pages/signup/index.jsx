@@ -42,6 +42,7 @@ function Signup() {
       router.push("/login");
     } else {
       const error = await response.json();
+      alert("User already exists");
       console.error(error);
     }
   };
