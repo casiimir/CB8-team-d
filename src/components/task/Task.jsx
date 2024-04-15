@@ -24,10 +24,6 @@ const Task = ({
 
   const router = useRouter();
 
-  // useEffect(() => {
-  //   setCurrentStreakCount(streakCount);
-  // }, [streakCount]);
-
   const handleCompleteClick = async (e) => {
     e.preventDefault();
 
@@ -107,7 +103,16 @@ const Task = ({
         }
       }
     }
-  }, [formattedNewLastCompleted]);
+  }, [
+    formattedNewLastCompleted,
+    completed,
+    id,
+    title,
+    updateDailyFunction,
+    updateHabitFunction,
+    router.pathname,
+    newLastCompleted,
+  ]);
 
   let additionalClassName = "";
   switch (router.pathname) {

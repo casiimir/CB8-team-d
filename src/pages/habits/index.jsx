@@ -1,5 +1,5 @@
 import React from "react";
-import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "../../styles/lists.module.scss";
@@ -9,31 +9,35 @@ import Navbar from "@/components/navbar";
 import Loader from "@/components/loader/Loader.jsx";
 import Header from "@/components/header";
 
-const HabitsPage = ({ session }) => {
+const HabitsPage = () => {
   const router = useRouter();
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/login");
+    },
+  });
   const [habits, setHabits] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [lastCompleted, setLastCompleted] = useState(null);
 
   useEffect(() => {
-    const loadHabits = async () => {
+    async function fetchHabits() {
       if (session) {
-        const userId = session.user._id;
-        const response = await fetch(`/api/habits?userId=${userId}`);
-        if (response.ok) {
-          const habits = await response.json();
-          setHabits(habits.data);
-        } else {
-          console.error("Failed to load habits");
+        try {
+          const response = await fetch(
+            `/api/habits?userId=${session.user._id}`
+          );
+          if (!response.ok) throw new Error("Failed to fetch habits");
+          const data = await response.json();
+          setHabits(data.data);
+        } catch (error) {
+          console.error("Error loading habits:", error.message);
         }
-      } else {
-        console.log("No session");
-        router.push("/login");
       }
-    };
-
-    loadHabits();
-  }, [router, session]);
+    }
+    fetchHabits();
+  }, [session]);
 
   const handleDeleteClick = async (id) => {
     const endpoint = `/api/habits/${id}`;
@@ -41,46 +45,44 @@ const HabitsPage = ({ session }) => {
       method: "DELETE",
     });
 
-    if (!response.ok) {
-      console.error("Failed to delete task");
+    if (response.ok) {
+      setHabits((prevHabits) => prevHabits.filter((habit) => habit._id !== id));
     } else {
-      setHabits(habits.filter((habit) => habit._id !== id));
+      console.error("Failed to delete habit");
     }
   };
 
   const handleHabitChangeClick = async (id, title, streak, lastCompleted) => {
-    try {
-      const endpoint = `/api/habits/${id}`;
-      const newBody = {
-        title: title,
-        streak: streak,
-        lastCompleted: lastCompleted,
-      };
+    const endpoint = `/api/habits/${id}`;
+    const newBody = {
+      title: title,
+      streak: streak,
+      lastCompleted: lastCompleted,
+    };
+    const response = await fetch(endpoint, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newBody),
+    });
 
-      const response = await fetch(endpoint, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newBody),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update habit");
-      } else {
-        const updatedHabit = await response.json();
-        // setHabits((prevHabits) =>
-        //   prevHabits.map((habit) =>
-        //     habit.id === id ? { ...habit, ...updatedHabit } : habit
-        //   )
-        //   );
-      }
-    } catch (error) {
-      console.error(error.message);
+    if (response.ok) {
+      const updatedHabit = await response.json();
+      setHabits((prevHabits) =>
+        prevHabits.map((habit) =>
+          habit._id === id ? { ...habit, ...updatedHabit.data } : habit
+        )
+      );
+    } else {
+      console.error("Failed to update habit");
     }
   };
 
-  return session ? (
+  if (status === "loading") {
+    return <Loader />;
+  }
+  return (
     <div>
       <Header />
       <div className={styles.list_wrapper}>
@@ -102,17 +104,7 @@ const HabitsPage = ({ session }) => {
         <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </div>
     </div>
-  ) : (
-    <Loader />
   );
 };
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      session: await getSession(context),
-    },
-  };
-}
 
 export default HabitsPage;

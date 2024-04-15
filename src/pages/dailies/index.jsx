@@ -1,5 +1,5 @@
 import React from "react";
-import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "../../styles/lists.module.scss";
@@ -9,33 +9,39 @@ import Navbar from "@/components/navbar";
 import Loader from "@/components/loader/Loader.jsx";
 import Header from "@/components/header";
 
-const DailiesPage = ({ session }) => {
+const DailiesPage = () => {
   const router = useRouter();
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      // Redirects or handles unauthenticated status
+      router.push("/login");
+    },
+  });
   const [dailies, setDailies] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const loadDailies = async () => {
+    async function fetchDailies() {
       if (session) {
-        const userId = session.user._id;
-        const response = await fetch(`/api/dailies?userId=${userId}`);
-        if (response.ok) {
-          const dailies = await response.json();
-          setDailies(dailies.data);
-        } else {
-          console.error("Failed to load dailies");
+        try {
+          const response = await fetch(
+            `/api/dailies?userId=${session.user._id}`
+          );
+          if (!response.ok) throw new Error("Failed to fetch dailies");
+          const data = await response.json();
+          setDailies(data.data);
+        } catch (error) {
+          console.error("Error loading dailies:", error.message);
         }
-      } else {
-        console.log("No session");
-        router.push("/login");
       }
-    };
-
-    loadDailies();
-  }, [router, session]);
+    }
+    fetchDailies();
+  }, [session]);
 
   const handleDeleteClick = async (id) => {
     const endpoint = `/api/dailies/${id}`;
+
     const response = await fetch(endpoint, {
       method: "DELETE",
     });
@@ -70,7 +76,7 @@ const DailiesPage = ({ session }) => {
         const updatedDaily = await response.json();
         setDailies((prevDailies) =>
           prevDailies.map((daily) =>
-            daily.id === id ? { ...daily, ...updatedDaily } : daily
+            daily.id === id ? { ...daily, ...updatedDaily.data } : daily
           )
         );
       }
@@ -105,13 +111,5 @@ const DailiesPage = ({ session }) => {
     <Loader />
   );
 };
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      session: await getSession(context),
-    },
-  };
-}
 
 export default DailiesPage;

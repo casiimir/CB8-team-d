@@ -1,5 +1,5 @@
 import React from "react";
-import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "../../styles/lists.module.scss";
@@ -9,31 +9,14 @@ import Navbar from "@/components/navbar";
 import Loader from "@/components/loader/Loader.jsx";
 import Header from "@/components/header";
 
-// const createNewTodo = async (userId, setTodos) => {
-//   const response = await fetch("/api/todos", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     //questo e' il body per la creazione dell'habit
-//     body: JSON.stringify({
-//       title: "Lallalero", //il titolo dell'habit lo sceglie l'utente inserendolo nel form, allo stato attuale e' fisso
-//       userId, //lo userId dipende sempre dalla session, se nopn c'e' session non si puo' creare un habit e vieni reindirizzato alla pagina di login
-//     }),
-//   });
-
-//   if (response.ok) {
-//     const newTodo = await response.json();
-//     console.log(newTodo.data);
-//     setTodos((prevTodos) => [...prevTodos, newTodo.data]);
-//   } else {
-//     const error = await response.json();
-//     console.error(error);
-//   }
-// };
-
-const TodosPage = ({ session }) => {
+const TodosPage = () => {
   const router = useRouter();
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/login");
+    },
+  });
   const [todos, setTodos] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -55,7 +38,7 @@ const TodosPage = ({ session }) => {
     };
 
     loadTodos();
-  }, [router, session]);
+  }, [session]);
 
   const handleDeleteClick = async (id) => {
     const endpoint = `/api/todos/${id}`;
@@ -128,13 +111,5 @@ const TodosPage = ({ session }) => {
     <Loader />
   );
 };
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      session: await getSession(context),
-    },
-  };
-}
 
 export default TodosPage;
