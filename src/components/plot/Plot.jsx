@@ -1,7 +1,6 @@
 import styles from "./index.module.scss";
 import { IoClose } from "react-icons/io5";
 import { LuAxe } from "react-icons/lu";
-import { GiHatchet } from "react-icons/gi";
 
 const Plot = ({
   x,
