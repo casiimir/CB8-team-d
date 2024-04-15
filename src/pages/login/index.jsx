@@ -21,6 +21,7 @@ const handleSubmit = async (event, router) => {
     router.push("/habits");
   } else {
     //qua va la risposta che manda un avviso di errore all'utente
+    alert("Invalid credentials");
     console.error(result.error);
   }
 };
