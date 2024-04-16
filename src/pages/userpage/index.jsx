@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useUserResources } from "@/contexts/userResourcesContext";
 import Navbar from "@/components/navbar";
 import Header from "@/components/header";
+import Loader from "@/components/loader/Loader";
 
 const UserProfilePage = () => {
   const router = useRouter();
