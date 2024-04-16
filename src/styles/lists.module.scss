@@ -3,7 +3,14 @@
 
 .list_wrapper {
   @include flex-container(column, center, center, 0.5rem, wrap);
-  @include wrapper;
+  position: relative;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 120px 10px;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
   height: auto;
   padding-right: 0;
   padding-left: 0;

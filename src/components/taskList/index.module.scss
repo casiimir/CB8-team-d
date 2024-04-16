@@ -1,13 +1,26 @@
 @import "../../assets/variables.module.scss";
 @import "../../assets/mixins.module.scss";
 
+.titleWrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: white;
+  height: 60px;
+  top: 100px;
+}
+
 .TaskList {
   @include flex-container(column, center, center, 20px);
+  margin-top: 40px;
 }
 
 .noTask {
   @include flex-container(column, center, center, 45px);
-  margin-top: 20px;
+  margin-top: 60px;
 
   .leaves {
     height: auto;

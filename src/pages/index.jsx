@@ -42,6 +42,37 @@ export default function Home() {
     },
   ];
 
+  const slidesDesktop = [
+    {
+      id: 1,
+      img: "pexels-chris-schippers-427679.jpg",
+    },
+    {
+      id: 2,
+      img: "pexels-dominika-gregušová-672532.jpg",
+    },
+    {
+      id: 3,
+      img: "pexels-pixabay-460672.jpg",
+    },
+    // {
+    //   id: 4,
+    //   img: "/Screen_Tavola disegno 2-04.png",
+    // },
+    // {
+    //   id: 5,
+    //   img: "/Screen_Tavola disegno 2-05.png",
+    // },
+    // {
+    //   id: 6,
+    //   img: "/Screen_Tavola disegno 2-06.png",
+    // },
+    // {
+    //   id: 7,
+    //   img: "/Screen_Tavola disegno 2-07.png",
+    // },
+  ];
+
   const handleNextSlide = () => {
     if (slideIndex < slides.length - 1) {
       setSlideIndex(slideIndex + 1);
@@ -194,7 +225,14 @@ export default function Home() {
         {showSlider && (
           <>
             <div className={styles.background}>
-              <img src={`/screens/${slides[slideIndex].img}`} alt="" />
+              <img
+                src={
+                  window.innerWidth >= 768
+                    ? `/screens2/${slidesDesktop[slideIndex].img}`
+                    : `/screens/${slides[slideIndex].img}`
+                }
+                alt=""
+              />
             </div>
             <div className={styles.actions}>
               {slideIndex > 0 && (
