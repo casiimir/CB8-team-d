@@ -2,7 +2,7 @@
 @import "../assets/mixins.module.scss";
 
 .login_wrapper {
-  @include flex-container(column, center, space-between, 0);
+  @include flex-container(column, center, space-between, 0, nowrap);
   height: 100vh;
   background-color: $bg-color;
 
