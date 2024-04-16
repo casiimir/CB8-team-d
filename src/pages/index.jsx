@@ -102,7 +102,7 @@ export default function Home() {
         {!showSlider && (
           <>
             <div className={styles.logoArea}>
-              <img src="/logowide.png" alt="Logo" width={200} />
+              <Image src="/logowide.png" alt="Logo" width="200" height="50" />
             </div>
             <div className={styles.title}>
               <h4>Track your goals, cultivate your habits.</h4>
@@ -225,7 +225,7 @@ export default function Home() {
         {showSlider && (
           <>
             <div className={styles.background}>
-              <img
+              <Image
                 src={
                   window.innerWidth >= 768
                     ? `/screens2/${slidesDesktop[slideIndex].img}`
