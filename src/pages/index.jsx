@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from "react-icons/fa";
 import styles from "../styles/landing.module.scss";
+import Image from "next/image";
+import { AiFillGithub } from "react-icons/ai";
+import { BsLinkedin } from "react-icons/bs";
 
 export default function Home() {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -71,17 +74,120 @@ export default function Home() {
               <img src="/logowide.png" alt="Logo" width={200} />
             </div>
             <div className={styles.title}>
-              <h3>Traccia i tuoi obiettivi, coltiva le tue abitudini</h3>
+              <h4>Track your goals, cultivate your habits.</h4>
               <p>
-                Coltivare se stessi con abitudini sostenibili è come piantare
-                semi di successo per una crescita rigogliosa, nutrendo sia te
-                stesso che il pianeta!
+                Developing sustainable habits is like planting the seeds of
+                success for lush growth, nourishing yourself and the planet!
               </p>
+            </div>
+            <div className={styles.imgWrapper}>
+              <Image
+                className={styles.Img}
+                src="/Hands.png"
+                alt="logo"
+                width="200"
+                height="170"
+              />
             </div>
             <div className={styles.btnWrapper}>
               <button className={styles.startBtn} onClick={handleStart}>
                 START
               </button>
+            </div>
+            <div className={styles.teamWrapper}>
+              <div className={styles.title}>
+                <h6>Growy Team Members</h6>
+              </div>
+              <div className={styles.teamMembers}>
+                <div className={styles.first}>
+                  <div className={styles.firstHalf}>
+                    <div className={styles.member}>
+                      <Image
+                        className={styles.Img}
+                        src="/Hands.png"
+                        alt="logo"
+                        width="50"
+                        height="50"
+                      />
+                      <div className={styles.contacts}>
+                        <p>Olga Barbato</p>
+                        <div className={styles.icons}>
+                          <AiFillGithub />
+                          <BsLinkedin />
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.member}>
+                      <Image
+                        className={styles.Img}
+                        src="/Hands.png"
+                        alt="logo"
+                        width="50"
+                        height="50"
+                      />
+                      <div className={styles.contacts}>
+                        <p>Elena Faraci</p>
+                        <div className={styles.icons}>
+                          <AiFillGithub />
+                          <BsLinkedin />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={styles.secondHalf}>
+                    <div className={styles.member}>
+                      <Image
+                        className={styles.Img}
+                        src="/Hands.png"
+                        alt="logo"
+                        width="50"
+                        height="50"
+                      />
+                      <div className={styles.contacts}>
+                        <p>Andrea Perez</p>
+                        <div className={styles.icons}>
+                          <AiFillGithub />
+                          <BsLinkedin />
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.member}>
+                      <Image
+                        className={styles.Img}
+                        src="/Hands.png"
+                        alt="logo"
+                        width="50"
+                        height="50"
+                      />
+                      <div className={styles.contacts}>
+                        <p>Eugenia Renda</p>
+                        <div className={styles.icons}>
+                          <AiFillGithub />
+                          <BsLinkedin />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.last}>
+                  <div className={styles.member}>
+                    <Image
+                      className={styles.Img}
+                      src="/Hands.png"
+                      alt="logo"
+                      width="50"
+                      height="50"
+                    />
+                    <div className={styles.contacts}>
+                      <p>Valentina Scalone</p>
+                      <div className={styles.icons}>
+                        <AiFillGithub />
+                        <BsLinkedin />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </>
         )}
