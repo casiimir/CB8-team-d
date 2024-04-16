@@ -12,6 +12,11 @@
   height: 150px;
   top: 20px;
   z-index: 1;
+
+  .title {
+    font-family: $titleFont;
+    font-weight: 900;
+  }
 }
 
 .TaskList {
@@ -22,7 +27,7 @@
 
 .noTask {
   @include flex-container(column, center, center, 45px);
-  margin-top: 60px;
+  margin-top: 80px;
 
   .leaves {
     height: auto;
