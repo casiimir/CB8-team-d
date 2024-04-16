@@ -2,6 +2,8 @@ import styles from "./index.module.scss";
 import Task from "../task";
 import { useState } from "react";
 import Image from "next/image";
+import SimpleBar from "simplebar-react";
+import "simplebar-react/dist/simplebar.min.css";
 
 const TaskList = ({
   tasks,
@@ -15,30 +17,26 @@ const TaskList = ({
   return (
     <div>
       {hasTasks ? (
-        <div id="wrapper">
-          <div className={styles.scrollbar} id="style-default">
-            <div className={styles.force_overflow}>
-              <div className={styles.TaskList}>
-                {tasks.map((task) => (
-                  <div key={task._id} className={styles.TaskItem}>
-                    <Task
-                      title={task.title}
-                      streakCount={task.streak}
-                      id={task._id}
-                      lastCompleted={task.lastCompleted}
-                      deadline={task.deadline}
-                      complete={task.complete}
-                      deleteFunction={deleteFunction}
-                      updateHabitFunction={updateHabitFunction}
-                      updateDailyFunction={updateDailyFunction}
-                      updateTodoFunction={updateTodoFunction}
-                    />
-                  </div>
-                ))}
+        <SimpleBar style={{ maxHeight: 450 }}>
+          <div className={styles.TaskList}>
+            {tasks.map((task) => (
+              <div key={task._id} className={styles.TaskItem}>
+                <Task
+                  title={task.title}
+                  streakCount={task.streak}
+                  id={task._id}
+                  lastCompleted={task.lastCompleted}
+                  deadline={task.deadline}
+                  complete={task.complete}
+                  deleteFunction={deleteFunction}
+                  updateHabitFunction={updateHabitFunction}
+                  updateDailyFunction={updateDailyFunction}
+                  updateTodoFunction={updateTodoFunction}
+                />
               </div>
-            </div>
+            ))}
           </div>
-        </div>
+        </SimpleBar>
       ) : (
         <div className={styles.noTask}>
           <h5>It&apos;s time to start growing!</h5>

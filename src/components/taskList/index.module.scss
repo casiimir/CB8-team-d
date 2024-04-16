@@ -25,21 +25,3 @@
     left: calc(50% - 600px);
   }
 }
-
-.scrollbar {
-  height: 480px;
-  width: auto;
-  background: white;
-  overflow-y: scroll;
-  padding: 0 15px;
-
-  .force_overflow {
-    min-height: 450px;
-  }
-}
-
-#wrapper {
-  text-align: center;
-  width: 500px;
-  margin: auto;
-}
