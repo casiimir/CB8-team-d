@@ -19,7 +19,8 @@
     "react-datepicker": "^6.6.0",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
-    "sass": "^1.72.0"
+    "sass": "^1.72.0",
+    "simplebar-react": "^3.2.4"
   },
   "devDependencies": {
     "eslint": "^8",
