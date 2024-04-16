@@ -86,7 +86,6 @@ const HabitsPage = () => {
     <div>
       <Header />
       <div className={styles.list_wrapper}>
-        <h2>Your Habits</h2>
         {isModalOpen && (
           <TaskModal
             setTasks={setHabits}

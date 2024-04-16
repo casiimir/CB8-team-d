@@ -2,9 +2,11 @@ import styles from "@/styles/signup.module.scss";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 function Signup() {
   const router = useRouter();
+  const text = "Just few quick things to get started".split(" ");
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -59,8 +61,20 @@ function Signup() {
 
       <div className={styles.title}>
         <h1>
-          Just few quick things to{" "}
-          <span className={styles.highlight}>get started</span>
+          {text.map((el, i) => (
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: 1.2,
+                delay: i / 4,
+              }}
+              key={i}
+              className={i === 5 || i === 6 ? styles.highlight : ""}
+            >
+              {el}{" "}
+            </motion.span>
+          ))}
         </h1>
       </div>
 

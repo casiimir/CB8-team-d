@@ -16,6 +16,7 @@ body {
   /* max-width: 1080px; */
   margin: 0 auto;
   position: relative;
+  scrollbar-gutter: stable;
 }
 
 ul {

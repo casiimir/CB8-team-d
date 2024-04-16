@@ -87,7 +87,6 @@ const TodosPage = () => {
     <div>
       <Header />
       <div className={styles.list_wrapper}>
-        <h2>Your Todos</h2>
         {isModalOpen && (
           <TaskModal
             setTasks={setTodos}

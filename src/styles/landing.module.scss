@@ -18,11 +18,12 @@
       z-index: 0;
     }
 
-    // @media screen and (min-width: 768px) {
-    //   img {
-    //     object-fit: contain;
+    //   @media screen and (min-width: 768px) {
+    //     img {
+    //       // box-sizing: border-box;
+    //       object-fit: cover;
+    //     }
     //   }
-    // }
   }
 
   .mainArea {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import styles from "./index.module.scss";
 import { IoClose } from "react-icons/io5";
 import { FaArrowUp } from "react-icons/fa";
@@ -16,7 +16,6 @@ const TaskModal = ({ dataModal, setTasks, isOpen, setIsOpen }) => {
   const pathName = usePathname();
   const { data: session, status } = useSession();
   const router = useRouter();
-  const titleInputRef = useRef(null);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -59,11 +58,11 @@ const TaskModal = ({ dataModal, setTasks, isOpen, setIsOpen }) => {
     setIsOpen(false);
   };
 
-  useEffect(() => {
-    if (isOpen && titleInputRef.current) {
-      titleInputRef.current.focus();
-    }
-  }, [isOpen]);
+  // useEffect(() => {
+  //   if (isOpen && titleInputRef.current) {
+  //     titleInputRef.current.focus();
+  //   }
+  // }, [isOpen]);
 
   if (status === "loading") {
     return <Loader />;
@@ -82,7 +81,6 @@ const TaskModal = ({ dataModal, setTasks, isOpen, setIsOpen }) => {
           <form action="" onSubmit={onHandleSubmit} className={styles.form}>
             <div className={styles.text}>
               <input
-                ref={titleInputRef}
                 type="text"
                 id="title"
                 value={title}
