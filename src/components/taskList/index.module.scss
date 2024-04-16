@@ -11,11 +11,13 @@
   background-color: white;
   height: 60px;
   top: 100px;
+  z-index: 1;
 }
 
 .TaskList {
   @include flex-container(column, center, center, 20px);
   margin-top: 40px;
+  overflow-x: hidden;
 }
 
 .noTask {
