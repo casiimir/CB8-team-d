@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import styles from "@/styles/userpage.module.scss";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useUserResources } from "@/contexts/userResourcesContext";
 import Navbar from "@/components/navbar";
 import Header from "@/components/header";
 import Loader from "@/components/loader/Loader";
@@ -16,6 +15,11 @@ const UserProfilePage = () => {
       router.push("/login");
     },
   });
+
+  const handleLogOutClick = async () => {
+    await signOut();
+    router.push("/login");
+  };
 
   const imageUrl =
     "https://static.vecteezy.com/system/resources/previews/019/633/059/original/8-bit-pixel-human-portrait-cartoon-young-girl-for-game-assets-in-illustration-vector.jpg";
@@ -69,7 +73,7 @@ const UserProfilePage = () => {
             <br />
             <button
               type="button"
-              onClick={() => signOut()}
+              onClick={handleLogOutClick}
               className={styles.btn_del}
             >
               Log Out
