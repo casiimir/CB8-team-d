@@ -17,7 +17,7 @@ const UserProfilePage = () => {
   });
 
   const handleLogOutClick = async () => {
-    await signOut();
+    await signOut({ redirect: false });
     router.push("/login");
   };
 
