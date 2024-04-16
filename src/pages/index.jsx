@@ -28,18 +28,6 @@ export default function Home() {
       id: 4,
       img: "/Screen_Tavola disegno 1-04.png",
     },
-    {
-      id: 5,
-      img: "/Screen_Tavola disegno 1-05.png",
-    },
-    {
-      id: 6,
-      img: "/Screen_Tavola disegno 1-06.png",
-    },
-    {
-      id: 7,
-      img: "/Screen_Tavola disegno 1-07.png",
-    },
   ];
 
   const slidesDesktop = [
@@ -55,22 +43,10 @@ export default function Home() {
       id: 3,
       img: "pexels-pixabay-460672.jpg",
     },
-    // {
-    //   id: 4,
-    //   img: "/Screen_Tavola disegno 2-04.png",
-    // },
-    // {
-    //   id: 5,
-    //   img: "/Screen_Tavola disegno 2-05.png",
-    // },
-    // {
-    //   id: 6,
-    //   img: "/Screen_Tavola disegno 2-06.png",
-    // },
-    // {
-    //   id: 7,
-    //   img: "/Screen_Tavola disegno 2-07.png",
-    // },
+    {
+      id: 4,
+      img: "/Screen_Tavola disegno 2-04.png",
+    },
   ];
 
   const handleNextSlide = () => {
