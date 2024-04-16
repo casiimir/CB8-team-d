@@ -8,12 +8,12 @@
   justify-content: center;
   height: 100vh;
 
-  .initialPage {
+  .image_wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 70px;
+    gap: 30px;
   }
 
   .items_wrapper {
@@ -29,6 +29,7 @@
   }
 
   .title {
+    height: max-content;
     text-align: center;
     margin: 15px;
   }

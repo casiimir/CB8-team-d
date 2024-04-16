@@ -65,20 +65,38 @@ export default function Custom404() {
   return (
     <div className={styles.notfound_wrapper}>
       <div className={styles.items_wrapper}>
+        {isExploding && (
+          <ConfettiExplosion
+            onComplete={handleExplosionComplete}
+            colors={[
+              "#00FF00",
+              "#00AA00",
+              "#008800",
+              "#007F00",
+              "#006600",
+              "#005500",
+            ]}
+            force={0.5}
+            duration={1500}
+            particleCount={250}
+            width={1600}
+          />
+        )}
         <button onClick={handleButtonClick} className={styles.button_image}>
           <div className={styles.image_wrapper}>
             {showTreeWithLeaves ? (
               <>
-                <div className={styles.initialPage}>
-                  <Image
-                    className={styles.image}
-                    src="/sprites/albero3.png"
-                    alt="bare tree"
-                    width="100"
-                    height="150"
-                  />
-                  <h1>Error 404: Page not found</h1>
-                </div>
+                <Image
+                  className={styles.image}
+                  src="/sprites/albero3.png"
+                  alt="bare tree"
+                  width="100"
+                  height="150"
+                />
+                <h1 className={styles.title}>
+                  <span className={styles.highlight}> Error 404</span>: You're
+                  lost! Hurry up, fall is coming...{" "}
+                </h1>
               </>
             ) : (
               <>
@@ -98,23 +116,6 @@ export default function Custom404() {
           </div>
         </button>
       </div>
-      {isExploding && (
-        <ConfettiExplosion
-          onComplete={handleExplosionComplete}
-          colors={[
-            "#00FF00",
-            "#00AA00",
-            "#008800",
-            "#007F00",
-            "#006600",
-            "#005500",
-          ]}
-          force={0.8}
-          duration={1500}
-          particleCount={250}
-          width={1600}
-        />
-      )}
       <div className={styles.button_wrapper}>
         <button
           className={styles.button_login}
