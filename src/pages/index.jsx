@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from "react-icons/fa";
-import styles from "../styles/landing.module.scss";
+import styles from "@/styles/landing.module.scss";
 import Image from "next/image";
 import { AiFillGithub } from "react-icons/ai";
 import { BsLinkedin } from "react-icons/bs";

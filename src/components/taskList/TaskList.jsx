@@ -41,7 +41,7 @@ const TaskList = ({
         </div>
       ) : (
         <div className={styles.noTask}>
-          <h5>It's time to start growing!</h5>
+          <h5>It&apos;s time to start growing!</h5>
           <Image
             src="/leaves2.jpeg"
             alt="leaves"

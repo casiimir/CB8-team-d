@@ -1,5 +1,5 @@
 import styles from "@/components/header/index.module.scss";
-import { getSession, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useUserResources } from "@/contexts/userResourcesContext";
@@ -9,11 +9,9 @@ const Header = () => {
   const { data: session, status: sessionStatus } = useSession();
   const { userResources } = useUserResources();
   const loading = sessionStatus === "loading";
-
   if (loading || userResources === null) {
     return null;
   }
-
   const user = session?.user?.username;
 
   const imageUrl =
@@ -90,13 +88,5 @@ const Header = () => {
     )
   );
 };
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      session: await getSession(context),
-    },
-  };
-}
 
 export default Header;

@@ -1,7 +1,7 @@
 [
   {
     "name": "Birch Tree",
-    "sprite": "./sprites/albero1.png",
+    "sprite": "/sprites/albero1.png",
     "cost": {
       "soil": "1",
       "seeds": "2",
@@ -10,7 +10,7 @@
   },
   {
     "name": "Fir Tree",
-    "sprite": "./sprites/albero2.png",
+    "sprite": "/sprites/albero2.png",
     "cost": {
       "soil": "3",
       "seeds": "2",
@@ -19,7 +19,7 @@
   },
   {
     "name": "Lemon Tree",
-    "sprite": "./sprites/albero3.png",
+    "sprite": "/sprites/albero3.png",
     "cost": {
       "soil": "3",
       "seeds": "3",
@@ -28,7 +28,7 @@
   },
   {
     "name": "Cherry Tree",
-    "sprite": "./sprites/albero4.png",
+    "sprite": "/sprites/albero4.png",
     "cost": {
       "soil": "2",
       "seeds": "2",
@@ -37,7 +37,7 @@
   },
   {
     "name": "Palm Tree",
-    "sprite": "./sprites/albero5.png",
+    "sprite": "/sprites/albero5.png",
     "cost": {
       "soil": "4",
       "seeds": "3",
@@ -46,7 +46,7 @@
   },
   {
     "name": "Gingko",
-    "sprite": "./sprites/albero6.png",
+    "sprite": "/sprites/albero6.png",
     "cost": {
       "soil": "5",
       "seeds": "7",

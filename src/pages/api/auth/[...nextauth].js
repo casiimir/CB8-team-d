@@ -5,6 +5,20 @@ import bcrypt from "bcryptjs";
 import User from "@/models/user";
 
 export const authOptions = {
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
+    updateAge: 24 * 60 * 60,
+
+    options: {
+      secure: process.env.NODE_ENV === "production",
+    },
+  },
+  jwt: {
+    signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
+
+    secure: process.env.NODE_ENV === "production",
+  },
   providers: [
     CredentialsProvider({
       name: "Credentials",

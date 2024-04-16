@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import styles from "../../styles/userpage.module.scss";
+import styles from "@/styles/userpage.module.scss";
 import { getSession, useSession } from "next-auth/react";
 import { useUserResources } from "@/contexts/userResourcesContext";
 import Navbar from "@/components/navbar";
@@ -19,7 +19,7 @@ export default function UserProfilePage() {
   const user = session?.user?.username;
   const imageUrl =
     "https://static.vecteezy.com/system/resources/previews/019/633/059/original/8-bit-pixel-human-portrait-cartoon-young-girl-for-game-assets-in-illustration-vector.jpg";
-  
+
   const [editing, setEditing] = useState(false);
 
   const onHandleChange = (e) => {
@@ -114,4 +114,3 @@ export default function UserProfilePage() {
     </div>
   );
 }
- 
