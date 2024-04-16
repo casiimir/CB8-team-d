@@ -94,8 +94,8 @@ export default function Custom404() {
                   height="150"
                 />
                 <h1 className={styles.title}>
-                  <span className={styles.highlight}> Error 404</span>: You're
-                  lost! Hurry up, fall is coming...{" "}
+                  <span className={styles.highlight}> Error 404</span>:
+                  You&apos;re lost! Hurry up, fall is coming...{" "}
                 </h1>
               </>
             ) : (
