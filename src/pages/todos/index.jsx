@@ -73,19 +73,17 @@ const TodosPage = () => {
       if (!response.ok) {
         throw new Error("Failed to update todo");
       } else {
-        //   const updatedTodo = await response.json();
-        //   setTodos((prevTodos) =>
-        //     prevTodos.map((todo) =>
-        //       todo.id === id ? { ...todo, ...updatedTodo } : todo
-        //     )
-        //   );
       }
     } catch (error) {
       console.error(error.message);
     }
   };
 
-  return session ? (
+  if (status === "loading") {
+    return <Loader />;
+  }
+
+  return (
     <div>
       <Header />
       <div className={styles.list_wrapper}>
@@ -107,8 +105,6 @@ const TodosPage = () => {
         <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </div>
     </div>
-  ) : (
-    <Loader />
   );
 };
 
