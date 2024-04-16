@@ -1,6 +1,5 @@
 import styles from "./index.module.scss";
 import Task from "../task";
-import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
