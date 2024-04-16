@@ -17,7 +17,7 @@ const TaskList = ({
   return (
     <div>
       {hasTasks ? (
-        <SimpleBar style={{ maxHeight: 450 }}>
+        <SimpleBar style={{ maxHeight: "61vh" }}>
           <div className={styles.TaskList}>
             {tasks.map((task) => (
               <div key={task._id} className={styles.TaskItem}>
