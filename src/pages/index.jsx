@@ -232,6 +232,8 @@ export default function Home() {
                     : `/screens/${slides[slideIndex].img}`
                 }
                 alt=""
+                width="100"
+                height="100"
               />
             </div>
             <div className={styles.actions}>
