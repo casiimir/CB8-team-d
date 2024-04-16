@@ -9,14 +9,14 @@
   left: 0;
   right: 0;
   background-color: white;
-  height: 60px;
-  top: 100px;
+  height: 150px;
+  top: 20px;
   z-index: 1;
 }
 
 .TaskList {
   @include flex-container(column, center, center, 20px);
-  margin-top: 40px;
+  margin-top: 60px;
   overflow-x: hidden;
 }
 
