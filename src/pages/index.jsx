@@ -14,7 +14,7 @@ export default function Home() {
   const slides = [
     {
       id: 1,
-      img: "/Screen_Tavola disegno 1-09.png",
+      img: "/Screen2.png",
     },
     {
       id: 2,
@@ -217,11 +217,12 @@ export default function Home() {
                 src={
                   window.innerWidth >= 768
                     ? `/screens2/${slidesDesktop[slideIndex].img}`
-                    : `/screens/${slides[slideIndex].img}`
+                    : `/screens${slides[slideIndex].img}`
                 }
                 alt=""
                 width="100"
                 height="100"
+                quality={100}
               />
             </div>
             <div className={styles.actions}>
