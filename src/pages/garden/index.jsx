@@ -170,7 +170,7 @@ const GardenPage = () => {
         return;
       }
       const treeName = selectedTree.name;
-      // Toglie le risorse dall'utente se sono sufficienti
+
       if (
         (userResources.soil || 0) < selectedTree.cost.soil ||
         (userResources.water || 0) < selectedTree.cost.water ||

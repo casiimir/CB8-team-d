@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./index.module.scss";
 import { IoClose } from "react-icons/io5";
 import { FaArrowUp } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
@@ -23,7 +23,7 @@ const TaskModal = ({ dataModal, setTasks, isOpen, setIsOpen }) => {
 
   const createNewTask = async () => {
     if (session) {
-      const endpoint = `/api${router.asPath}`; // gets the current URL path and prepends it with '/api'
+      const endpoint = `/api${router.asPath}`;
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -57,12 +57,6 @@ const TaskModal = ({ dataModal, setTasks, isOpen, setIsOpen }) => {
   const closeModal = () => {
     setIsOpen(false);
   };
-
-  // useEffect(() => {
-  //   if (isOpen && titleInputRef.current) {
-  //     titleInputRef.current.focus();
-  //   }
-  // }, [isOpen]);
 
   if (status === "loading") {
     return <Loader />;

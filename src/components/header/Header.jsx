@@ -3,7 +3,6 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useUserResources } from "@/contexts/userResourcesContext";
-import { useEffect, useState } from "react";
 
 const Header = () => {
   const { data: session, status: sessionStatus } = useSession();
@@ -12,7 +11,6 @@ const Header = () => {
   if (loading || userResources === null) {
     return null;
   }
-  const user = session?.user?.username;
 
   const imageUrl =
     "https://static.vecteezy.com/system/resources/previews/019/633/059/original/8-bit-pixel-human-portrait-cartoon-young-girl-for-game-assets-in-illustration-vector.jpg";

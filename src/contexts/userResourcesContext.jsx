@@ -14,7 +14,6 @@ export function UserResourcesProvider({ children }) {
   useEffect(() => {
     const loadUserResources = async () => {
       if (status === "authenticated") {
-        // Check if the session is authenticated
         const userId = session.user._id;
         try {
           const response = await fetch(`/api/userResources?userId=${userId}`);
@@ -39,10 +38,8 @@ export function UserResourcesProvider({ children }) {
     if (status === "authenticated") {
       const userId = session.user._id;
 
-      // Update state
       setUserResources(newResources);
 
-      // Update database
       const response = await fetch(`/api/userResources?userId=${userId}`, {
         method: "PUT",
         headers: {

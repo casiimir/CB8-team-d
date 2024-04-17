@@ -18,42 +18,15 @@ export default async function handler(req, res) {
           return res.status(404).json({ success: false });
         }
 
-        // Return all user resources without checking for a specific resource type
         res.status(200).json({ success: true, data: userResources });
       } catch (error) {
         return res.status(400).json({ success: false, error: error.message });
       }
       break;
 
-    //   switch (method) {
-    //     case "GET":
-    //       try {
-    //         const resourceType = req.query.resourceType;
-    //         const userResources = await UserResources.findById(id);
-
-    //         if (!userResources) {
-    //           return res.status(404).json({ success: false });
-    //         }
-
-    //         // If a resourceType is provided, return its value.
-    //         if (resourceType && ["water", "soil", "seeds"].includes(resourceType)) {
-    //           return res
-    //             .status(200)
-    //             .json({
-    //               success: true,
-    //               data: { [resourceType]: userResources[resourceType] },
-    //             });
-    //         }
-
-    //         res.status(200).json({ success: true, data: userResources });
-    //       } catch (error) {
-    //         return res.status(400).json({ success: false });
-    //       }
-    //       break;
-
     case "PUT":
       try {
-        const resourceType = req.query.resourceType; // Assuming the type is passed as a query parameter
+        const resourceType = req.query.resourceType;
         if (!["water", "soil", "seeds"].includes(resourceType)) {
           return res
             .status(400)
@@ -65,7 +38,6 @@ export default async function handler(req, res) {
           return res.status(404).json({ success: false });
         }
 
-        // Increment the specified resource
         console.log(userResources[resourceType]);
         userResources[resourceType] += 1;
         await userResources.save();

@@ -24,29 +24,6 @@ export default async function handler(req, res) {
       }
       break;
 
-    // case "PUT":
-    //   try {
-    //     const { body } = req;
-    //     const newBody = {
-    //       ...body,
-    //       streak: body.streak + 1,
-    //       lastCompleted: Date.now(),
-    //     };
-
-    //     const modifiedHabit = await Habit.findByIdAndUpdate(query.id, newBody, {
-    //       new: true,
-    //     });
-
-    //     if (!modifiedHabit) {
-    //       res.status(404).json({ success: false });
-    //     }
-
-    //     res.status(200).json({ success: true, data: modifiedHabit });
-    //   } catch (error) {
-    //     return res.status(400).json({ success: false });
-    //   }
-    //   break;
-
     case "PUT":
       try {
         const { body } = req;

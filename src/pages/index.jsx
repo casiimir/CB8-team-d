@@ -11,8 +11,6 @@ export default function Home() {
   const [showSlider, setShowSlider] = useState(false);
   const router = useRouter();
 
-  const [isVisible, setIsVisible] = useState(false);
-
   const slides = [
     {
       id: 1,
