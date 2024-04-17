@@ -12,8 +12,8 @@
   height: auto;
   max-height: 120px;
   padding: 10px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Ombra */
-  // CHECK BELOW
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+
   z-index: 2;
 
   .logo {
@@ -24,7 +24,7 @@
     @include flex-container(row, center, center, 2rem, nowrap);
 
     .image {
-      border-radius: 50%; /* Imposta il border-radius al 50% per fare un cerchio */
+      border-radius: 50%;
     }
 
     .name {
@@ -36,7 +36,6 @@
     .resources_wrapper {
       @include flex-container(row, center, center, 0.6rem, nowrap);
       padding: 6px 6px 6px 0;
-      // width: 200px;
 
       .text {
         width: 35px;
@@ -45,7 +44,6 @@
   }
 }
 
-/* per i dispositivi desktop */
 @media screen and (min-width: 1080px) {
   .header_wrapper {
     max-width: 1080px;

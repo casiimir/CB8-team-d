@@ -28,7 +28,6 @@ export default async function handler(req, res) {
 
       await user.save();
 
-      // Crea l'array plot
       const plots = [];
       for (let x = 0; x <= 5; x++) {
         for (let y = 0; y <= 6; y++) {

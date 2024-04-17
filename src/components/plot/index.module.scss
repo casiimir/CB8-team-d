@@ -3,16 +3,15 @@
 .plot {
   width: 50px;
   height: 50px;
-  // background: radial-gradient(circle at center, #000000 10%, #303928 11%);
+
   border: 1px solid #cccccc2d;
-  // border: 1px solid #353738;
+
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   position: relative;
   border-radius: 10px;
-  // border: 2px solid red;
 
   &:hover {
     border: 1px solid #cccccc62;

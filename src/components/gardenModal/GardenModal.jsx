@@ -1,9 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
+
 import Image from "next/image";
 import styles from "./index.module.scss";
-import { IoWaterOutline, IoClose } from "react-icons/io5";
-import { FaCheck } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
 
 const GardenModal = ({ onClose, onPlantSelect, trees }) => {
   const handlePlantSelect = (plantIconUrl) => {

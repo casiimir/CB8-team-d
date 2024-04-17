@@ -14,7 +14,6 @@ const DailiesPage = () => {
   const { data: session, status } = useSession({
     required: true,
     onUnauthenticated() {
-      // Redirects or handles unauthenticated status
       router.push("/login");
     },
   });
