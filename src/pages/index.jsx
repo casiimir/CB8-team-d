@@ -33,19 +33,19 @@ export default function Home() {
   const slidesDesktop = [
     {
       id: 1,
-      img: "pexels-chris-schippers-427679.jpg",
+      img: "/Screen-05.png",
     },
     {
       id: 2,
-      img: "pexels-dominika-gregušová-672532.jpg",
+      img: "/Screen-06.png",
     },
     {
       id: 3,
-      img: "pexels-pixabay-460672.jpg",
+      img: "/Screen-07.png",
     },
     {
       id: 4,
-      img: "/Screen_Tavola disegno 2-04.png",
+      img: "/Screen-08.png",
     },
   ];
 
@@ -127,7 +127,7 @@ export default function Home() {
                     <div className={styles.member}>
                       <Image
                         className={styles.Img}
-                        src="/Hands.png"
+                        src="/team/Elena.jpeg"
                         alt="logo"
                         width="50"
                         height="50"
@@ -135,8 +135,20 @@ export default function Home() {
                       <div className={styles.contacts}>
                         <p>Elena Faraci</p>
                         <div className={styles.icons}>
-                          <AiFillGithub />
-                          <BsLinkedin />
+                          <a
+                            href="https://github.com/ElenaEF00"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <AiFillGithub />
+                          </a>
+                          <a
+                            href="https://www.linkedin.com/in/elenafaraci/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <BsLinkedin />
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -221,7 +233,9 @@ export default function Home() {
                   <FaAngleDoubleRight />
                 </button>
               ) : (
-                <button onClick={handleFinishIntro}>START</button>
+                <button className={styles.endBtn} onClick={handleFinishIntro}>
+                  START
+                </button>
               )}
             </div>
           </>
