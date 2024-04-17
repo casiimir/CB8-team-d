@@ -31,7 +31,6 @@
   @include flex-container(column, center, center, 1rem);
   width: 100vw;
   height: 100vh;
-  backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
@@ -88,5 +87,11 @@
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: 778px) {
+  .modalBg {
+    max-width: 45%;
   }
 }
