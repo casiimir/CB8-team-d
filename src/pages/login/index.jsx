@@ -1,34 +1,38 @@
 import Image from "next/image";
 import styles from "@/styles/login.module.scss";
 import React from "react";
-import { signIn } from "next-auth/react";
+import { useEffect } from "react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 
-const handleSubmit = async (event, router) => {
-  event.preventDefault();
-
-  const email = event.target.email.value;
-  const password = event.target.password.value;
-
-  const result = await signIn("credentials", {
-    redirect: false,
-    email,
-    password,
-  });
-
-  if (!result.error) {
-    console.log("logged in");
-    router.push("/garden");
-  } else {
-    alert("Invalid credentials");
-    console.error(result.error);
-  }
-};
-
 function Login() {
   const router = useRouter();
+  const { data: session, status } = useSession();
   const text = "Let's start growing together!".split(" ");
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/garden");
+    }
+  }, [status, router]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    const result = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    });
+
+    if (result.error) {
+      alert("Invalid credentials");
+      console.error(result.error);
+    }
+  };
 
   return (
     <div className={styles.login_wrapper}>
@@ -58,7 +62,7 @@ function Login() {
         </h1>
       </div>
 
-      <form onSubmit={(event) => handleSubmit(event, router)}>
+      <form onSubmit={handleSubmit}>
         <div className={styles.form_wrapper}>
           <label className={styles.text}>E-mail</label>
           <input
