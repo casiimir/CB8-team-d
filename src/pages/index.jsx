@@ -17,7 +17,6 @@ export default function Home() {
     {
       id: 1,
       img: "/Screen_Tavola disegno 1-01.svg",
-
     },
     {
       id: 2,
@@ -81,16 +80,19 @@ export default function Home() {
         {!showSlider && (
           <>
             <div className={styles.logoArea}>
-            <Image
+              <Image
                 className={styles.logo}
                 src="/logowide.png"
                 alt="logo"
                 width="180"
                 height="68"
-              /> 
+              />
             </div>
             <div className={styles.title}>
-              <h4>Track your goals, cultivate your habits.</h4>
+              <h4>
+                Track your goals,{" "}
+                <span className={styles.highlight}>cultivate</span> your habits.
+              </h4>
               <p>
                 Developing sustainable habits is like planting the seeds of
                 success for lush growth, nourishing yourself and the planet!
@@ -106,7 +108,6 @@ export default function Home() {
               />
             </div>
             <div className={styles.btnWrapper}>
-              
               <button className={styles.startBtn} onClick={handleStart}>
                 START
               </button>
@@ -117,157 +118,148 @@ export default function Home() {
               </div>
 
               <div className={styles.teamMembers}>
-                
-                    <div className={styles.member}>
-                      <Image
-                        className={styles.Img}
-                        src="/team/Olga.jpg"
-                        alt="Olga"
-                        width="50"
-                        height="50"
-                      />
-                      <div className={styles.contacts}>
-                        <p>Olga Barbato</p>
-                        <div className={styles.icons}>
-                        <a
-                            href="https://www.linkedin.com/in/olga-barbato-3102589a/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <BsLinkedin />
-                          </a>
-                          <a
-                              href="https://github.com/olgatobarbato"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <AiFillGithub />
-                          </a>      
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className={styles.member}>
-                      <Image
-                        className={styles.Img}
-                        src="/team/Elena.jpg"
-                        alt="Elena"
-                        width="50"
-                        height="50"
-                      />
-                      <div className={styles.contacts}>
-                        <p>Elena Faraci</p>
-                        <div className={styles.icons}>
-                          <a
-                            href="https://github.com/ElenaEF00"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <AiFillGithub />
-                          </a>
-                          <a
-                            href="https://www.linkedin.com/in/elenafaraci/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <BsLinkedin />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  
-                    <div className={styles.member}>
-                      <Image
-                        className={styles.Img}
-                        src="/team/Andrea.jpg"
-                        alt="Andrea"
-                        width="50"
-                        height="50"
-                      />
-                      <div className={styles.contacts}>
-                        <p>Andrea Perez</p>
-                        <div className={styles.icons}>
-                        <a
-                            href="http://www.linkedin.com/in/andrea-perez-dev"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <BsLinkedin />
-                          </a>
-                          <a
-                              href="https://github.com/perezandr"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <AiFillGithub />
-                          </a>      
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className={styles.member}>
-                      <Image
-                        className={styles.Img}
-                        src="/team/Eugenia.jpg"
-                        alt="Eugenia"
-                        width="50"
-                        height="50"
-                      />
-                      <div className={styles.contacts}>
-                        <p>Eugenia Renda</p>
-                        <div className={styles.icons}>
-                        <a
-                            href=""
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <BsLinkedin />
-                          </a>
-                          <a
-                              href="https://github.com/Euphyre"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <AiFillGithub />
-                          </a>      
-                        </div>
-                      </div>
-                    </div>
-                    
-                  
-                
-                  <div className={styles.member}>
-                    <Image
-                      className={styles.Img}
-                      src="/team/Valentina.jpg"
-                      alt="Valentina"
-                      width="50"
-                      height="50"
-                    />
-                    <div className={styles.contacts}>
-                      <p>Valentina Scalone</p>
-                      <div className={styles.icons}>
+                <div className={styles.member}>
+                  <Image
+                    className={styles.Img}
+                    src="/team/Olga.jpg"
+                    alt="Olga"
+                    width="50"
+                    height="50"
+                  />
+                  <div className={styles.contacts}>
+                    <p>Olga Barbato</p>
+                    <div className={styles.icons}>
                       <a
-                            href="https://www.linkedin.com/in/valentina-scalone-73148090/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <BsLinkedin />
-                          </a>
-                          <a
-                              href="https://github.com/ValScal"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <AiFillGithub />
-                          </a>      
-                      </div>
+                        href="https://www.linkedin.com/in/olga-barbato-3102589a/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <BsLinkedin />
+                      </a>
+                      <a
+                        href="https://github.com/olgatobarbato"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <AiFillGithub />
+                      </a>
                     </div>
                   </div>
                 </div>
 
+                <div className={styles.member}>
+                  <Image
+                    className={styles.Img}
+                    src="/team/Elena.jpg"
+                    alt="Elena"
+                    width="50"
+                    height="50"
+                  />
+                  <div className={styles.contacts}>
+                    <p>Elena Faraci</p>
+                    <div className={styles.icons}>
+                      <a
+                        href="https://www.linkedin.com/in/elenafaraci/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <BsLinkedin />
+                      </a>
+                      <a
+                        href="https://github.com/ElenaEF00"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <AiFillGithub />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.member}>
+                  <Image
+                    className={styles.Img}
+                    src="/team/Andrea.jpg"
+                    alt="Andrea"
+                    width="50"
+                    height="50"
+                  />
+                  <div className={styles.contacts}>
+                    <p>Andrea Perez</p>
+                    <div className={styles.icons}>
+                      <a
+                        href="http://www.linkedin.com/in/andrea-perez-dev"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <BsLinkedin />
+                      </a>
+                      <a
+                        href="https://github.com/perezandr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <AiFillGithub />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.member}>
+                  <Image
+                    className={styles.Img}
+                    src="/team/Eugenia.jpg"
+                    alt="Eugenia"
+                    width="50"
+                    height="50"
+                  />
+                  <div className={styles.contacts}>
+                    <p>Eugenia Renda</p>
+                    <div className={styles.icons}>
+                      <a href="" target="_blank" rel="noopener noreferrer">
+                        <BsLinkedin />
+                      </a>
+                      <a
+                        href="https://github.com/Euphyre"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <AiFillGithub />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.member}>
+                  <Image
+                    className={styles.Img}
+                    src="/team/Valentina.jpg"
+                    alt="Valentina"
+                    width="50"
+                    height="50"
+                  />
+                  <div className={styles.contacts}>
+                    <p>Valentina Scalone</p>
+                    <div className={styles.icons}>
+                      <a
+                        href="https://www.linkedin.com/in/valentina-scalone-73148090/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <BsLinkedin />
+                      </a>
+                      <a
+                        href="https://github.com/ValScal"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <AiFillGithub />
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
-            
+            </div>
           </>
         )}
         {showSlider && (
@@ -284,6 +276,7 @@ export default function Home() {
                 height="100"
                 quality={100}
                 unoptimized={false}
+                className={styles.slide}
               />
             </div>
             <div className={styles.actions}>
@@ -297,7 +290,9 @@ export default function Home() {
                   <FaAngleDoubleRight />
                 </button>
               ) : (
-                <button className={styles.next} onClick={handleFinishIntro}>START</button>
+                <button className={styles.next} onClick={handleFinishIntro}>
+                  START
+                </button>
               )}
             </div>
           </>
