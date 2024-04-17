@@ -14,38 +14,38 @@ export default function Home() {
   const slides = [
     {
       id: 1,
-      img: "/Screens_Tavola disegno 1-09.svg",
+      img: "/Screen_Tavola disegno 1-01.svg",
     },
     {
       id: 2,
-      img: "/Screen_Tavola disegno 1-02.png",
+      img: "/Screen_Tavola disegno 1-02.svg",
     },
     {
       id: 3,
-      img: "/Screen_Tavola disegno 1-03.png",
+      img: "/Screen_Tavola disegno 1-03.svg",
     },
     {
       id: 4,
-      img: "/Screen_Tavola disegno 1-04.png",
+      img: "/Screen_Tavola disegno 1-04.svg",
     },
   ];
 
   const slidesDesktop = [
     {
       id: 1,
-      img: "/Screen-05.png",
+      img: "/Screen-05.svg",
     },
     {
       id: 2,
-      img: "/Screen-06.png",
+      img: "/Screen-06.svg",
     },
     {
       id: 3,
-      img: "/Screen-07.png",
+      img: "/Screen-07.svg",
     },
     {
       id: 4,
-      img: "/Screen-08.png",
+      img: "/Screen-08.svg",
     },
   ];
 
