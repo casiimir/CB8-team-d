@@ -89,7 +89,6 @@ const DailiesPage = () => {
     <div>
       <Header />
       <div className={styles.list_wrapper}>
-        <h2>Your Dailies</h2>
         {isModalOpen && (
           <TaskModal
             setTasks={setDailies}

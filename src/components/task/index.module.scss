@@ -7,6 +7,19 @@
   width: 350px;
   border: none;
   color: white;
+  // animation: animate-in-and-out 0.2s linear;
+  // overflow-x: hidden;
+
+  // @keyframes animate-in-and-out {
+  //   0% {
+  //     opacity: 0;
+  //     transform: translateX(100%);
+  //   }
+  //   100% {
+  //     opacity: 1;
+  //     transform: translateX(0);
+  //   }
+  // }
 
   .deleteBtnWrapper {
     width: 15px;
@@ -35,9 +48,18 @@
   .title_streak {
     padding: 15px 8px;
     width: 100%;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
 
-    .smaller { 
+    .smaller {
       font-size: 12px;
+    }
+
+    p {
+      width: 100%;
+      margin-bottom: 5px;
+      word-break: break-word;
     }
   }
 
@@ -49,23 +71,26 @@
     margin-right: 5px;
     cursor: pointer;
     background-color: grey;
+    padding-top: 10px;
   }
 
   .streak.active {
     background-color: $secondary-color;
   }
+
   .completeBtn {
     padding: 15px;
-  }
-  .button {
-    border-radius: 100%;
-    border: none;
-    width: 25px;
-    height: 25px;
-    transition: all 0.35s;
 
-    &:hover {
-      transform: scale(1.1);
+    .button {
+      border-radius: 100%;
+      border: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      transition: all 0.35s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 }

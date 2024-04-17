@@ -7,39 +7,58 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-}
 
-.items_wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+  .image_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+  }
 
-.button_wrapper {
-  display: flex;
-  justify-content: center;
-}
+  .items_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-.title {
-  text-align: center;
-  margin: 15px;
-}
+  .button_wrapper {
+    display: flex;
+    justify-content: center;
+  }
 
-.highlight {
-  color: $primary-color;
-}
+  .title {
+    height: max-content;
+    text-align: center;
+    margin: 15px;
+    font-family: $titleFont;
+    font-weight: 800;
+  }
 
-.button_login {
-  @include main-btn;
-  text-align: center;
-  border: 4px solid $primary-color;
+  .highlight {
+    color: $primary-color;
+  }
 
-  &:hover {
-    background-color: $secondary-color;
-    border: 4px solid #eb770f;
+  .button_login {
+    @include main-btn;
+    text-align: center;
+    border: 4px solid $primary-color;
+
+    &:hover {
+      background-color: $secondary-color;
+      border: 4px solid #eb770f;
+    }
   }
 }
+.button_image {
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 769px) {
   .image {
     width: 150px;

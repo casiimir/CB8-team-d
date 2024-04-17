@@ -16,7 +16,7 @@ const GardenModal = ({ onClose, onPlantSelect, trees }) => {
       <div className={styles.modal}>
         <div className={styles.modalContent} onClick={onClose}>
           <div className={styles.mainInfo}>
-            <h3 className={styles.modalTitle}>Aggiungi un nuovo albero</h3>
+            <h3 className={styles.modalTitle}>Add a new tree</h3>
             <button className={styles.closeBtn} onClick={onClose}>
               <IoClose className={styles.closeIcon} />
             </button>

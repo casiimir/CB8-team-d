@@ -1,13 +1,33 @@
 @import "../../assets/variables.module.scss";
 @import "../../assets/mixins.module.scss";
 
+.titleWrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: white;
+  height: 150px;
+  top: 20px;
+  z-index: 1;
+
+  .title {
+    font-family: $titleFont;
+    font-weight: 900;
+  }
+}
+
 .TaskList {
   @include flex-container(column, center, center, 20px);
+  margin-top: 60px;
+  overflow-x: hidden;
 }
 
 .noTask {
   @include flex-container(column, center, center, 45px);
-  margin-top: 20px;
+  margin-top: 80px;
 
   .leaves {
     height: auto;
@@ -24,22 +44,4 @@
     max-width: 1080px;
     left: calc(50% - 600px);
   }
-}
-
-.scrollbar {
-  height: 480px;
-  width: auto;
-  background: white;
-  overflow-y: scroll;
-  padding: 0 15px;
-
-  .force_overflow {
-    min-height: 450px;
-  }
-}
-
-#wrapper {
-  text-align: center;
-  width: 500px;
-  margin: auto;
 }

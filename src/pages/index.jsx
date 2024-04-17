@@ -16,38 +16,39 @@ export default function Home() {
   const slides = [
     {
       id: 1,
-      img: "/Screen2.png",
+      img: "/Screen_Tavola disegno 1-01.svg",
+
     },
     {
       id: 2,
-      img: "/Screen_Tavola disegno 1-02.png",
+      img: "/Screen_Tavola disegno 1-02.svg",
     },
     {
       id: 3,
-      img: "/Screen_Tavola disegno 1-03.png",
+      img: "/Screen_Tavola disegno 1-03.svg",
     },
     {
       id: 4,
-      img: "/Screen_Tavola disegno 1-04.png",
+      img: "/Screen_Tavola disegno 1-04.svg",
     },
   ];
 
   const slidesDesktop = [
     {
       id: 1,
-      img: "/Screen-05.png",
+      img: "/Screen-05.svg",
     },
     {
       id: 2,
-      img: "/Screen-06.png",
+      img: "/Screen-06.svg",
     },
     {
       id: 3,
-      img: "/Screen-07.png",
+      img: "/Screen-07.svg",
     },
     {
       id: 4,
-      img: "/Screen-08.png",
+      img: "/Screen-08.svg",
     },
   ];
 
@@ -157,20 +158,20 @@ export default function Home() {
                       <div className={styles.contacts}>
                         <p>Elena Faraci</p>
                         <div className={styles.icons}>
-                        <a
+                          <a
+                            href="https://github.com/ElenaEF00"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <AiFillGithub />
+                          </a>
+                          <a
                             href="https://www.linkedin.com/in/elenafaraci/"
                             target="_blank"
                             rel="noopener noreferrer"
                           >
                             <BsLinkedin />
                           </a>
-                          <a
-                              href="https://github.com/ElenaEF00"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <AiFillGithub />
-                          </a>                          
                         </div>
                       </div>
                     </div>
@@ -272,7 +273,18 @@ export default function Home() {
         {showSlider && (
           <>
             <div className={styles.background}>
-              <img src={`/screens/${slides[slideIndex].img}`} alt="" />
+              <Image
+                src={
+                  window.innerWidth >= 768
+                    ? `/screens2/${slidesDesktop[slideIndex].img}`
+                    : `/screens${slides[slideIndex].img}`
+                }
+                alt=""
+                width="100"
+                height="100"
+                quality={100}
+                unoptimized={false}
+              />
             </div>
             <div className={styles.actions}>
               {slideIndex > 0 && (

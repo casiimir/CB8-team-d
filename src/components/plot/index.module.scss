@@ -19,22 +19,13 @@
   }
 
   .buttonWrapper {
-    position: relative;
+    position: absolute;
     width: 70px;
     height: 50%;
-    // top: 0;
-    // right: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    // gap: 40px;
-    // width: 30px;
-    // height: 30px;
-    // background-color: $primary-color;
-    // border-radius: 50%;
-    // cursor: pointer;
-    // transition: all 0.3s;
 
     .removeBtn {
       border-radius: 100%;
@@ -81,57 +72,34 @@
     }
   }
 
-  .plantIcon {
-    position: absolute;
-    width: 4rem;
-    height: auto;
+  .plantAnimation {
+    position: relative;
 
-    // top: 30%;
-    // left: 50%;
-    // display: none;
-    transition: transform 0.5s ease-in-out;
+    .plantIcon {
+      position: 0 0;
+      width: 4rem;
+      height: auto;
+      transition: transform 0.5s ease-in-out;
 
-    &:hover {
-      // transform: scale(1.1);
+      &:hover {
+        animation: horizontal-shaking 0.15s;
 
-      // animation: skew-x-shake 3s;
-      animation: horizontal-shaking 0.15s;
-
-      // @keyframes skew-x-shake {
-      //   0% {
-      //     transform: skewX(-15deg);
-      //   }
-      //   5% {
-      //     transform: skewX(15deg);
-      //   }
-      //   10% {
-      //     transform: skewX(-15deg);
-      //   }
-      //   15% {
-      //     transform: skewX(15deg);
-      //   }
-      //   20% {
-      //     transform: skewX(0deg);
-      //   }
-      //   100% {
-      //     transform: skewX(0deg);
-      //   }
-      // }
-      @keyframes horizontal-shaking {
-        0% {
-          transform: translateX(0);
-        }
-        25% {
-          transform: translateX(2.3px);
-        }
-        50% {
-          transform: translateX(-2.5px);
-        }
-        75% {
-          transform: translateX(2.5px);
-        }
-        100% {
-          transform: translateX(0);
+        @keyframes horizontal-shaking {
+          0% {
+            transform: translateX(0);
+          }
+          25% {
+            transform: translateX(2.3px);
+          }
+          50% {
+            transform: translateX(-2.5px);
+          }
+          75% {
+            transform: translateX(2.5px);
+          }
+          100% {
+            transform: translateX(0);
+          }
         }
       }
     }

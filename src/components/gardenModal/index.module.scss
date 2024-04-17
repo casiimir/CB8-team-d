@@ -34,7 +34,8 @@
         width: 250px;
         margin-left: 10px;
         color: white;
-        font-weight: 700;
+        font-family: $titleFont;
+        font-weight: 900;
       }
 
       @media screen and (min-width: 430px) {
@@ -87,6 +88,8 @@
 
         .name {
           margin: 0;
+          font-family: $titleFont;
+          font-weight: 400;
         }
 
         .plantInfo {
