@@ -14,7 +14,7 @@ export default function Home() {
   const slides = [
     {
       id: 1,
-      img: "/Screens_Tavola disegno 1-09.png",
+      img: "/Screen_Tavola disegno 1-09.png",
     },
     {
       id: 2,
