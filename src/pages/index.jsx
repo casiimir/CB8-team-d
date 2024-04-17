@@ -11,10 +11,13 @@ export default function Home() {
   const [showSlider, setShowSlider] = useState(false);
   const router = useRouter();
 
+  const [isVisible, setIsVisible] = useState(false);
+
   const slides = [
     {
       id: 1,
       img: "/Screen_Tavola disegno 1-01.svg",
+
     },
     {
       id: 2,
@@ -78,7 +81,13 @@ export default function Home() {
         {!showSlider && (
           <>
             <div className={styles.logoArea}>
-              <Image src="/logowide.png" alt="Logo" width="200" height="50" />
+            <Image
+                className={styles.logo}
+                src="/logowide.png"
+                alt="logo"
+                width="180"
+                height="68"
+              /> 
             </div>
             <div className={styles.title}>
               <h4>Track your goals, cultivate your habits.</h4>
@@ -97,6 +106,7 @@ export default function Home() {
               />
             </div>
             <div className={styles.btnWrapper}>
+              
               <button className={styles.startBtn} onClick={handleStart}>
                 START
               </button>
@@ -105,30 +115,43 @@ export default function Home() {
               <div className={styles.title}>
                 <h6>Growy Team Members</h6>
               </div>
+
               <div className={styles.teamMembers}>
-                <div className={styles.first}>
-                  <div className={styles.firstHalf}>
+                
                     <div className={styles.member}>
                       <Image
                         className={styles.Img}
-                        src="/Hands.png"
-                        alt="logo"
+                        src="/team/Olga.jpg"
+                        alt="Olga"
                         width="50"
                         height="50"
                       />
                       <div className={styles.contacts}>
                         <p>Olga Barbato</p>
                         <div className={styles.icons}>
-                          <AiFillGithub />
-                          <BsLinkedin />
+                        <a
+                            href="https://www.linkedin.com/in/olga-barbato-3102589a/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <BsLinkedin />
+                          </a>
+                          <a
+                              href="https://github.com/olgatobarbato"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <AiFillGithub />
+                          </a>      
                         </div>
                       </div>
                     </div>
+
                     <div className={styles.member}>
                       <Image
                         className={styles.Img}
-                        src="/team/Elena.jpeg"
-                        alt="logo"
+                        src="/team/Elena.jpg"
+                        alt="Elena"
                         width="50"
                         height="50"
                       />
@@ -152,62 +175,99 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className={styles.secondHalf}>
+                  
                     <div className={styles.member}>
                       <Image
                         className={styles.Img}
-                        src="/Hands.png"
-                        alt="logo"
+                        src="/team/Andrea.jpg"
+                        alt="Andrea"
                         width="50"
                         height="50"
                       />
                       <div className={styles.contacts}>
                         <p>Andrea Perez</p>
                         <div className={styles.icons}>
-                          <AiFillGithub />
-                          <BsLinkedin />
+                        <a
+                            href="http://www.linkedin.com/in/andrea-perez-dev"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <BsLinkedin />
+                          </a>
+                          <a
+                              href="https://github.com/perezandr"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <AiFillGithub />
+                          </a>      
                         </div>
                       </div>
                     </div>
+
                     <div className={styles.member}>
                       <Image
                         className={styles.Img}
-                        src="/Hands.png"
-                        alt="logo"
+                        src="/team/Eugenia.jpg"
+                        alt="Eugenia"
                         width="50"
                         height="50"
                       />
                       <div className={styles.contacts}>
                         <p>Eugenia Renda</p>
                         <div className={styles.icons}>
-                          <AiFillGithub />
-                          <BsLinkedin />
+                        <a
+                            href=""
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <BsLinkedin />
+                          </a>
+                          <a
+                              href="https://github.com/Euphyre"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <AiFillGithub />
+                          </a>      
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className={styles.last}>
+                    
+                  
+                
                   <div className={styles.member}>
                     <Image
                       className={styles.Img}
-                      src="/Hands.png"
-                      alt="logo"
+                      src="/team/Valentina.jpg"
+                      alt="Valentina"
                       width="50"
                       height="50"
                     />
                     <div className={styles.contacts}>
                       <p>Valentina Scalone</p>
                       <div className={styles.icons}>
-                        <AiFillGithub />
-                        <BsLinkedin />
+                      <a
+                            href="https://www.linkedin.com/in/valentina-scalone-73148090/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <BsLinkedin />
+                          </a>
+                          <a
+                              href="https://github.com/ValScal"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <AiFillGithub />
+                          </a>      
                       </div>
                     </div>
                   </div>
                 </div>
+
               </div>
-            </div>
+            
           </>
         )}
         {showSlider && (
@@ -228,7 +288,7 @@ export default function Home() {
             </div>
             <div className={styles.actions}>
               {slideIndex > 0 && (
-                <button onClick={handlePrevSlide}>
+                <button className={styles.prev} onClick={handlePrevSlide}>
                   <FaAngleDoubleLeft />
                 </button>
               )}
@@ -237,9 +297,7 @@ export default function Home() {
                   <FaAngleDoubleRight />
                 </button>
               ) : (
-                <button className={styles.endBtn} onClick={handleFinishIntro}>
-                  START
-                </button>
+                <button className={styles.next} onClick={handleFinishIntro}>START</button>
               )}
             </div>
           </>

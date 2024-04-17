@@ -27,7 +27,6 @@ function Login() {
       email,
       password,
     });
-
     if (result.error) {
       alert("Invalid credentials");
       console.error(result.error);
@@ -50,15 +49,15 @@ function Login() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{
-                duration: 1.2,
+                duration: 1.20,
                 delay: i / 4,
               }}
               key={i}
-              className={i === 2 ? styles.highlight : ""}
+              className={i === 2 ? styles.highlight : ""} 
             >
               {el}{" "}
             </motion.span>
-          ))}
+        ))}
         </h1>
       </div>
 

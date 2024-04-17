@@ -71,7 +71,17 @@
     width: 80px;
     height: 80px;
     bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s,;
+
+    &:focus {
+      transform: translateY(8px);
+      box-shadow: 0 4px 8px rgba(94, 203, 233, 0.2);
+    
+    }
+
   }
+
+  
 
   .logoWrapper {
     display: none;
