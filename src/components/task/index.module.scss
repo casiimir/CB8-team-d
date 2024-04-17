@@ -7,19 +7,19 @@
   width: 350px;
   border: none;
   color: white;
-  animation: animate-in-and-out 0.2s linear;
-  overflow-x: hidden;
+  // animation: animate-in-and-out 0.2s linear;
+  // overflow-x: hidden;
 
-  @keyframes animate-in-and-out {
-    0% {
-      opacity: 0;
-      transform: translateX(100%);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
+  // @keyframes animate-in-and-out {
+  //   0% {
+  //     opacity: 0;
+  //     transform: translateX(100%);
+  //   }
+  //   100% {
+  //     opacity: 1;
+  //     transform: translateX(0);
+  //   }
+  // }
 
   .deleteBtnWrapper {
     width: 15px;
