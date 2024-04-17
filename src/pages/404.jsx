@@ -31,9 +31,9 @@ export default function Custom404() {
               "#006600",
               "#005500",
             ]}
-            force={0.5}
-            duration={1500}
-            particleCount={250}
+            force={0.25}
+            duration={500}
+            particleCount={500}
             width={1600}
           />
         )}

@@ -87,7 +87,10 @@ export default function Home() {
               />
             </div>
             <div className={styles.title}>
-              <h4>Track your goals, cultivate your habits.</h4>
+              <h4>
+                Track your goals,{" "}
+                <span className={styles.highlight}>cultivate</span> your habits.
+              </h4>
               <p>
                 Developing sustainable habits is like planting the seeds of
                 success for lush growth, nourishing yourself and the planet!
@@ -154,18 +157,18 @@ export default function Home() {
                     <p>Elena Faraci</p>
                     <div className={styles.icons}>
                       <a
-                        href="https://github.com/ElenaEF00"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <AiFillGithub />
-                      </a>
-                      <a
                         href="https://www.linkedin.com/in/elenafaraci/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         <BsLinkedin />
+                      </a>
+                      <a
+                        href="https://github.com/ElenaEF00"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <AiFillGithub />
                       </a>
                     </div>
                   </div>
@@ -271,6 +274,7 @@ export default function Home() {
                 height="100"
                 quality={100}
                 unoptimized={false}
+                className={styles.slide}
               />
             </div>
             <div className={styles.actions}>
