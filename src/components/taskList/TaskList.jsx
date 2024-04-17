@@ -15,9 +15,7 @@ const TaskList = ({
   return (
     <div>
       {hasTasks ? (
-        <div id="wrapper">
-          <div className={styles.scrollbar} id="style-default">
-            <div className={styles.force_overflow}>
+        
               <div className={styles.TaskList}>
                 {tasks.map((task) => (
                   <div key={task._id} className={styles.TaskItem}>
@@ -36,9 +34,7 @@ const TaskList = ({
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
+           
       ) : (
         <div className={styles.noTask}>
           <h5>It&apos;s time to start growing!</h5>

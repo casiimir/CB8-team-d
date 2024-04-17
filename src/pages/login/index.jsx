@@ -3,6 +3,7 @@ import styles from "@/styles/login.module.scss";
 import React from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 const handleSubmit = async (event, router) => {
   event.preventDefault();
@@ -28,6 +29,7 @@ const handleSubmit = async (event, router) => {
 
 function Login() {
   const router = useRouter();
+  const text = "Let's start growing together!".split(" ");
 
   return (
     <div className={styles.login_wrapper}>
@@ -40,8 +42,20 @@ function Login() {
       />
       <div className={styles.title}>
         <h1>
-          Let&apos;s start <span className={styles.highlight}>growing</span>{" "}
-          together!
+        {text.map((el, i) => (
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: 1.20,
+                delay: i / 4,
+              }}
+              key={i}
+              className={i === 2 ? styles.highlight : ""} 
+            >
+              {el}{" "}
+            </motion.span>
+        ))}
         </h1>
       </div>
 

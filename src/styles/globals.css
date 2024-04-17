@@ -61,19 +61,3 @@ p {
   font-size: 16px;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #d2d2d2;
-  border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #eb770f;
-  border-radius: 6px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #d2d2d2;
-}
