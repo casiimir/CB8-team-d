@@ -21,9 +21,6 @@ const UserProfilePage = () => {
     router.push("/login");
   };
 
-  const imageUrl =
-    "https://static.vecteezy.com/system/resources/previews/019/633/059/original/8-bit-pixel-human-portrait-cartoon-young-girl-for-game-assets-in-illustration-vector.jpg";
-
   if (status === "loading") {
     return <Loader />;
   }
@@ -35,7 +32,7 @@ const UserProfilePage = () => {
         <div className={styles.image_wrapper}>
           <Image
             className={styles.image}
-            src={imageUrl}
+            src={"/avatar.png"}
             priority={false}
             alt="User Image"
             width="150"
