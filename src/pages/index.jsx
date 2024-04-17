@@ -14,7 +14,7 @@ export default function Home() {
   const slides = [
     {
       id: 1,
-      img: "/Screen2.png",
+      img: "/Screens_Tavola disegno 1-09.svg",
     },
     {
       id: 2,
@@ -223,6 +223,7 @@ export default function Home() {
                 width="100"
                 height="100"
                 quality={100}
+                unoptimized={false}
               />
             </div>
             <div className={styles.actions}>
