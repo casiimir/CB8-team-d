@@ -81,21 +81,15 @@ const Task = ({
   useEffect(() => {
     if (newLastCompleted) {
       const currentDate = new Date();
-
-      const hoursDifference = differenceInHours(
-        currentDate,
-        formattedNewLastCompleted
-      );
+      const hoursDifference = differenceInHours(currentDate, newLastCompleted);
 
       if (hoursDifference >= 24) {
         setCurrentStreakCount(0);
-        if (completed && hoursDifference >= 24) {
+        if (completed) {
           setCompleted(false);
 
           if (router.pathname === "/dailies") {
-            if (completed) {
-              updateDailyFunction(id, title, false, null);
-            }
+            updateDailyFunction(id, title, false, null);
           }
           if (router.pathname === "/habits") {
             updateHabitFunction(id, title, 0, null);
@@ -104,14 +98,11 @@ const Task = ({
       }
     }
   }, [
-    formattedNewLastCompleted,
+    newLastCompleted,
     completed,
-    id,
-    title,
+    router.pathname,
     updateDailyFunction,
     updateHabitFunction,
-    router.pathname,
-    newLastCompleted,
   ]);
 
   let additionalClassName = "";
